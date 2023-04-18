@@ -110,14 +110,10 @@ public class GazeManager : MonoBehaviour
         }
 
         if (distanceToGaze < impactDistance)
-        {
             MoveInGazeDirection();
-        }
 
         else
-        {
             Detach();
-        }
     }
 
     void Attach(GameObject _objToAttach)
