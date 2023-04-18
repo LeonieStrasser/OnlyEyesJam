@@ -557,14 +557,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gazeIndicator: {fileID: 976919141}
   blinkThreshold: 0.6
-  timeTillTelekinese: 3
+  timeTillTelekinesis: 2
   releaseDelayTime: 2
-  telekineseForce: 0.2
+  followSpeed: {x: 0.5, y: 20}
+  impactDistance: 1000
   debug: 1
-  currentLookingAt: {fileID: 0}
-  currentAttachedObject: {fileID: 0}
-  gazeFollowSpeed: 10
-  impactDistance: 5
 --- !u!4 &656978183
 Transform:
   m_ObjectHideFlags: 0

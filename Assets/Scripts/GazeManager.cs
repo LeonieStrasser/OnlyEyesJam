@@ -1,49 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
+using NaughtyAttributes;
 using Tobii.Gaming;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Serialization;
 
 public class GazeManager : MonoBehaviour
 {
     [SerializeField] RectTransform gazeIndicator;
     [SerializeField] float blinkThreshold;
-    float currentBlinkDuration;
 
-    [SerializeField] float timeTillTelekinese = 5;
+    [SerializeField] float timeTillTelekinesis = 5;
     [SerializeField] float releaseDelayTime = 2;
-    [SerializeField] float telekineseForce = 0.2f;
+
+    [MinMaxSlider(0f, 50f)]
+    [SerializeField] Vector2 followSpeed;
+    [SerializeField] float impactDistance = 5;
+    
     [SerializeField] bool debug;
 
-    public GameObject currentLookingAt, currentAttachedObject;
-
-    Animator anim;
-    GazeAware gazeAware;
-    float gazeTargetTime;
-    float gazeChannelTime;
-    bool isInTelekinese;
+    GameObject currentLookingAt, currentAttachedObject;
     
-    [SerializeField] float gazeFollowSpeed = 0.2f;
-    [SerializeField] float impactDistance = 5;
+    Rigidbody attachedRb;
+    
+    float currentBlinkDuration;
+    float currentGazeDuration;
+    float distanceToGaze;
     
     Vector2 objectPosOnScreen;
     Vector2 directionToTarget;
-    float distanceToGaze;
-
-    Rigidbody rb;
-
+    
     void Start()
     {
-        anim = GetComponentInChildren<Animator>();
-        rb = GetComponent<Rigidbody>();
-        gazeAware = GetComponent<GazeAware>();
-        isInTelekinese = false;
-
-        gazeTargetTime = 0;
-        gazeChannelTime = 0;
-
         TobiiAPI.Start(new TobiiSettings());
+        
+        currentGazeDuration = 0;
     }
 
     void Update()
@@ -67,23 +56,23 @@ public class GazeManager : MonoBehaviour
             if (currentLookingAt != focusedObject)
             {
                 currentLookingAt = focusedObject;
-                gazeChannelTime = timeTillTelekinese;
+                currentGazeDuration = timeTillTelekinesis;
             }
 
-            gazeChannelTime -= Time.deltaTime;
+            currentGazeDuration -= Time.deltaTime;
             
             // Attach new Object
-            if (gazeChannelTime <= 0)
+            if (currentGazeDuration <= 0)
             {
                 Attach(currentLookingAt);
-                gazeChannelTime = timeTillTelekinese;
+                currentGazeDuration = timeTillTelekinesis;
             }
         }
         
         else
         {
             currentLookingAt = null;
-            gazeChannelTime = timeTillTelekinese;
+            currentGazeDuration = timeTillTelekinesis;
         }
     }
 
@@ -94,13 +83,11 @@ public class GazeManager : MonoBehaviour
         
         CalculateGazeData();
 
-        /*if (distanceToGaze < impactDistance)
+        if (distanceToGaze < impactDistance)
         {
             MoveInGazeDirection();
-        }*/
-        
-        MoveInGazeDirection();
-        
+        }
+
         //--------------DEBUGGING
 
         if (debug)
@@ -116,8 +103,8 @@ public class GazeManager : MonoBehaviour
             Debug.Log("Attach!");
         
         currentAttachedObject = _objToAttach;
-        rb = currentAttachedObject.GetComponent<Rigidbody>();
-        rb.useGravity = false;
+        attachedRb = currentAttachedObject.GetComponent<Rigidbody>();
+        attachedRb.useGravity = false;
     }
     
     void Detach()
@@ -125,8 +112,8 @@ public class GazeManager : MonoBehaviour
         if(debug)
             Debug.Log("Detach!");
         
-        rb.useGravity = true;
-        rb = null;
+        attachedRb.useGravity = true;
+        attachedRb = null;
         currentAttachedObject = null;
     }
     
@@ -142,10 +129,11 @@ public class GazeManager : MonoBehaviour
         distanceToGaze = Vector2.Distance(objectPosOnScreen, targetPos);
     }
 
-
     void MoveInGazeDirection()
     {
-        rb.transform.position += ((Vector3)directionToTarget * gazeFollowSpeed * Time.deltaTime);
+        float currentFollowSpeed = Mathf.Lerp(followSpeed.x, followSpeed.y, distanceToGaze / impactDistance);
+        
+        attachedRb.transform.position += ((Vector3)directionToTarget * currentFollowSpeed * Time.deltaTime);
     }
 
     void BlinkDetection()
@@ -172,32 +160,6 @@ public class GazeManager : MonoBehaviour
 
         else
             currentBlinkDuration = 0;
-    }
-
-    void WhileLookedAt()
-    {
-        gazeTargetTime += Time.deltaTime;
-
-        if (gazeTargetTime >= timeTillTelekinese)
-        {
-            rb.AddForce(new Vector3(0, 1 * telekineseForce, 0), ForceMode.Impulse);
-            gazeChannelTime = releaseDelayTime;
-        }
-    }
-
-    void LookStart()
-    {
-        anim.SetBool("lookedAt", true);
-        isInTelekinese = true;
-        rb.useGravity = false;
-    }
-
-    void LookEnd()
-    {
-        anim.SetBool("lookedAt", false);
-        isInTelekinese = false;
-        rb.useGravity = true;
-        gazeTargetTime = 0;
     }
 }
 
