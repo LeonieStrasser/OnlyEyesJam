@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using Tobii.Gaming;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class GazeManager : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class GazeManager : MonoBehaviour
     GameObject currentLookingAt, currentAttachedObject;
     
     Rigidbody attachedRb;
+
+    Image indicatorFill;
     
     float currentBlinkDuration;
     float currentGazeDuration;
@@ -31,6 +34,8 @@ public class GazeManager : MonoBehaviour
     void Start()
     {
         TobiiAPI.Start(new TobiiSettings());
+
+        indicatorFill = gazeIndicator.GetChild(0).GetComponent<Image>();
         
         currentGazeDuration = 0;
     }
@@ -48,31 +53,37 @@ public class GazeManager : MonoBehaviour
 
     void DetectObjectSwitch()
     {
+        if(currentAttachedObject)
+            return;
+        
         GameObject focusedObject = TobiiAPI.GetFocusedObject();
 
-        if (focusedObject && !currentAttachedObject)
+        if (focusedObject)
         {
             // Looking at new object
             if (currentLookingAt != focusedObject)
             {
                 currentLookingAt = focusedObject;
-                currentGazeDuration = timeTillTelekinesis;
+                currentGazeDuration = 0;
+                indicatorFill.fillAmount = 0;
             }
 
-            currentGazeDuration -= Time.deltaTime;
+            currentGazeDuration += Time.deltaTime;
+            indicatorFill.fillAmount = currentGazeDuration / timeTillTelekinesis;
             
             // Attach new Object
-            if (currentGazeDuration <= 0)
+            if (currentGazeDuration >= timeTillTelekinesis)
             {
                 Attach(currentLookingAt);
-                currentGazeDuration = timeTillTelekinesis;
+                currentGazeDuration = 0;
             }
         }
         
         else
         {
             currentLookingAt = null;
-            currentGazeDuration = timeTillTelekinesis;
+            currentGazeDuration = 0;
+            indicatorFill.fillAmount = 0;
         }
     }
 
