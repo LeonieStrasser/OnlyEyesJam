@@ -2,10 +2,12 @@ using NaughtyAttributes;
 using Tobii.Gaming;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class GazeManager : MonoBehaviour
 {
     [SerializeField] RectTransform gazeIndicator;
+    [SerializeField] RectTransform radiusIndicator;
     [SerializeField] float blinkThreshold;
 
     [SerializeField] float timeTillTelekinesis = 5;
@@ -20,6 +22,8 @@ public class GazeManager : MonoBehaviour
     GameObject currentLookingAt, currentAttachedObject;
     
     Rigidbody attachedRb;
+
+    Image indicatorFill;
     
     float currentBlinkDuration;
     float currentGazeDuration;
@@ -31,6 +35,8 @@ public class GazeManager : MonoBehaviour
     void Start()
     {
         TobiiAPI.Start(new TobiiSettings());
+
+        indicatorFill = gazeIndicator.GetChild(0).GetComponent<Image>();
         
         currentGazeDuration = 0;
     }
@@ -38,41 +44,54 @@ public class GazeManager : MonoBehaviour
     void Update()
     {
         gazeIndicator.position = TobiiAPI.GetGazePoint().Screen;
-        
+
         DetectObjectSwitch();
         
         BlinkDetection();
 
         ObjectMovement();
+        
+        if (currentAttachedObject)
+        {
+            RectTransform rt = radiusIndicator;
+            rt.position = objectPosOnScreen;
+            rt.sizeDelta = new Vector2(impactDistance * 2, impactDistance * 2);
+        }
     }
 
     void DetectObjectSwitch()
     {
+        if(currentAttachedObject)
+            return;
+        
         GameObject focusedObject = TobiiAPI.GetFocusedObject();
 
-        if (focusedObject && !currentAttachedObject)
+        if (focusedObject)
         {
             // Looking at new object
             if (currentLookingAt != focusedObject)
             {
                 currentLookingAt = focusedObject;
-                currentGazeDuration = timeTillTelekinesis;
+                currentGazeDuration = 0;
+                indicatorFill.fillAmount = 0;
             }
 
-            currentGazeDuration -= Time.deltaTime;
+            currentGazeDuration += Time.deltaTime;
+            indicatorFill.fillAmount = currentGazeDuration / timeTillTelekinesis;
             
             // Attach new Object
-            if (currentGazeDuration <= 0)
+            if (currentGazeDuration >= timeTillTelekinesis)
             {
                 Attach(currentLookingAt);
-                currentGazeDuration = timeTillTelekinesis;
+                currentGazeDuration = 0;
             }
         }
         
         else
         {
             currentLookingAt = null;
-            currentGazeDuration = timeTillTelekinesis;
+            currentGazeDuration = 0;
+            indicatorFill.fillAmount = 0;
         }
     }
 
@@ -82,19 +101,19 @@ public class GazeManager : MonoBehaviour
             return;
         
         CalculateGazeData();
-
-        if (distanceToGaze < impactDistance)
-        {
-            MoveInGazeDirection();
-        }
-
+        
         //--------------DEBUGGING
-
         if (debug)
         {
-            Debug.DrawRay(transform.position, directionToTarget * 2, Color.cyan);
+            Debug.DrawRay(currentAttachedObject.transform.position, directionToTarget * 2, Color.cyan);
             Debug.Log("Distance to Gaze is " + distanceToGaze);
         }
+
+        if (distanceToGaze < impactDistance)
+            MoveInGazeDirection();
+
+        else
+            Detach();
     }
 
     void Attach(GameObject _objToAttach)
@@ -105,6 +124,8 @@ public class GazeManager : MonoBehaviour
         currentAttachedObject = _objToAttach;
         attachedRb = currentAttachedObject.GetComponent<Rigidbody>();
         attachedRb.useGravity = false;
+        
+        radiusIndicator.gameObject.SetActive(true);
     }
     
     void Detach()
@@ -115,6 +136,8 @@ public class GazeManager : MonoBehaviour
         attachedRb.useGravity = true;
         attachedRb = null;
         currentAttachedObject = null;
+        
+        radiusIndicator.gameObject.SetActive(false);
     }
     
     void CalculateGazeData()
