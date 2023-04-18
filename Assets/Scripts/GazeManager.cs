@@ -1,5 +1,7 @@
+using NaughtyAttributes;
 using Tobii.Gaming;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GazeManager : MonoBehaviour
 {
@@ -8,7 +10,9 @@ public class GazeManager : MonoBehaviour
 
     [SerializeField] float timeTillTelekinesis = 5;
     [SerializeField] float releaseDelayTime = 2;
-    [SerializeField] float gazeFollowSpeed = 0.2f;
+
+    [MinMaxSlider(0f, 50f)]
+    [SerializeField] Vector2 followSpeed;
     [SerializeField] float impactDistance = 5;
     
     [SerializeField] bool debug;
@@ -127,7 +131,9 @@ public class GazeManager : MonoBehaviour
 
     void MoveInGazeDirection()
     {
-        attachedRb.transform.position += ((Vector3)directionToTarget * gazeFollowSpeed * Time.deltaTime);
+        float currentFollowSpeed = Mathf.Lerp(followSpeed.x, followSpeed.y, distanceToGaze / impactDistance);
+        
+        attachedRb.transform.position += ((Vector3)directionToTarget * currentFollowSpeed * Time.deltaTime);
     }
 
     void BlinkDetection()

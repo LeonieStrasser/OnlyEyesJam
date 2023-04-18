@@ -559,8 +559,8 @@ MonoBehaviour:
   blinkThreshold: 0.6
   timeTillTelekinesis: 2
   releaseDelayTime: 2
-  gazeFollowSpeed: 10
-  impactDistance: 5
+  followSpeed: {x: 0.5, y: 20}
+  impactDistance: 1000
   debug: 1
 --- !u!4 &656978183
 Transform:
