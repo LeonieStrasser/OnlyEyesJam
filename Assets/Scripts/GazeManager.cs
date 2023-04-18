@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GazeManager : MonoBehaviour
 {
     [SerializeField] RectTransform gazeIndicator;
+    [SerializeField] RectTransform radiusIndicator;
     [SerializeField] float blinkThreshold;
 
     [SerializeField] float timeTillTelekinesis = 5;
@@ -43,12 +44,19 @@ public class GazeManager : MonoBehaviour
     void Update()
     {
         gazeIndicator.position = TobiiAPI.GetGazePoint().Screen;
-        
+
         DetectObjectSwitch();
         
         BlinkDetection();
 
         ObjectMovement();
+        
+        if (currentAttachedObject)
+        {
+            RectTransform rt = radiusIndicator;
+            rt.position = objectPosOnScreen;
+            rt.sizeDelta = new Vector2(impactDistance * 2, impactDistance * 2);
+        }
     }
 
     void DetectObjectSwitch()
@@ -93,18 +101,22 @@ public class GazeManager : MonoBehaviour
             return;
         
         CalculateGazeData();
+        
+        //--------------DEBUGGING
+        if (debug)
+        {
+            Debug.DrawRay(currentAttachedObject.transform.position, directionToTarget * 2, Color.cyan);
+            Debug.Log("Distance to Gaze is " + distanceToGaze);
+        }
 
         if (distanceToGaze < impactDistance)
         {
             MoveInGazeDirection();
         }
 
-        //--------------DEBUGGING
-
-        if (debug)
+        else
         {
-            Debug.DrawRay(transform.position, directionToTarget * 2, Color.cyan);
-            Debug.Log("Distance to Gaze is " + distanceToGaze);
+            Detach();
         }
     }
 
@@ -116,6 +128,8 @@ public class GazeManager : MonoBehaviour
         currentAttachedObject = _objToAttach;
         attachedRb = currentAttachedObject.GetComponent<Rigidbody>();
         attachedRb.useGravity = false;
+        
+        radiusIndicator.gameObject.SetActive(true);
     }
     
     void Detach()
@@ -126,6 +140,8 @@ public class GazeManager : MonoBehaviour
         attachedRb.useGravity = true;
         attachedRb = null;
         currentAttachedObject = null;
+        
+        radiusIndicator.gameObject.SetActive(false);
     }
     
     void CalculateGazeData()
