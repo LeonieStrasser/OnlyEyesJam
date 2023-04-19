@@ -41,6 +41,8 @@ public class GazeAwareButton : GazeAwareBehaviour
         OnDehoverEvents.Invoke();
         OnHoverEnd();
 
+        ResetKlickTimer();
+
     }
 
     protected override void OnFocusIsActive()
