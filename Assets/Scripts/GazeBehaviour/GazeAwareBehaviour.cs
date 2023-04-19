@@ -25,7 +25,6 @@ public class GazeAwareBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (myGaze.HasGazeFocus && !hasFocus) // Object bekommt Focus
         {
             hasFocus = true;

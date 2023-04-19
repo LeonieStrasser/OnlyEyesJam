@@ -8,12 +8,6 @@ public class MenueActivator : GazeAwareBehaviour
     [SerializeField] bool canActivate;
     [SerializeField] bool canDeactivate;
 
-    private void Start()
-    {
-
-
-    }
-
     protected override void OnFocusStart()
     {
         base.OnFocusStart();
