@@ -10,8 +10,11 @@ public class WinZone : MonoBehaviour
     float winTimer;
     bool timerRun;
 
+    LevelManager myManager;
+
     private void Start()
     {
+        myManager = FindObjectOfType<LevelManager>();
         winTimer = stayTimeToWin;
         timerRun = false;
     }
@@ -23,11 +26,11 @@ public class WinZone : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (winObject == null && other.tag == "Attached") // Wenn ein Objekt mit Attached.tag in der Zone erscheint - Starte den Win-Timer-Stuff
+        if (winObject == null && other.tag != "Attached") // Wenn ein Objekt mit !Attached.tag in der Zone erscheint - Starte den Win-Timer-Stuff
         {
             AttachWinObject(other.gameObject);
         }
-        else if (winObject != null && other.tag != "Attached") // Wenn das Eingeloggte Win Objekt attached wird aber noch in der TriggerZone chillt
+        else if (winObject != null && other.tag == "Attached") // Wenn das Eingeloggte Win Objekt attached wird aber noch in der TriggerZone chillt
         {
             DetachWinObject();
 
@@ -65,7 +68,7 @@ public class WinZone : MonoBehaviour
             if (winTimer <= 0)
             {
                 // WIN!!!!!!!!!!!!!!
-
+                OnWin();
 
                 if (debug)
                     Debug.Log("WON!!!");
@@ -89,5 +92,12 @@ public class WinZone : MonoBehaviour
         timerRun = false;
         winTimer = stayTimeToWin;
 
+    }
+
+    void OnWin()
+    {
+        myManager.LevelWon();
+
+        this.enabled = false;
     }
 }

@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+
+    [SerializeField] GameObject winObject;
 
     [SerializeField] bool debug;
 
@@ -25,8 +28,25 @@ public class LevelManager : MonoBehaviour
     {
         currentLevelState = levelState.won;
 
+        winObject.SetActive(true);
+
         if (debug)
             Debug.Log("WON!!!!");
+
+    }
+
+    public void RelodeScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
 
     }
 }

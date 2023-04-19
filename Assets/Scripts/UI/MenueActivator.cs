@@ -50,20 +50,7 @@ public class MenueActivator : MonoBehaviour
 
     }
 
-    public void RelodeScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void QuitGame()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
-
-    }
+   
 
     [Button]
     public void LoginGazedObject()
