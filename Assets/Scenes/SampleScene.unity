@@ -560,11 +560,11 @@ MonoBehaviour:
   radiusIndicator: {fileID: 1726081459}
   blinkThreshold: 0.2
   timeTillTelekinesis: 2
-  releaseDelayTime: 2
+  telekinesisMaxDuration: 7
   followSpeed: {x: 0.5, y: 20}
-  impactDistance: 600
+  impactDistanceMax: 800
   debug: 0
-  useMouseAsGaze: 1
+  useMouseAsGaze: 0
 --- !u!4 &656978183
 Transform:
   m_ObjectHideFlags: 0

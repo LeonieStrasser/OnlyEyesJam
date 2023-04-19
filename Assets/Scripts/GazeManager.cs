@@ -12,12 +12,12 @@ public class GazeManager : MonoBehaviour
     [SerializeField] float blinkThreshold;
 
     [SerializeField] float timeTillTelekinesis = 5;
-    [SerializeField] float releaseDelayTime = 2;
+    [SerializeField] float telekinesisMaxDuration = 5;
 
     [MinMaxSlider(0f, 50f)] [SerializeField]
     Vector2 followSpeed;
 
-    [SerializeField] float impactDistance = 5;
+    [SerializeField] float impactDistanceMax = 5;
 
     [SerializeField] bool debug;
     [SerializeField] bool useMouseAsGaze;
@@ -30,6 +30,8 @@ public class GazeManager : MonoBehaviour
 
     float currentBlinkDuration;
     float currentGazeDuration;
+    float currentTelekinesisDuration;
+    float currentImpactDistance;
     float distanceToGaze;
 
     Vector2 objectPosOnScreen;
@@ -51,14 +53,28 @@ public class GazeManager : MonoBehaviour
         DetectObjectSwitch();
 
         BlinkDetection();
-
-        ObjectMovement();
-
+        
         if (currentAttachedObject)
         {
-            RectTransform rt = radiusIndicator;
-            rt.position = objectPosOnScreen;
-            rt.sizeDelta = new Vector2(impactDistance * 2, impactDistance * 2);
+            UpdateTelekinesisUI();
+            
+            ObjectMovement();
+        }
+    }
+
+    void UpdateTelekinesisUI()
+    {
+        currentTelekinesisDuration += Time.deltaTime;
+
+        currentImpactDistance = Mathf.Lerp(impactDistanceMax, 0, currentTelekinesisDuration / telekinesisMaxDuration);
+        
+        RectTransform rt = radiusIndicator;
+        rt.position = objectPosOnScreen;
+        rt.sizeDelta = new Vector2(currentImpactDistance * 2, currentImpactDistance * 2);
+
+        if (currentTelekinesisDuration >= telekinesisMaxDuration)
+        {
+            Detach();
         }
     }
 
@@ -118,9 +134,6 @@ public class GazeManager : MonoBehaviour
 
     void ObjectMovement()
     {
-        if (!currentAttachedObject)
-            return;
-
         CalculateGazeData();
 
         //--------------DEBUGGING
@@ -130,7 +143,7 @@ public class GazeManager : MonoBehaviour
             Debug.Log("Distance to Gaze is " + distanceToGaze);
         }
 
-        if (distanceToGaze < impactDistance)
+        if (distanceToGaze < currentImpactDistance)
             MoveInGazeDirection();
 
         else
@@ -145,6 +158,9 @@ public class GazeManager : MonoBehaviour
         currentAttachedObject = _objToAttach;
         attachedRb = currentAttachedObject.GetComponent<Rigidbody>();
         attachedRb.useGravity = false;
+
+        currentTelekinesisDuration = 0;
+        currentImpactDistance = impactDistanceMax;
 
         radiusIndicator.gameObject.SetActive(true);
     }
@@ -176,7 +192,7 @@ public class GazeManager : MonoBehaviour
 
     void MoveInGazeDirection()
     {
-        float currentFollowSpeed = Mathf.Lerp(followSpeed.x, followSpeed.y, distanceToGaze / impactDistance);
+        float currentFollowSpeed = Mathf.Lerp(followSpeed.x, followSpeed.y, distanceToGaze / impactDistanceMax);
 
         attachedRb.transform.position += ((Vector3)directionToTarget * currentFollowSpeed * Time.deltaTime);
     }
