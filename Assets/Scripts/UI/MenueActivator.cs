@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using UnityEngine.SceneManagement;
 
 public class MenueActivator : MonoBehaviour
 {
@@ -46,6 +47,21 @@ public class MenueActivator : MonoBehaviour
     void DefovusUI()
     {
         anim.SetBool("visible", false);
+
+    }
+
+    public void RelodeScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
 
     }
 
