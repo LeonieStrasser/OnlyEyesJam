@@ -193,8 +193,9 @@ public class GazeManager : MonoBehaviour
     void MoveInGazeDirection()
     {
         float currentFollowSpeed = Mathf.Lerp(followSpeed.x, followSpeed.y, distanceToGaze / impactDistanceMax);
-
-        attachedRb.transform.position += ((Vector3)directionToTarget * currentFollowSpeed * Time.deltaTime);
+        
+        if(distanceToGaze > 15f)
+            attachedRb.transform.position += ((Vector3)directionToTarget * currentFollowSpeed * Time.deltaTime);
     }
 
     void BlinkDetection()
