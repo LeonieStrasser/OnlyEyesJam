@@ -11,6 +11,8 @@ public class GazeAwareBehaviour : MonoBehaviour
     GazeAware myGaze;
     bool hasFocus;
 
+    bool isMouseOver;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +32,7 @@ public class GazeAwareBehaviour : MonoBehaviour
             OnFocusStart();
             return;
         }
-        else if(myGaze.HasGazeFocus)
+        else if (myGaze.HasGazeFocus)
         {
             OnFocusIsActive();
             return;
@@ -46,9 +48,10 @@ public class GazeAwareBehaviour : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if(onMouseDebug)
+        if (onMouseDebug)
         {
             OnFocusStart();
+            isMouseOver = true;
         }
     }
     private void OnMouseExit()
@@ -56,6 +59,7 @@ public class GazeAwareBehaviour : MonoBehaviour
         if (onMouseDebug)
         {
             OnFocusEnd();
+            isMouseOver = false;
         }
     }
     private void OnMouseOver()
@@ -79,6 +83,15 @@ public class GazeAwareBehaviour : MonoBehaviour
 
     protected virtual void OnFocusIsActive()
     {
-        
+
+    }
+
+
+    public virtual bool IsObjectGazed()
+    {
+        if (!onMouseDebug)
+            return myGaze.HasGazeFocus;
+        else
+            return isMouseOver;
     }
 }
