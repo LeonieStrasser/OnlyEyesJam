@@ -558,12 +558,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gazeIndicator: {fileID: 1529361630}
   radiusIndicator: {fileID: 1726081459}
-  blinkThreshold: 0.05
+  blinkThreshold: 0.2
   timeTillTelekinesis: 2
   releaseDelayTime: 2
   followSpeed: {x: 0.5, y: 20}
   impactDistance: 600
   debug: 0
+  useMouseAsGaze: 1
 --- !u!4 &656978183
 Transform:
   m_ObjectHideFlags: 0
