@@ -27,7 +27,7 @@ RectTransform:
   m_GameObject: {fileID: 5598034612756310916}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.032}
-  m_LocalScale: {x: 0.009539512, y: 0.009539512, z: 0.009539512}
+  m_LocalScale: {x: 0.027330702, y: 0.027330702, z: 0.027330702}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5598034614229393440}
@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.001, y: 0.0015142}
+  m_AnchoredPosition: {x: -0.0036075, y: -0.0065802}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &5598034612756310937
@@ -219,7 +219,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.1, z: 0.05}
+  m_Size: {x: 0.7, y: 0.2, z: 0.05}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5598034614229393467
 MonoBehaviour:
@@ -282,13 +282,14 @@ MonoBehaviour:
   OnKlickEvents:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5598034614229393441}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 5598034614503952488}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_material
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 10756, guid: 0000000000000000e000000000000000,
+            type: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -321,7 +322,7 @@ Transform:
   m_GameObject: {fileID: 5598034614503952491}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.1, z: 0.05}
+  m_LocalScale: {x: 0.7, y: 0.2, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5598034614229393440}

@@ -1,35 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
+using UnityEngine.SceneManagement;
 
-public class MenueActivator : GazeAwareBehaviour
+public class MenueActivator : MonoBehaviour
 {
     [SerializeField] Animator anim;
-    [SerializeField] bool canActivate;
-    [SerializeField] bool canDeactivate;
 
-    protected override void OnFocusStart()
+    public bool menuIsActive;
+    public int gazedObjects = 0;
+    public int GazedObjects
     {
-        base.OnFocusStart();
-
-        if (canActivate)
+        private set
         {
-            FocusUI();
+            gazedObjects = value;
+            if (gazedObjects == 0)
+            {
+                // Wenn kein Menü Objekt mehr anfokussiert uist, kann es deaktiviert werden
+                DefovusUI();
+                menuIsActive = false;
+            }
+            else if (gazedObjects > 0 && !menuIsActive)
+            {
+                FocusUI();
+                menuIsActive = true;
+            }
+            else if (gazedObjects < 0)
+            {
+                Debug.LogWarning("HIER STIMMT WAS NICHTR IHR PAPPNASEN!!! Es können nicht weniger als 0 Objekte im Menüfocus assigned sein!!!");
+            }
+        }
 
+        get
+        {
+            return gazedObjects;
         }
     }
-
-    protected override void OnFocusEnd()
-    {
-        base.OnFocusEnd();
-
-        if (canDeactivate)
-        {
-            DefovusUI();
-
-        }
-    }
-
 
     void FocusUI()
     {
@@ -42,4 +49,18 @@ public class MenueActivator : GazeAwareBehaviour
         anim.SetBool("visible", false);
 
     }
+
+   
+
+    [Button]
+    public void LoginGazedObject()
+    {
+        GazedObjects++;
+    }
+    [Button]
+    public void LogoutGazedObject()
+    {
+        GazedObjects--;
+    }
+
 }
