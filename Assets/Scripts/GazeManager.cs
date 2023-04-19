@@ -1,5 +1,6 @@
 using NaughtyAttributes;
 using Tobii.Gaming;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -18,6 +19,7 @@ public class GazeManager : MonoBehaviour
     [SerializeField] float impactDistance = 5;
     
     [SerializeField] bool debug;
+    [SerializeField] bool useMouseAsGaze;
 
     GameObject currentLookingAt, currentAttachedObject;
     
@@ -43,7 +45,7 @@ public class GazeManager : MonoBehaviour
 
     void Update()
     {
-        gazeIndicator.position = TobiiAPI.GetGazePoint().Screen;
+        gazeIndicator.position = useMouseAsGaze ? Input.mousePosition : TobiiAPI.GetGazePoint().Screen;
 
         DetectObjectSwitch();
         
@@ -64,7 +66,7 @@ public class GazeManager : MonoBehaviour
         if(currentAttachedObject)
             return;
         
-        GameObject focusedObject = TobiiAPI.GetFocusedObject();
+        GameObject focusedObject = GetFocusedObject();
 
         if (focusedObject)
         {
@@ -92,6 +94,18 @@ public class GazeManager : MonoBehaviour
             currentLookingAt = null;
             currentGazeDuration = 0;
             indicatorFill.fillAmount = 0;
+        }
+    }
+
+    GameObject GetFocusedObject()
+    {
+        if (useMouseAsGaze)
+        {
+            Camera.main.ScreenPointToRay(Input.mousePosition, vec)
+        }
+        else
+        {
+            return TobiiAPI.GetFocusedObject();
         }
     }
 
