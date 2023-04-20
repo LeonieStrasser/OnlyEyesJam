@@ -14,8 +14,6 @@ public class ObjectGazeFeedback : MonoBehaviour
 
     public void PlayFeedback(int _feedbackIndex)
     {
-        Debug.Log("Play Feedback " + _feedbackIndex);
-        
         if(_feedbackIndex == currentFeedbackIndex)
             return;
 

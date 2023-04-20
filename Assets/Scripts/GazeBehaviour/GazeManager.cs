@@ -201,13 +201,13 @@ public class GazeManager : MonoBehaviour
     {
         if (debug)
             Debug.Log("Detach!");
+        
+        currentAttachedObject.tag = "MoveableObject";
 
         attachedRb.useGravity = true;
         attachedRb = null;
         currentAttachedObject = null;
 
-        currentAttachedObject.tag = "MoveableObject";
-        
         currentFeedback.StopFeedback();
         currentFeedback = null;
 
