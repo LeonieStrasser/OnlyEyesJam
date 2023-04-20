@@ -4,7 +4,8 @@ using Tobii.Gaming;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public class GazeManager : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class GazeManager : MonoBehaviour
     [SerializeField] bool useMouseAsGaze;
 
     GameObject currentLookingAt, currentAttachedObject;
+    ObjectGazeFeedback currentFeedback;
 
     Rigidbody attachedRb;
 
@@ -97,7 +99,7 @@ public class GazeManager : MonoBehaviour
 
         GameObject focusedObject = GetFocusedObject();
 
-        if (focusedObject)
+        if (focusedObject && focusedObject.CompareTag("MoveableObject"))
         {
             // Looking at new object
             if (currentLookingAt != focusedObject)
@@ -105,10 +107,19 @@ public class GazeManager : MonoBehaviour
                 currentLookingAt = focusedObject;
                 currentGazeDuration = 0;
                 indicatorFill.fillAmount = 0;
+                
+                if(currentFeedback)
+                    currentFeedback.StopFeedback();
+                
+                currentFeedback = currentLookingAt.GetComponent<ObjectGazeFeedback>();
+                currentFeedback.PlayFeedback(1);
             }
 
             currentGazeDuration += Time.deltaTime;
             indicatorFill.fillAmount = currentGazeDuration / timeTillTelekinesis;
+            
+            if(currentGazeDuration >= 1f)
+                currentFeedback.PlayFeedback(2);
 
             // Attach new Object
             if (currentGazeDuration >= timeTillTelekinesis)
@@ -123,6 +134,11 @@ public class GazeManager : MonoBehaviour
             currentLookingAt = null;
             currentGazeDuration = 0;
             indicatorFill.fillAmount = 0;
+            
+            if(currentFeedback)
+                currentFeedback.StopFeedback();
+            
+            currentFeedback = null;
         }
     }
 
@@ -171,6 +187,10 @@ public class GazeManager : MonoBehaviour
         attachedRb = currentAttachedObject.GetComponent<Rigidbody>();
         attachedRb.useGravity = false;
 
+        currentAttachedObject.tag = "Attached";
+        
+        currentFeedback.PlayFeedback(3);
+
         currentTelekinesisDuration = 0;
         currentImpactDistance = impactDistanceMax;
 
@@ -185,6 +205,11 @@ public class GazeManager : MonoBehaviour
         attachedRb.useGravity = true;
         attachedRb = null;
         currentAttachedObject = null;
+
+        currentAttachedObject.tag = "MoveableObject";
+        
+        currentFeedback.StopFeedback();
+        currentFeedback = null;
 
         radiusIndicator.gameObject.SetActive(false);
     }
