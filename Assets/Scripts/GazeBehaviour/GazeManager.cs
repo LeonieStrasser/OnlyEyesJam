@@ -1,3 +1,4 @@
+using System;
 using NaughtyAttributes;
 using Tobii.Gaming;
 using Unity.VisualScripting;
@@ -7,17 +8,21 @@ using UnityEngine.UI;
 
 public class GazeManager : MonoBehaviour
 {
+    public static GazeManager Instance;
+    
+    public Vector3 gazePosition;
+    
     [SerializeField] RectTransform gazeIndicator;
     [SerializeField] RectTransform radiusIndicator;
     [SerializeField] float blinkThreshold;
 
-    [SerializeField] float timeTillTelekinesis = 5;
+    [SerializeField] float timeTillTelekinesis = 3;
     [SerializeField] float telekinesisMaxDuration = 5;
 
     [MinMaxSlider(0f, 50f)] [SerializeField]
     Vector2 followSpeed;
 
-    [SerializeField] float impactDistanceMax = 5;
+    [SerializeField] float impactDistanceMax = 800;
 
     [SerializeField] bool debug;
     [SerializeField] bool useMouseAsGaze;
@@ -37,6 +42,11 @@ public class GazeManager : MonoBehaviour
     Vector2 objectPosOnScreen;
     Vector2 directionToTarget;
 
+    void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
         TobiiAPI.Start(new TobiiSettings());
@@ -48,7 +58,9 @@ public class GazeManager : MonoBehaviour
 
     void Update()
     {
-        gazeIndicator.position = useMouseAsGaze ? Input.mousePosition : TobiiAPI.GetGazePoint().Screen;
+        gazePosition = useMouseAsGaze ? Input.mousePosition : TobiiAPI.GetGazePoint().Screen;
+
+        gazeIndicator.position = gazePosition;
 
         DetectObjectSwitch();
 
