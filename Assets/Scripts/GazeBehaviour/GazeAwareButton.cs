@@ -14,20 +14,16 @@ public class GazeAwareButton : GazeAwareBehaviour
     // Klicktimer
     float klickTimer;
 
-    private void Start()
+    private void Awake()
     {
         ResetKlickTimer();
-    }
-
-    private void Update()
-    {
-
     }
 
     protected override void OnFocusStart()
     {
         base.OnFocusStart();
 
+        Debug.Log("Focus Start");
 
         OnHoverEvents.Invoke();
 
@@ -56,7 +52,7 @@ public class GazeAwareButton : GazeAwareBehaviour
     {
         if (IsObjectGazed())
         {
-            // Timer läuft jeden Frame ab
+            // Timer lï¿½uft jeden Frame ab
 
             klickTimer -= Time.deltaTime;
             if (klickTimer <= 0)
