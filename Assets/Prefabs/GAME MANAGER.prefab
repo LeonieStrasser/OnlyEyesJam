@@ -45,12 +45,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gazeIndicator: {fileID: 0}
+  radiusIndicator: {fileID: 0}
   blinkThreshold: 0.6
   timeTillTelekinesis: 2
-  releaseDelayTime: 2
+  telekinesisMaxDuration: 5
   followSpeed: {x: 0.5, y: 20}
-  impactDistance: 1000
+  impactDistanceMax: 5
   debug: 1
+  useMouseAsGaze: 0
 --- !u!1 &2226075576258034250
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,6 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a702118e0a7a824a80b3e48a4f6bbc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winObject: {fileID: 0}
   debug: 1
 --- !u!1 &2226075577233482385
 GameObject:
@@ -176,6 +179,61 @@ Transform:
   - {fileID: 2226075576504176086}
   - {fileID: 2226075576258034248}
   - {fileID: 2226075575930718625}
+  - {fileID: 8792892783633715821}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2345829520912286493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8792892783633715821}
+  - component: {fileID: 3762629248010216493}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8792892783633715821
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2345829520912286493}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2226075577233482398}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3762629248010216493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2345829520912286493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f438abb3ddfec146a677345b19969d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: BackgroundMusic
+    myClip: {fileID: 8300000, guid: 79e6baad2fd414b82a6d49ce1568d2e5, type: 3}
+    myVolume: 1
+    myPitch: 1
+    myLoop: 1
+    startOnPlay: 1
+    randomPitch: 0
+    randomPichBetweenTwoValues: {x: 0.473202, y: 2.2953064}
+    mySource: {fileID: 0}
