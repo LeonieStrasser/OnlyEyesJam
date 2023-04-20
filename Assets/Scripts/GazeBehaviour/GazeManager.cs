@@ -30,7 +30,7 @@ public class GazeManager : MonoBehaviour
     [SerializeField] bool useMouseAsGaze;
 
     GameObject currentLookingAt, currentAttachedObject;
-    ObjectState currentFeedback;
+    ObjectState currentFocusedObjectState;
 
     Rigidbody attachedRb;
 
@@ -89,7 +89,7 @@ public class GazeManager : MonoBehaviour
 
         if (currentTelekinesisDuration >= telekinesisMaxDuration)
         {
-            currentFeedback.ChangePhysicalState(ObjectState.physicalStates.Falling);
+            currentFocusedObjectState.ChangePhysicalState(ObjectState.physicalStates.Falling);
             Detach();
         }
     }
@@ -110,21 +110,21 @@ public class GazeManager : MonoBehaviour
                 currentGazeDuration = 0;
                 indicatorFill.fillAmount = 0;
                 
-                if(currentFeedback)
-                    currentFeedback.ChangeVisualState(ObjectState.visualStates.Neutral);
+                if(currentFocusedObjectState)
+                    currentFocusedObjectState.ChangeVisualState(ObjectState.visualStates.Neutral);
                 
-                currentFeedback = currentLookingAt.GetComponent<ObjectState>();
-                currentFeedback.ChangeVisualState(ObjectState.visualStates.LookedAt);
+                currentFocusedObjectState = currentLookingAt.GetComponent<ObjectState>();
+                currentFocusedObjectState.ChangeVisualState(ObjectState.visualStates.LookedAt);
             }
 
             currentGazeDuration += Time.deltaTime;
             indicatorFill.fillAmount = currentGazeDuration / timeTillTelekinesis;
             
             if(currentGazeDuration >= 1f)
-                currentFeedback.ChangeVisualState(ObjectState.visualStates.CloseToAttach);
+                currentFocusedObjectState.ChangeVisualState(ObjectState.visualStates.CloseToAttach);
 
             // Attach new Object
-            if (currentGazeDuration >= timeTillTelekinesis || currentFeedback.physicalState == ObjectState.physicalStates.Catchable)
+            if (currentGazeDuration >= timeTillTelekinesis || currentFocusedObjectState?.physicalState == ObjectState.physicalStates.Catchable)
             {
                 Attach(currentLookingAt);
                 currentGazeDuration = 0;
@@ -137,10 +137,10 @@ public class GazeManager : MonoBehaviour
             currentGazeDuration = 0;
             indicatorFill.fillAmount = 0;
             
-            if(currentFeedback)
-                currentFeedback.ChangeVisualState(ObjectState.visualStates.Neutral);
+            if(currentFocusedObjectState)
+                currentFocusedObjectState.ChangeVisualState(ObjectState.visualStates.Neutral);
             
-            currentFeedback = null;
+            currentFocusedObjectState = null;
         }
     }
 
@@ -178,7 +178,7 @@ public class GazeManager : MonoBehaviour
 
         else
         {
-            currentFeedback.ChangePhysicalState(ObjectState.physicalStates.Catchable);
+            currentFocusedObjectState.ChangePhysicalState(ObjectState.physicalStates.Catchable);
             Detach();
         }
     }
@@ -195,8 +195,8 @@ public class GazeManager : MonoBehaviour
 
         currentAttachedObject.tag = "Attached";
         
-        currentFeedback.ChangeVisualState(ObjectState.visualStates.Attached);
-        currentFeedback.ChangePhysicalState(ObjectState.physicalStates.Attached);
+        currentFocusedObjectState.ChangeVisualState(ObjectState.visualStates.Attached);
+        currentFocusedObjectState.ChangePhysicalState(ObjectState.physicalStates.Attached);
 
         currentTelekinesisDuration = 0;
         currentImpactDistance = impactDistanceMax;
@@ -215,8 +215,8 @@ public class GazeManager : MonoBehaviour
         attachedRb = null;
         currentAttachedObject = null;
 
-        currentFeedback.ChangeVisualState(ObjectState.visualStates.Neutral);
-        currentFeedback = null;
+        currentFocusedObjectState.ChangeVisualState(ObjectState.visualStates.Neutral);
+        currentFocusedObjectState = null;
 
         radiusIndicator.gameObject.SetActive(false);
     }
@@ -260,7 +260,7 @@ public class GazeManager : MonoBehaviour
 
                 currentBlinkDuration = 0;
 
-                currentFeedback.ChangePhysicalState(ObjectState.physicalStates.Falling);
+                currentFocusedObjectState.ChangePhysicalState(ObjectState.physicalStates.Falling);
                 Detach();
             }
         }
