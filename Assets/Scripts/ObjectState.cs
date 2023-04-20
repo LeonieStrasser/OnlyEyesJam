@@ -1,13 +1,15 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class ObjectState : MonoBehaviour
 {
     [SerializeField] MeshRenderer meshRenderer;
+    [SerializeField] GameObject objectCollisionEffect;
 
     public enum physicalStates
     {
-        Grounded, Falling, Attached
+        Grounded, Falling, Catchable, Attached
     }
 
     [HideInInspector] public physicalStates physicalState;
@@ -67,6 +69,8 @@ public class ObjectState : MonoBehaviour
                 break;
             case physicalStates.Falling:
                 break;
+            case physicalStates.Catchable:
+                break;
             case physicalStates.Grounded:
                 break;
         }
@@ -77,6 +81,7 @@ public class ObjectState : MonoBehaviour
         if (physicalState != physicalStates.Attached)
         {
             ChangePhysicalState(physicalStates.Grounded);
+            Instantiate(objectCollisionEffect, other.GetContact(0).point, quaternion.identity);
         }
     }
 }

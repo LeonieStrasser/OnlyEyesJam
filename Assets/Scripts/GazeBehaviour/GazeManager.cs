@@ -89,6 +89,7 @@ public class GazeManager : MonoBehaviour
 
         if (currentTelekinesisDuration >= telekinesisMaxDuration)
         {
+            currentFeedback.ChangePhysicalState(ObjectState.physicalStates.Falling);
             Detach();
         }
     }
@@ -123,7 +124,7 @@ public class GazeManager : MonoBehaviour
                 currentFeedback.ChangeVisualState(ObjectState.visualStates.CloseToAttach);
 
             // Attach new Object
-            if (currentGazeDuration >= timeTillTelekinesis || currentFeedback.physicalState == ObjectState.physicalStates.Falling)
+            if (currentGazeDuration >= timeTillTelekinesis || currentFeedback.physicalState == ObjectState.physicalStates.Catchable)
             {
                 Attach(currentLookingAt);
                 currentGazeDuration = 0;
@@ -176,7 +177,10 @@ public class GazeManager : MonoBehaviour
             MoveInGazeDirection();
 
         else
+        {
+            currentFeedback.ChangePhysicalState(ObjectState.physicalStates.Catchable);
             Detach();
+        }
     }
 
     void Attach(GameObject _objToAttach)
@@ -212,7 +216,6 @@ public class GazeManager : MonoBehaviour
         currentAttachedObject = null;
 
         currentFeedback.ChangeVisualState(ObjectState.visualStates.Neutral);
-        currentFeedback.ChangePhysicalState(ObjectState.physicalStates.Falling);
         currentFeedback = null;
 
         radiusIndicator.gameObject.SetActive(false);
@@ -257,6 +260,7 @@ public class GazeManager : MonoBehaviour
 
                 currentBlinkDuration = 0;
 
+                currentFeedback.ChangePhysicalState(ObjectState.physicalStates.Falling);
                 Detach();
             }
         }

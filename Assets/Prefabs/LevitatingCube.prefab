@@ -90,6 +90,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 3669537452486405445}
+  objectCollisionEffect: {fileID: 6995686729726344978, guid: 083e2012ea61c624e9b224fb3e2ef450,
+    type: 3}
+  physicalState: 0
+  visualState: 0
 --- !u!1 &3669537452486405440
 GameObject:
   m_ObjectHideFlags: 0
