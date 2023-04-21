@@ -12,40 +12,31 @@ public class GazeAwareBehaviour : MonoBehaviour
     bool hasFocus;
 
     bool isMouseOver;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         myGaze = GetComponent<GazeAware>();
-
-        // TobiiAPI.Start(new TobiiSettings()); // muss das nur einmal in der szene gecallt werden oder per script?
-
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        if (myGaze.HasGazeFocus && !hasFocus) // Object bekommt Focus
+        if (myGaze.HasGazeFocus && !hasFocus) // Object bekommt Fokus
         {
             hasFocus = true;
             OnFocusStart();
-            return;
         }
         else if (myGaze.HasGazeFocus)
         {
             OnFocusIsActive();
-            return;
         }
         else if (!myGaze.HasGazeFocus && hasFocus) // Objekt verliert Fokus
         {
             hasFocus = false;
             OnFocusEnd();
-            return;
         }
-
     }
 
-    private void OnMouseEnter()
+    void OnMouseEnter()
     {
         if (onMouseDebug)
         {
@@ -53,7 +44,7 @@ public class GazeAwareBehaviour : MonoBehaviour
             isMouseOver = true;
         }
     }
-    private void OnMouseExit()
+    void OnMouseExit()
     {
         if (onMouseDebug)
         {
@@ -61,14 +52,13 @@ public class GazeAwareBehaviour : MonoBehaviour
             isMouseOver = false;
         }
     }
-    private void OnMouseOver()
+    void OnMouseOver()
     {
         if (onMouseDebug)
         {
             OnFocusIsActive();
         }
     }
-
 
     protected virtual void OnFocusStart()
     {
@@ -82,10 +72,9 @@ public class GazeAwareBehaviour : MonoBehaviour
 
     protected virtual void OnFocusIsActive()
     {
-
+        
     }
-
-
+    
     public virtual bool IsObjectGazed()
     {
         if (!onMouseDebug)

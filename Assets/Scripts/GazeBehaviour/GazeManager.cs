@@ -28,6 +28,7 @@ public class GazeManager : MonoBehaviour
 
     [SerializeField] bool debug;
     [SerializeField] bool useMouseAsGaze;
+    [SerializeField] bool enableGazeSmoothing = true;
 
     GameObject currentLookingAt, currentAttachedObject;
     ObjectState currentFocusedObjectState;
@@ -61,9 +62,7 @@ public class GazeManager : MonoBehaviour
 
     void Update()
     {
-        gazePosition = useMouseAsGaze ? Input.mousePosition : TobiiAPI.GetGazePoint().Screen;
-
-        gazeIndicator.position = gazePosition;
+        UpdateGazePosition();
 
         DetectObjectSwitch();
 
@@ -75,6 +74,23 @@ public class GazeManager : MonoBehaviour
             
             ObjectMovement();
         }
+    }
+
+    void UpdateGazePosition()
+    {
+        Vector3 rawGazePos = useMouseAsGaze ? Input.mousePosition : TobiiAPI.GetGazePoint().Screen;
+        
+        if (enableGazeSmoothing)
+        {
+            gazePosition = Vector3.Lerp(gazePosition, rawGazePos, Time.deltaTime * 35);
+        }
+
+        else
+        {
+            gazePosition = rawGazePos;
+        }
+
+        gazeIndicator.position = gazePosition;
     }
 
     void UpdateTelekinesisUI()
@@ -89,7 +105,7 @@ public class GazeManager : MonoBehaviour
 
         if (currentTelekinesisDuration >= telekinesisMaxDuration)
         {
-            currentFocusedObjectState.ChangePhysicalState(ObjectState.physicalStates.Falling);
+            currentFocusedObjectState?.ChangePhysicalState(ObjectState.physicalStates.Falling);
             Detach();
         }
     }
@@ -111,17 +127,17 @@ public class GazeManager : MonoBehaviour
                 indicatorFill.fillAmount = 0;
                 
                 if(currentFocusedObjectState)
-                    currentFocusedObjectState.ChangeVisualState(ObjectState.visualStates.Neutral);
+                    currentFocusedObjectState?.ChangeVisualState(ObjectState.visualStates.Neutral);
                 
                 currentFocusedObjectState = currentLookingAt.GetComponent<ObjectState>();
-                currentFocusedObjectState.ChangeVisualState(ObjectState.visualStates.LookedAt);
+                currentFocusedObjectState?.ChangeVisualState(ObjectState.visualStates.LookedAt);
             }
 
             currentGazeDuration += Time.deltaTime;
             indicatorFill.fillAmount = currentGazeDuration / timeTillTelekinesis;
             
             if(currentGazeDuration >= 1f)
-                currentFocusedObjectState.ChangeVisualState(ObjectState.visualStates.CloseToAttach);
+                currentFocusedObjectState?.ChangeVisualState(ObjectState.visualStates.CloseToAttach);
 
             // Attach new Object
             if (currentGazeDuration >= timeTillTelekinesis || currentFocusedObjectState?.physicalState == ObjectState.physicalStates.Catchable)
@@ -138,7 +154,7 @@ public class GazeManager : MonoBehaviour
             indicatorFill.fillAmount = 0;
             
             if(currentFocusedObjectState)
-                currentFocusedObjectState.ChangeVisualState(ObjectState.visualStates.Neutral);
+                currentFocusedObjectState?.ChangeVisualState(ObjectState.visualStates.Neutral);
             
             currentFocusedObjectState = null;
         }
