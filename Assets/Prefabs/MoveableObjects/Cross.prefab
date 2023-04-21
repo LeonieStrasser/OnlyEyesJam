@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3669537452450156018}
   - component: {fileID: 1802820073855958441}
   m_Layer: 0
-  m_Name: LevitatingCube
+  m_Name: Cross
   m_TagString: MoveableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

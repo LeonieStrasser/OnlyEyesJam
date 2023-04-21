@@ -28,7 +28,7 @@ public class ObjectState : MonoBehaviour
     {
         standardColor = meshRenderer.material.color;
         visualState = visualStates.Neutral;
-        physicalState = physicalStates.Grounded;
+        physicalState = physicalStates.Falling;
     }
 
     public void ChangeVisualState(visualStates _newState)
