@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.coffee.ui-particle": {
+      "version": "file:../ParticleEffectForUGUI-4.1.7/ParticleEffectForUGUI-4.1.7",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.tobii.gaming.sdk": {
       "version": "file:../TobiiUnitySDK_5.0.0.3",
       "depth": 0,
