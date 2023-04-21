@@ -1,28 +1,36 @@
+using System;
+using System.Collections.Generic;
 using NaughtyAttributes;
 using Tobii.Gaming;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public class GazeManager : MonoBehaviour
 {
+    public static GazeManager Instance;
+    
+    public Vector3 gazePosition;
+    
     [SerializeField] RectTransform gazeIndicator;
     [SerializeField] RectTransform radiusIndicator;
     [SerializeField] float blinkThreshold;
 
-    [SerializeField] float timeTillTelekinesis = 5;
+    [SerializeField] float timeTillTelekinesis = 3;
     [SerializeField] float telekinesisMaxDuration = 5;
 
     [MinMaxSlider(0f, 50f)] [SerializeField]
     Vector2 followSpeed;
 
-    [SerializeField] float impactDistanceMax = 5;
+    [SerializeField] float impactDistanceMax = 800;
 
     [SerializeField] bool debug;
     [SerializeField] bool useMouseAsGaze;
 
     GameObject currentLookingAt, currentAttachedObject;
+    ObjectState currentFocusedObjectState;
 
     Rigidbody attachedRb;
 
@@ -37,6 +45,11 @@ public class GazeManager : MonoBehaviour
     Vector2 objectPosOnScreen;
     Vector2 directionToTarget;
 
+    void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
         TobiiAPI.Start(new TobiiSettings());
@@ -48,7 +61,9 @@ public class GazeManager : MonoBehaviour
 
     void Update()
     {
-        gazeIndicator.position = useMouseAsGaze ? Input.mousePosition : TobiiAPI.GetGazePoint().Screen;
+        gazePosition = useMouseAsGaze ? Input.mousePosition : TobiiAPI.GetGazePoint().Screen;
+
+        gazeIndicator.position = gazePosition;
 
         DetectObjectSwitch();
 
@@ -74,6 +89,7 @@ public class GazeManager : MonoBehaviour
 
         if (currentTelekinesisDuration >= telekinesisMaxDuration)
         {
+            currentFocusedObjectState.ChangePhysicalState(ObjectState.physicalStates.Falling);
             Detach();
         }
     }
@@ -85,7 +101,7 @@ public class GazeManager : MonoBehaviour
 
         GameObject focusedObject = GetFocusedObject();
 
-        if (focusedObject)
+        if (focusedObject && focusedObject.CompareTag("MoveableObject"))
         {
             // Looking at new object
             if (currentLookingAt != focusedObject)
@@ -93,13 +109,22 @@ public class GazeManager : MonoBehaviour
                 currentLookingAt = focusedObject;
                 currentGazeDuration = 0;
                 indicatorFill.fillAmount = 0;
+                
+                if(currentFocusedObjectState)
+                    currentFocusedObjectState.ChangeVisualState(ObjectState.visualStates.Neutral);
+                
+                currentFocusedObjectState = currentLookingAt.GetComponent<ObjectState>();
+                currentFocusedObjectState.ChangeVisualState(ObjectState.visualStates.LookedAt);
             }
 
             currentGazeDuration += Time.deltaTime;
             indicatorFill.fillAmount = currentGazeDuration / timeTillTelekinesis;
+            
+            if(currentGazeDuration >= 1f)
+                currentFocusedObjectState.ChangeVisualState(ObjectState.visualStates.CloseToAttach);
 
             // Attach new Object
-            if (currentGazeDuration >= timeTillTelekinesis)
+            if (currentGazeDuration >= timeTillTelekinesis || currentFocusedObjectState?.physicalState == ObjectState.physicalStates.Catchable)
             {
                 Attach(currentLookingAt);
                 currentGazeDuration = 0;
@@ -111,6 +136,11 @@ public class GazeManager : MonoBehaviour
             currentLookingAt = null;
             currentGazeDuration = 0;
             indicatorFill.fillAmount = 0;
+            
+            if(currentFocusedObjectState)
+                currentFocusedObjectState.ChangeVisualState(ObjectState.visualStates.Neutral);
+            
+            currentFocusedObjectState = null;
         }
     }
 
@@ -147,7 +177,10 @@ public class GazeManager : MonoBehaviour
             MoveInGazeDirection();
 
         else
+        {
+            currentFocusedObjectState.ChangePhysicalState(ObjectState.physicalStates.Catchable);
             Detach();
+        }
     }
 
     void Attach(GameObject _objToAttach)
@@ -158,6 +191,12 @@ public class GazeManager : MonoBehaviour
         currentAttachedObject = _objToAttach;
         attachedRb = currentAttachedObject.GetComponent<Rigidbody>();
         attachedRb.useGravity = false;
+        attachedRb.velocity *= 0.5f;
+
+        currentAttachedObject.tag = "Attached";
+        
+        currentFocusedObjectState.ChangeVisualState(ObjectState.visualStates.Attached);
+        currentFocusedObjectState.ChangePhysicalState(ObjectState.physicalStates.Attached);
 
         currentTelekinesisDuration = 0;
         currentImpactDistance = impactDistanceMax;
@@ -169,10 +208,15 @@ public class GazeManager : MonoBehaviour
     {
         if (debug)
             Debug.Log("Detach!");
+        
+        currentAttachedObject.tag = "MoveableObject";
 
         attachedRb.useGravity = true;
         attachedRb = null;
         currentAttachedObject = null;
+
+        currentFocusedObjectState.ChangeVisualState(ObjectState.visualStates.Neutral);
+        currentFocusedObjectState = null;
 
         radiusIndicator.gameObject.SetActive(false);
     }
@@ -216,6 +260,7 @@ public class GazeManager : MonoBehaviour
 
                 currentBlinkDuration = 0;
 
+                currentFocusedObjectState.ChangePhysicalState(ObjectState.physicalStates.Falling);
                 Detach();
             }
         }
