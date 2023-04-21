@@ -10,7 +10,6 @@ public class GazeAwareButton : GazeAwareBehaviour
     [SerializeField] UnityEvent OnDehoverEvents;
     [SerializeField] UnityEvent OnKlickEvents;
 
-
     // Klicktimer
     float klickTimer;
 
@@ -22,8 +21,6 @@ public class GazeAwareButton : GazeAwareBehaviour
     protected override void OnFocusStart()
     {
         base.OnFocusStart();
-
-        Debug.Log("Focus Start");
 
         OnHoverEvents.Invoke();
 
@@ -38,7 +35,6 @@ public class GazeAwareButton : GazeAwareBehaviour
         OnHoverEnd();
 
         ResetKlickTimer();
-
     }
 
     protected override void OnFocusIsActive()
@@ -50,9 +46,10 @@ public class GazeAwareButton : GazeAwareBehaviour
 
     void KlicktimerProgress()
     {
+        Debug.Log(IsObjectGazed());
         if (IsObjectGazed())
         {
-            // Timer l�uft jeden Frame ab
+            // Timer laeuft jeden Frame ab
 
             klickTimer -= Time.deltaTime;
             if (klickTimer <= 0)
@@ -70,7 +67,6 @@ public class GazeAwareButton : GazeAwareBehaviour
 
     void ActivateKlick()
     {
-
         OnKlickEvents.Invoke();
 
         OnKlick();

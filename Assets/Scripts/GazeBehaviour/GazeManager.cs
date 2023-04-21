@@ -105,7 +105,7 @@ public class GazeManager : MonoBehaviour
 
         if (currentTelekinesisDuration >= telekinesisMaxDuration)
         {
-            currentFocusedObjectState.ChangePhysicalState(ObjectState.physicalStates.Falling);
+            currentFocusedObjectState?.ChangePhysicalState(ObjectState.physicalStates.Falling);
             Detach();
         }
     }
@@ -127,10 +127,10 @@ public class GazeManager : MonoBehaviour
                 indicatorFill.fillAmount = 0;
                 
                 if(currentFocusedObjectState)
-                    currentFocusedObjectState.ChangeVisualState(ObjectState.visualStates.Neutral);
+                    currentFocusedObjectState?.ChangeVisualState(ObjectState.visualStates.Neutral);
                 
                 currentFocusedObjectState = currentLookingAt.GetComponent<ObjectState>();
-                currentFocusedObjectState.ChangeVisualState(ObjectState.visualStates.LookedAt);
+                currentFocusedObjectState?.ChangeVisualState(ObjectState.visualStates.LookedAt);
             }
 
             currentGazeDuration += Time.deltaTime;
@@ -154,7 +154,7 @@ public class GazeManager : MonoBehaviour
             indicatorFill.fillAmount = 0;
             
             if(currentFocusedObjectState)
-                currentFocusedObjectState.ChangeVisualState(ObjectState.visualStates.Neutral);
+                currentFocusedObjectState?.ChangeVisualState(ObjectState.visualStates.Neutral);
             
             currentFocusedObjectState = null;
         }

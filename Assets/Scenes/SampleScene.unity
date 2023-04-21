@@ -162,6 +162,18 @@ MonoBehaviour:
       type: 3}
     objectAmount: {x: 1, y: 1}
   spawnZone: {fileID: 243201371}
+--- !u!114 &243201374 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2226075576504176087, guid: 631f3a63cd11ea5438e6055f7e5015de,
+    type: 3}
+  m_PrefabInstance: {fileID: 822692008}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243201368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a702118e0a7a824a80b3e48a4f6bbc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,6 +843,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 330585546}
     m_Modifications:
+    - target: {fileID: 1189648425322580634, guid: cace85195cf1f24449f25a6399a844b2,
+        type: 3}
+      propertyPath: onMouseDebug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189648425322580634, guid: cace85195cf1f24449f25a6399a844b2,
+        type: 3}
+      propertyPath: OnKlickEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 243201374}
+    - target: {fileID: 1189648425322580634, guid: cace85195cf1f24449f25a6399a844b2,
+        type: 3}
+      propertyPath: OnKlickEvents.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: QuitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189648425322580634, guid: cace85195cf1f24449f25a6399a844b2,
+        type: 3}
+      propertyPath: OnKlickEvents.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: LevelManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6715513706275697303, guid: cace85195cf1f24449f25a6399a844b2,
         type: 3}
       propertyPath: onMouseDebug
@@ -840,6 +872,26 @@ PrefabInstance:
         type: 3}
       propertyPath: onMouseDebug
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6715513706940031741, guid: cace85195cf1f24449f25a6399a844b2,
+        type: 3}
+      propertyPath: onMouseDebug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6715513706940031741, guid: cace85195cf1f24449f25a6399a844b2,
+        type: 3}
+      propertyPath: OnKlickEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 243201374}
+    - target: {fileID: 6715513706940031741, guid: cace85195cf1f24449f25a6399a844b2,
+        type: 3}
+      propertyPath: OnKlickEvents.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: RelodeScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 6715513706940031741, guid: cace85195cf1f24449f25a6399a844b2,
+        type: 3}
+      propertyPath: OnKlickEvents.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: LevelManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6715513707049307460, guid: cace85195cf1f24449f25a6399a844b2,
         type: 3}
@@ -1282,7 +1334,7 @@ PrefabInstance:
     - target: {fileID: 1745894612115770659, guid: fbd01e0a8eaccbb4c8206362ecc2a5f6,
         type: 3}
       propertyPath: onMouseDebug
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1745894612115770659, guid: fbd01e0a8eaccbb4c8206362ecc2a5f6,
         type: 3}
@@ -1298,7 +1350,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnKlickEvents.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 243201374}
     - target: {fileID: 1745894612115770659, guid: fbd01e0a8eaccbb4c8206362ecc2a5f6,
         type: 3}
       propertyPath: OnKlickEvents.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
