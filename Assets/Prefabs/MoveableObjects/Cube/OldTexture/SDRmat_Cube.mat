@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TestMaterial_MovableStones
+  m_Name: SDRmat_Cube
   m_Shader: {fileID: -6465566751694194690, guid: d0455d8b1dcc31646811bd15944274b0,
     type: 3}
   m_ValidKeywords: []
@@ -115,6 +115,7 @@ Material:
     - _EMissionFillAmount: 0
     - _EdgeSmoothness: 0.43
     - _Emission: 1
+    - _EmissionFillAmount: 0.165
     - _EmissionIntensity: 1
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
@@ -135,11 +136,11 @@ Material:
     - _Speed: 0.05
     - _SrcBlend: 1
     - _Surface: 0
-    - _VanGhochOpacity: 0.684
+    - _VanGhochOpacity: 0.28
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _AnimHighlightColor: {r: 0.7064391, g: 0.62824845, b: 0.735849, a: 0}
+    - _AnimHighlightColor: {r: 0.33490568, g: 0.8639096, b: 1, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color01: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 0}

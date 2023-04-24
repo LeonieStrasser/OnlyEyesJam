@@ -10,6 +10,8 @@ public class ObjectState : MonoBehaviour
     [SerializeField] ParticleSystem telekinesisChannelParticles;
     [SerializeField] float feedbackFadeInDuration = 4f;
     [SerializeField] float feedbackFadeOutDuration = 1f;
+    [SerializeField] float edgeFadeinDuration = 3f;
+    [SerializeField] float edgeFadeOutDuration = 2f;
 
 
 
@@ -28,7 +30,8 @@ public class ObjectState : MonoBehaviour
     [HideInInspector] public visualStates visualState;
 
     private Coroutine feedbackCoroutine;
-
+    private Coroutine edgeFeedbackCoroutine;
+    public AnimationCurve edgeFadinCurve;
 
     //Color standardColor;
 
@@ -97,7 +100,7 @@ public class ObjectState : MonoBehaviour
 
     void SetChangeFeedback()
     {
-        feedbackCoroutine = StartCoroutine(SetMaterialFloat("_AnimatedBaseTextureOpacity", 1, feedbackFadeInDuration, (visualState == visualStates.LookedAt || visualState == visualStates.CloseToAttach || visualState == visualStates.Attached)));
+        feedbackCoroutine = StartCoroutine(LerpMaterialFloat("_AnimatedBaseTextureOpacity", 1, feedbackFadeInDuration, (visualState == visualStates.LookedAt || visualState == visualStates.CloseToAttach || visualState == visualStates.Attached)));
     }
 
     void SetNeutralFeedbackState()
@@ -109,25 +112,32 @@ public class ObjectState : MonoBehaviour
             StopCoroutine(feedbackCoroutine);
         }
 
-        feedbackCoroutine = StartCoroutine(SetMaterialFloat("_AnimatedBaseTextureOpacity", 0, feedbackFadeOutDuration, true));
+        feedbackCoroutine = StartCoroutine(LerpMaterialFloat("_AnimatedBaseTextureOpacity", 0, feedbackFadeOutDuration, true));
+
+        if (edgeFeedbackCoroutine != null)
+        {
+            StopCoroutine(edgeFeedbackCoroutine);
+        }
+
+        edgeFeedbackCoroutine = StartCoroutine(LerpMaterialFloat("_EmissionFillAmount", 0, edgeFadeOutDuration, true));
     }
 
     void SetCloseToAttachFeedback()
     {
         telekinesisChannelParticles.Play();
-
+        edgeFeedbackCoroutine = StartCoroutine(AnimateMaterialFloat("_EmissionFillAmount", 1, edgeFadeinDuration, (visualState == visualStates.CloseToAttach || visualState == visualStates.Attached), edgeFadinCurve));
     }
 
 
 
 
 
-    IEnumerator SetMaterialFloat(string _valueName, float _endValue, float _duration, bool _condition)
+    IEnumerator LerpMaterialFloat(string _valueName, float _endValue, float _duration, bool _condition)
     {
         // Cache the ID of the material property
         int _propertyID = Shader.PropertyToID(_valueName);
 
-        float _currentFeedbackValue = meshRenderer.material.GetFloat("_AnimatedBaseTextureOpacity");
+        float _currentFeedbackValue = meshRenderer.material.GetFloat(_valueName);
         float timer = 0;
         while (timer < _duration && _condition)
         {
@@ -135,6 +145,31 @@ public class ObjectState : MonoBehaviour
 
             // Calculate the float value to set in the shader
             float _value = Mathf.Lerp(_currentFeedbackValue, _endValue, timer / _duration);
+            _value = Mathf.Clamp01(_value);
+
+            meshRenderer.material.SetFloat(_propertyID, _value);
+
+            yield return null;
+        }
+    }
+
+    IEnumerator AnimateMaterialFloat(string _valueName, float _endValue, float _duration, bool _condition, AnimationCurve _curve)
+    {
+        // Cache the ID of the material property
+        int _propertyID = Shader.PropertyToID(_valueName);
+
+        float _currentFeedbackValue = meshRenderer.material.GetFloat(_valueName);
+        float timer = 0;
+        while (timer < _duration && _condition)
+        {
+            timer += Time.deltaTime;
+
+            // Calculate the float value to set in the shader
+            float _t = timer / _duration;
+            float _curveValue = _curve.Evaluate(_t);
+            float _value = Mathf.Lerp(_currentFeedbackValue, _endValue, _curveValue);
+
+
             _value = Mathf.Clamp01(_value);
 
             meshRenderer.material.SetFloat(_propertyID, _value);
