@@ -8,6 +8,7 @@ public class ObjectState : MonoBehaviour
     [SerializeField] MeshRenderer meshRenderer;
     [SerializeField] GameObject objectCollisionEffect;
     [SerializeField] ParticleSystem telekinesisChannelParticles;
+    [SerializeField] float feedbackFadeInDuration = 4f;
 
     public enum physicalStates
     {
@@ -42,7 +43,7 @@ public class ObjectState : MonoBehaviour
         switch (_newState)
         {
             case visualStates.LookedAt:
-                StartCoroutine(TelekinesisChargeFeedback(4f));
+                StartCoroutine(TelekinesisChargeFeedback(feedbackFadeInDuration));
                 break;
             case visualStates.CloseToAttach:
                 telekinesisChannelParticles.Play();

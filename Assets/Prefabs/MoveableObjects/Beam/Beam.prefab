@@ -94,6 +94,7 @@ MonoBehaviour:
   objectCollisionEffect: {fileID: 6995686729726344978, guid: 083e2012ea61c624e9b224fb3e2ef450,
     type: 3}
   telekinesisChannelParticles: {fileID: 4422089598535801285}
+  feedbackFadeInDuration: 4
   physicalState: 0
   visualState: 0
 --- !u!1 &3669537452486405440
@@ -158,7 +159,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bcad0648ec9bc494bb54c27ac42aa06a, type: 2}
+  - {fileID: 2100000, guid: 5a469088ca9592f45a78a951713a931a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
