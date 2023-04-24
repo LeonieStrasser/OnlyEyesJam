@@ -91,16 +91,73 @@ public class ConductorManager : MonoBehaviour
             _reporterList.allCunductors.Remove(_reporter);
             SetDisconnectedItemFeedback(_reporter);
         }
+        else
+        {
+            // Wenn ja -- Wir müssen rausfinden ob die Gruppe getrennt werden muss 
+            List<Conductor> _connectedListOfReporter = new List<Conductor>();
+            List<Conductor> _connectedListOfPartner = new List<Conductor>();
+            bool _groupeSeperationNeeded = CheckIfGroupWasDisconnected(_reporter, _contactPartner, out _connectedListOfReporter, out _connectedListOfPartner); // bool
 
-        // Wenn ja -- UFF Wir müssen rausfinden ob die Gruppe getrennt werden muss --- wie!?
-        CheckIfGroupWasDisconnected(_reporter, _contactPartner, _reporterList);
+            // Wenn die Gruppe Disconnected wurde - also der Bool true ist
+            if (_groupeSeperationNeeded)
+            {
+                // Separiere die Liste in zwei Listen
+                RemoveAListOfNamesFromList(_reporterList.allCunductors, _connectedListOfReporter); // Nachbarn vom Reporter in der Gruppenliste löschen
+                ConductorList _newConnectionGroup = AddNewConnectionGroup();                       // Neue Liste mit den Nachbarn des Reporters erstellen
+
+                foreach (var item in _connectedListOfReporter) // Pack alle Nachbarn in die neue Liste
+                {
+                    _newConnectionGroup.allCunductors.Add(item);
+                }
+
+            }
+            // Ansonsten kann alles so bleifen -- doppel uff
+        }
+
+
     }
 
 
-    void CheckIfGroupWasDisconnected(Conductor _disconnector1, Conductor _disconnector2, ConductorList _listToCheck)
+    bool CheckIfGroupWasDisconnected(Conductor _disconnectorReporter, Conductor _disconnectorPartner, out List<Conductor> _connectedGroupOfReporter, out List<Conductor> _connectedGroupOfPartner)
     {
-        List<Conductor> _connectedGroupOfDisconnector1 = _disconnector1.GetAllContactPartnerConnectionsFromConductor();
-        List<Conductor> _connectedGroupOfDisconnector2 = _disconnector2.GetAllContactPartnerConnectionsFromConductor();
+
+        // Erstmal sicherstellen dass beide partner disconnected sind
+        _disconnectorPartner.RemoveConductorFromPartnerList(_disconnectorReporter);
+
+        // DAnn Listen mit connectorVerbindungen erstellen
+        _connectedGroupOfReporter = _disconnectorReporter.GetAllContactPartnerConnectionsFromConductor();
+        _connectedGroupOfPartner = _disconnectorPartner.GetAllContactPartnerConnectionsFromConductor(); // Der Contact Partner hat möglicherweise noch nicht selbst disconnected deshalöb ist dioese Liste mit Vorsicht zu genießen ^^
+
+        // Dann checken ob listen gleiche items drin haben
+        if (CompareTwoLists(_connectedGroupOfReporter, _connectedGroupOfPartner)) // Wenn beide Listen gleiche Namen enthalten
+        {
+            return false; // __ Weil die Gruppe nicht disconnected wurde
+        }
+        return true; // Wenn es hier ankommt wurde die Gruppe disconnected
+    }
+
+    bool CompareTwoLists(List<Conductor> _List1, List<Conductor> _List2)
+    {
+        foreach (var item1 in _List1)
+        {
+            foreach (var item2 in _List2)
+            {
+                if (item1 == item2)
+                {
+                    // In beiden Gruppen taucht der selbe name auf! Heißt es ist dieselbe gruppe
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    void RemoveAListOfNamesFromList(List<Conductor> _SourceList, List<Conductor> _ListToRemove)
+    {
+        foreach (var item in _ListToRemove)
+        {
+            _SourceList.Remove(item);
+        }
     }
 
     void SetConnectionGroupFeedback()
