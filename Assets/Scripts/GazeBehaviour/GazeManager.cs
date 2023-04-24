@@ -34,6 +34,8 @@ public class GazeManager : MonoBehaviour
     GameObject currentLookingAt, currentAttachedObject;
     ObjectState currentFocusedObjectState;
 
+    Camera mainCam;
+
     Rigidbody attachedRb;
 
     Image indicatorFill;
@@ -55,6 +57,8 @@ public class GazeManager : MonoBehaviour
     void Start()
     {
         TobiiAPI.Start(new TobiiSettings());
+        
+        mainCam = Camera.main;
 
         indicatorFill = gazeIndicator.GetChild(0).GetComponent<Image>();
 
@@ -94,12 +98,6 @@ public class GazeManager : MonoBehaviour
     {
         currentTelekinesisDuration += Time.deltaTime;
 
-        if (currentTelekinesisDuration >= telekinesisMaxDuration)
-        {
-            currentFocusedObjectState?.ChangePhysicalState(ObjectState.physicalStates.Falling);
-            Detach();
-        }
-
         if (!limitTelekinesisRadius)
             return;
         
@@ -134,10 +132,16 @@ public class GazeManager : MonoBehaviour
             }
 
             currentGazeDuration += Time.deltaTime;
-            indicatorFill.fillAmount = currentGazeDuration / timeTillTelekinesis;
             
-            if(currentGazeDuration / timeTillTelekinesis >= 0.5f)
+            if(debug)
+                indicatorFill.fillAmount = currentGazeDuration / timeTillTelekinesis;
+            
+            // telekinesis channeling is halfway done
+            if (currentGazeDuration / timeTillTelekinesis >= 0.5f)
+            {
+                GazeIndicator.Instance.StartFocusAnim();
                 currentFocusedObjectState?.ChangeVisualState(ObjectState.visualStates.CloseToAttach);
+            }
 
             // Attach new Object
             if (currentGazeDuration >= timeTillTelekinesis || currentFocusedObjectState?.physicalState == ObjectState.physicalStates.Catchable)
@@ -157,6 +161,8 @@ public class GazeManager : MonoBehaviour
                 currentFocusedObjectState?.ChangeVisualState(ObjectState.visualStates.Neutral);
             
             currentFocusedObjectState = null;
+            
+            GazeIndicator.Instance.EndFocusAnim();
         }
     }
 
@@ -164,7 +170,7 @@ public class GazeManager : MonoBehaviour
     {
         if (useMouseAsGaze)
         {
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            var ray = mainCam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit = new RaycastHit();
 
             if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.GetComponent<GazeAware>())
@@ -180,6 +186,13 @@ public class GazeManager : MonoBehaviour
 
     void ObjectMovement()
     {
+        if (currentTelekinesisDuration >= telekinesisMaxDuration)
+        {
+            currentFocusedObjectState?.ChangePhysicalState(ObjectState.physicalStates.Falling);
+            Detach();
+            return;
+        }
+        
         CalculateGazeData();
 
         //--------------DEBUGGING
@@ -241,9 +254,9 @@ public class GazeManager : MonoBehaviour
     void CalculateGazeData()
     {
         Vector3 targetPos = useMouseAsGaze ? Input.mousePosition : TobiiAPI.GetGazePoint().Screen;
-
+        
         // Gaze Direction
-        objectPosOnScreen = Camera.main.WorldToScreenPoint(currentAttachedObject.transform.position);
+        objectPosOnScreen = mainCam.WorldToScreenPoint(currentAttachedObject.transform.position);
         directionToTarget = new Vector2(targetPos.x - objectPosOnScreen.x, targetPos.y - objectPosOnScreen.y)
             .normalized;
 

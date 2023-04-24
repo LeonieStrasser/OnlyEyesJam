@@ -704,6 +704,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &898319785 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8139089411085093849, guid: e886411abb6bdd94d8e2e83640f96f6e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1382429313}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &924079482 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6715513707049307460, guid: cace85195cf1f24449f25a6399a844b2,
@@ -1219,6 +1225,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1529361630}
+  - component: {fileID: 1529361631}
   m_Layer: 5
   m_Name: GazeIndicator
   m_TagString: Untagged
@@ -1236,7 +1243,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1238247162}
   - {fileID: 976919141}
@@ -1249,6 +1256,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1529361631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529361629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e67b4ba722d0f4344a7c746d8fcc4ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasSystemsParent: {fileID: 1702531342}
+  worldSystemsParent: {fileID: 898319785}
+  indicatorSize: {x: 1, y: 1.5}
+  indicatorScaleSpeed: 1
+--- !u!1 &1702531342 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9005796412667201497, guid: e886411abb6bdd94d8e2e83640f96f6e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1382429313}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1726081458
 GameObject:
   m_ObjectHideFlags: 0
