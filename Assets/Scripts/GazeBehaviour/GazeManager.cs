@@ -1,35 +1,35 @@
-using System;
-using System.Collections.Generic;
 using NaughtyAttributes;
 using Tobii.Gaming;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
 
 public class GazeManager : MonoBehaviour
 {
     public static GazeManager Instance;
     
-    public Vector3 gazePosition;
+    [HideInInspector] public Vector3 gazePosition;
     
+    [Header("References")]
     [SerializeField] RectTransform gazeIndicator;
     [SerializeField] RectTransform radiusIndicator;
-    [SerializeField] float blinkThreshold;
-
-    [SerializeField] float timeTillTelekinesis = 3;
+    
+    [Header("General Settings")]
+    [SerializeField] bool useMouseAsGaze;
+    [SerializeField] bool enableGazeSmoothing = true;
+    [SerializeField] bool debug;
+    
+    [Header("Telekinesis Settings")]
     [SerializeField] float telekinesisMaxDuration = 5;
+    [SerializeField] float timeTillTelekinesis = 3;
+    [SerializeField] float blinkThreshold = 0.6f;
+
+    [SerializeField] bool limitTelekinesisRadius = false;
+    [ShowIf("limitTelekinesisRadius")]
+    [SerializeField] float impactDistanceMax = 800;
 
     [MinMaxSlider(0f, 50f)] [SerializeField]
     Vector2 followSpeed;
-
-    [SerializeField] float impactDistanceMax = 800;
     [SerializeField] float throwVelocity = 5.5f;
-
-    [SerializeField] bool debug;
-    [SerializeField] bool useMouseAsGaze;
-    [SerializeField] bool enableGazeSmoothing = true;
 
     GameObject currentLookingAt, currentAttachedObject;
     ObjectState currentFocusedObjectState;
@@ -37,16 +37,16 @@ public class GazeManager : MonoBehaviour
     Rigidbody attachedRb;
 
     Image indicatorFill;
+    
+    Vector2 objectPosOnScreen;
+    Vector2 directionToTarget;
 
     float currentBlinkDuration;
     float currentGazeDuration;
     float currentTelekinesisDuration;
     float currentImpactDistance;
     float distanceToGaze;
-
-    Vector2 objectPosOnScreen;
-    Vector2 directionToTarget;
-
+    
     void Awake()
     {
         Instance = this;
@@ -94,17 +94,20 @@ public class GazeManager : MonoBehaviour
     {
         currentTelekinesisDuration += Time.deltaTime;
 
-        currentImpactDistance = Mathf.Lerp(impactDistanceMax, 0, currentTelekinesisDuration / telekinesisMaxDuration);
-        
-        RectTransform rt = radiusIndicator;
-        rt.position = objectPosOnScreen;
-        rt.sizeDelta = new Vector2(currentImpactDistance * 2, currentImpactDistance * 2);
-
         if (currentTelekinesisDuration >= telekinesisMaxDuration)
         {
             currentFocusedObjectState?.ChangePhysicalState(ObjectState.physicalStates.Falling);
             Detach();
         }
+
+        if (!limitTelekinesisRadius)
+            return;
+        
+        currentImpactDistance = Mathf.Lerp(impactDistanceMax, 0, currentTelekinesisDuration / telekinesisMaxDuration);
+        
+        RectTransform rt = radiusIndicator;
+        rt.position = objectPosOnScreen;
+        rt.sizeDelta = new Vector2(currentImpactDistance * 2, currentImpactDistance * 2);
     }
 
     void DetectObjectSwitch()
@@ -186,7 +189,7 @@ public class GazeManager : MonoBehaviour
             Debug.Log("Distance to Gaze is " + distanceToGaze);
         }
 
-        if (distanceToGaze < currentImpactDistance && attachedRb.velocity.magnitude < throwVelocity)
+        if ((distanceToGaze < currentImpactDistance || !limitTelekinesisRadius) && attachedRb.velocity.magnitude < throwVelocity)
             MoveInGazeDirection();
 
         else

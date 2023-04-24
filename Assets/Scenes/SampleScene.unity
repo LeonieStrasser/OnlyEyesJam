@@ -551,7 +551,7 @@ PrefabInstance:
     - target: {fileID: 2226075575930718624, guid: 631f3a63cd11ea5438e6055f7e5015de,
         type: 3}
       propertyPath: throwVelocity
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2226075575930718624, guid: 631f3a63cd11ea5438e6055f7e5015de,
         type: 3}
@@ -572,6 +572,11 @@ PrefabInstance:
         type: 3}
       propertyPath: timeTillTelekinesis
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226075575930718624, guid: 631f3a63cd11ea5438e6055f7e5015de,
+        type: 3}
+      propertyPath: limitTelekinesisRadius
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2226075575930718624, guid: 631f3a63cd11ea5438e6055f7e5015de,
         type: 3}
