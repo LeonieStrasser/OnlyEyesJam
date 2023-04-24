@@ -61,7 +61,6 @@ public class GazeAwareButton : GazeAwareBehaviour
 
     void KlicktimerProgress()
     {
-        Debug.Log(IsObjectGazed());
         if (IsObjectGazed())
         {
             // Timer laeuft jeden Frame ab
