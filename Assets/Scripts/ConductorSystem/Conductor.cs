@@ -38,7 +38,7 @@ public class Conductor : MonoBehaviour
             //  Der andere ist auch ein Conductor
             if (IsConductorInMyList(_otherConductor)) // Schau mal nach ob er  in meiner Liste ist
             {                                         // Wenn ja
-                contactedConductors.Remove(_otherConductor); // Hau  weg!
+                RemoveConductorFromPartnerList(_otherConductor); // Hau  weg!
                 myConductorManager.ReportDisconnectFromTo(this, _otherConductor);
             }
         }
@@ -50,9 +50,12 @@ public class Conductor : MonoBehaviour
         contactedConductors.Add(_newConductor);
     }
 
-    void RemoveConductorToList(Conductor _conductorToRemove)
+    public void RemoveConductorFromPartnerList(Conductor _conductorToRemove) // Wird auch aufgerufen wenn zwei Gruppen voneinander getrennt werden und der Manager versucht die Disconnectoren zu checken
     {
-        contactedConductors.Remove(_conductorToRemove);
+        if (contactedConductors.Contains(_conductorToRemove))
+            contactedConductors.Remove(_conductorToRemove);
+        else
+            Debug.LogWarning(this.name + " hat versucht " + _conductorToRemove.name + " von seiner Kontaktliste zu removen obwohl er nicht in seiner Liste war!!! WTF!???");
     }
 
     bool IsConductorInMyList(Conductor _conductorToFind)
