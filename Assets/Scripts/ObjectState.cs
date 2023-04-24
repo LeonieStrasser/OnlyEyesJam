@@ -9,6 +9,9 @@ public class ObjectState : MonoBehaviour
     [SerializeField] GameObject objectCollisionEffect;
     [SerializeField] ParticleSystem telekinesisChannelParticles;
     [SerializeField] float feedbackFadeInDuration = 4f;
+    [SerializeField] float feedbackFadeOutDuration = 1f;
+
+
 
     public enum physicalStates
     {
@@ -16,7 +19,7 @@ public class ObjectState : MonoBehaviour
     }
 
     [HideInInspector] public physicalStates physicalState;
-    
+
     public enum visualStates
     {
         Neutral, LookedAt, CloseToAttach, Attached
@@ -24,13 +27,18 @@ public class ObjectState : MonoBehaviour
 
     [HideInInspector] public visualStates visualState;
 
-    Color standardColor;
+    private Coroutine feedbackCoroutine;
+
+
+    //Color standardColor;
 
     void Start()
     {
-        standardColor = meshRenderer.material.color;
+        // standardColor = meshRenderer.material.color;
         visualState = visualStates.Neutral;
         physicalState = physicalStates.Falling;
+
+
     }
 
     public void ChangeVisualState(visualStates _newState)
@@ -39,32 +47,32 @@ public class ObjectState : MonoBehaviour
             return;
 
         visualState = _newState;
-        
+
         switch (_newState)
         {
             case visualStates.LookedAt:
-                StartCoroutine(TelekinesisChargeFeedback(feedbackFadeInDuration));
+                SetChangeFeedback();
                 break;
             case visualStates.CloseToAttach:
-                telekinesisChannelParticles.Play();
+                SetCloseToAttachFeedback();
                 break;
             case visualStates.Attached:
                 meshRenderer.material.color = Color.green;
                 break;
             case visualStates.Neutral:
-                meshRenderer.material.color = standardColor;
+                SetNeutralFeedbackState();
                 telekinesisChannelParticles.Stop();
                 break;
         }
     }
-    
+
     public void ChangePhysicalState(physicalStates _newState)
     {
         if (_newState == physicalState)
             return;
 
         physicalState = _newState;
-        
+
         switch (_newState)
         {
             case physicalStates.Attached:
@@ -87,14 +95,49 @@ public class ObjectState : MonoBehaviour
         }
     }
 
-    IEnumerator TelekinesisChargeFeedback(float _duration)
+    void SetChangeFeedback()
     {
+        feedbackCoroutine = StartCoroutine(SetMaterialFloat("_AnimatedBaseTextureOpacity", 1, feedbackFadeInDuration, (visualState == visualStates.LookedAt || visualState == visualStates.CloseToAttach || visualState == visualStates.Attached)));
+    }
+
+    void SetNeutralFeedbackState()
+    {
+        //meshRenderer.material.SetFloat("_AnimatedBaseTextureOpacity", 0);
+
+        if (feedbackCoroutine != null)
+        {
+            StopCoroutine(feedbackCoroutine);
+        }
+
+        feedbackCoroutine = StartCoroutine(SetMaterialFloat("_AnimatedBaseTextureOpacity", 0, feedbackFadeOutDuration, true));
+    }
+
+    void SetCloseToAttachFeedback()
+    {
+        telekinesisChannelParticles.Play();
+
+    }
+
+
+
+
+
+    IEnumerator SetMaterialFloat(string _valueName, float _endValue, float _duration, bool _condition)
+    {
+        // Cache the ID of the material property
+        int _propertyID = Shader.PropertyToID(_valueName);
+
+        float _currentFeedbackValue = meshRenderer.material.GetFloat("_AnimatedBaseTextureOpacity");
         float timer = 0;
-        while (timer < _duration && visualState == visualStates.LookedAt)
+        while (timer < _duration && _condition)
         {
             timer += Time.deltaTime;
-            
-            meshRenderer.material.color = Color.Lerp(Color.white, Color.yellow, timer / _duration);
+
+            // Calculate the float value to set in the shader
+            float _value = Mathf.Lerp(_currentFeedbackValue, _endValue, timer / _duration);
+            _value = Mathf.Clamp01(_value);
+
+            meshRenderer.material.SetFloat(_propertyID, _value);
 
             yield return null;
         }
