@@ -550,6 +550,11 @@ PrefabInstance:
       objectReference: {fileID: 1529361630}
     - target: {fileID: 2226075575930718624, guid: 631f3a63cd11ea5438e6055f7e5015de,
         type: 3}
+      propertyPath: throwVelocity
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226075575930718624, guid: 631f3a63cd11ea5438e6055f7e5015de,
+        type: 3}
       propertyPath: radiusIndicator
       value: 
       objectReference: {fileID: 1726081459}
@@ -562,6 +567,16 @@ PrefabInstance:
         type: 3}
       propertyPath: enableGazeSmoothing
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226075575930718624, guid: 631f3a63cd11ea5438e6055f7e5015de,
+        type: 3}
+      propertyPath: timeTillTelekinesis
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226075575930718624, guid: 631f3a63cd11ea5438e6055f7e5015de,
+        type: 3}
+      propertyPath: telekinesisMaxDuration
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2226075576504176087, guid: 631f3a63cd11ea5438e6055f7e5015de,
         type: 3}

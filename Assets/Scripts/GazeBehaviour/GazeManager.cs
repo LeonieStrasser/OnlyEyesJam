@@ -25,6 +25,7 @@ public class GazeManager : MonoBehaviour
     Vector2 followSpeed;
 
     [SerializeField] float impactDistanceMax = 800;
+    [SerializeField] float throwVelocity = 5.5f;
 
     [SerializeField] bool debug;
     [SerializeField] bool useMouseAsGaze;
@@ -81,14 +82,10 @@ public class GazeManager : MonoBehaviour
         Vector3 rawGazePos = useMouseAsGaze ? Input.mousePosition : TobiiAPI.GetGazePoint().Screen;
         
         if (enableGazeSmoothing)
-        {
             gazePosition = Vector3.Lerp(gazePosition, rawGazePos, Time.deltaTime * 35);
-        }
 
         else
-        {
             gazePosition = rawGazePos;
-        }
 
         gazeIndicator.position = gazePosition;
     }
@@ -136,7 +133,7 @@ public class GazeManager : MonoBehaviour
             currentGazeDuration += Time.deltaTime;
             indicatorFill.fillAmount = currentGazeDuration / timeTillTelekinesis;
             
-            if(currentGazeDuration >= 1f)
+            if(currentGazeDuration / timeTillTelekinesis >= 0.5f)
                 currentFocusedObjectState?.ChangeVisualState(ObjectState.visualStates.CloseToAttach);
 
             // Attach new Object
@@ -189,12 +186,13 @@ public class GazeManager : MonoBehaviour
             Debug.Log("Distance to Gaze is " + distanceToGaze);
         }
 
-        if (distanceToGaze < currentImpactDistance)
+        if (distanceToGaze < currentImpactDistance && attachedRb.velocity.magnitude < throwVelocity)
             MoveInGazeDirection();
 
         else
         {
-            currentFocusedObjectState.ChangePhysicalState(ObjectState.physicalStates.Catchable);
+            //currentFocusedObjectState.ChangePhysicalState(ObjectState.physicalStates.Catchable);
+            currentFocusedObjectState.ChangePhysicalState(ObjectState.physicalStates.Falling);
             Detach();
         }
     }
@@ -253,9 +251,10 @@ public class GazeManager : MonoBehaviour
     void MoveInGazeDirection()
     {
         float currentFollowSpeed = Mathf.Lerp(followSpeed.x, followSpeed.y, distanceToGaze / impactDistanceMax);
-        
-        if(distanceToGaze > 15f)
-            attachedRb.transform.position += ((Vector3)directionToTarget * currentFollowSpeed * Time.deltaTime);
+
+        if (distanceToGaze > 15f)
+            //attachedRb.transform.position += ((Vector3)directionToTarget * currentFollowSpeed * Time.deltaTime);
+            attachedRb.AddForce((Vector3)directionToTarget * (currentFollowSpeed * Time.deltaTime * 80f));
     }
 
     void BlinkDetection()

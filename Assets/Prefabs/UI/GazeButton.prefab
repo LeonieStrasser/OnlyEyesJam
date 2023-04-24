@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onMouseDebug: 0
-  klickTime: 4
+  klickTime: 3
   buttonMesh: {fileID: 5598034614503952488}
   OnHoverEvents:
     m_PersistentCalls:

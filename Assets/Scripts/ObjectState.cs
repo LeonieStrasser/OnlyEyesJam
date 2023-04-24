@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class ObjectState : MonoBehaviour
 {
     [SerializeField] MeshRenderer meshRenderer;
     [SerializeField] GameObject objectCollisionEffect;
+    [SerializeField] ParticleSystem telekinesisChannelParticles;
 
     public enum physicalStates
     {
@@ -22,7 +24,6 @@ public class ObjectState : MonoBehaviour
     [HideInInspector] public visualStates visualState;
 
     Color standardColor;
-    int currentFeedbackIndex;
 
     void Start()
     {
@@ -41,17 +42,17 @@ public class ObjectState : MonoBehaviour
         switch (_newState)
         {
             case visualStates.LookedAt:
-                meshRenderer.material.color = Color.red;
+                StartCoroutine(TelekinesisChargeFeedback(4f));
                 break;
             case visualStates.CloseToAttach:
-                meshRenderer.material.color = Color.yellow;
+                telekinesisChannelParticles.Play();
                 break;
             case visualStates.Attached:
                 meshRenderer.material.color = Color.green;
                 break;
             case visualStates.Neutral:
-                currentFeedbackIndex = 0;
                 meshRenderer.material.color = standardColor;
+                telekinesisChannelParticles.Stop();
                 break;
         }
     }
@@ -82,6 +83,19 @@ public class ObjectState : MonoBehaviour
         {
             ChangePhysicalState(physicalStates.Grounded);
             Instantiate(objectCollisionEffect, other.GetContact(0).point, quaternion.identity);
+        }
+    }
+
+    IEnumerator TelekinesisChargeFeedback(float _duration)
+    {
+        float timer = 0;
+        while (timer < _duration && visualState == visualStates.LookedAt)
+        {
+            timer += Time.deltaTime;
+            
+            meshRenderer.material.color = Color.Lerp(Color.white, Color.yellow, timer / _duration);
+
+            yield return null;
         }
     }
 }
