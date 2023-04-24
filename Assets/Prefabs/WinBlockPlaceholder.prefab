@@ -402,6 +402,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: GazeButton
       objectReference: {fileID: 0}
+    - target: {fileID: 5598034614229393466, guid: 914825e8389df95428beb61821e6e753,
+        type: 3}
+      propertyPath: OnHoverEvents.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598034614229393466, guid: 914825e8389df95428beb61821e6e753,
+        type: 3}
+      propertyPath: OnKlickEvents.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598034614229393466, guid: 914825e8389df95428beb61821e6e753,
+        type: 3}
+      propertyPath: OnDehoverEvents.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 914825e8389df95428beb61821e6e753, type: 3}
 --- !u!4 &1745894612115770681 stripped

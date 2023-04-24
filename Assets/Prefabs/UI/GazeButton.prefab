@@ -247,54 +247,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onMouseDebug: 0
   klickTime: 4
+  buttonMesh: {fileID: 5598034614503952488}
   OnHoverEvents:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5598034614503952488}
-        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-        m_MethodName: set_material
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2100000, guid: 2f1540cabaf49d54ebf4a7719606e304,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnDehoverEvents:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5598034614503952488}
-        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-        m_MethodName: set_material
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2100000, guid: bcad0648ec9bc494bb54c27ac42aa06a,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnKlickEvents:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5598034614503952488}
-        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-        m_MethodName: set_material
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 10756, guid: 0000000000000000e000000000000000,
-            type: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Material, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  useShader: 1
 --- !u!1 &5598034614503952491
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,7 +319,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bcad0648ec9bc494bb54c27ac42aa06a, type: 2}
+  - {fileID: 2100000, guid: 04312dc534f96fa43b08a4a2cc423f9d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
