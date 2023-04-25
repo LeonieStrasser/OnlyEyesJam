@@ -1,5 +1,6 @@
 using NaughtyAttributes;
 using Tobii.Gaming;
+using Unity.VisualScripting;
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
 
@@ -134,23 +135,28 @@ public class GazeManager : MonoBehaviour
                 currentFocusedObjectState?.ChangeVisualState(ObjectState.visualStates.LookedAt);
             }
 
-            currentGazeDuration += Time.deltaTime;
-            
-            if(debug)
-                indicatorFill.fillAmount = currentGazeDuration / timeTillTelekinesis;
-            
-            // telekinesis channeling is halfway done
-            if (currentGazeDuration / timeTillTelekinesis >= 0.5f)
+            if (currentFocusedObjectState?.physicalState != ObjectState.physicalStates.Immovable)
             {
-                GazeIndicator.Instance.StartFocusAnim();
-                currentFocusedObjectState?.ChangeVisualState(ObjectState.visualStates.CloseToAttach);
-            }
 
-            // Attach new Object
-            if (currentGazeDuration >= timeTillTelekinesis || currentFocusedObjectState?.physicalState == ObjectState.physicalStates.Catchable)
-            {
-                Attach(currentLookingAt);
-                currentGazeDuration = 0;
+                currentGazeDuration += Time.deltaTime;
+
+                if (debug)
+                    indicatorFill.fillAmount = currentGazeDuration / timeTillTelekinesis;
+
+                // telekinesis channeling is halfway done
+                if (currentGazeDuration / timeTillTelekinesis >= 0.5f)
+                {
+                    GazeIndicator.Instance.StartFocusAnim();
+                    currentFocusedObjectState?.ChangeVisualState(ObjectState.visualStates.CloseToAttach);
+                }
+
+                // Attach new Object
+                if (currentGazeDuration >= timeTillTelekinesis || currentFocusedObjectState?.physicalState ==
+                    ObjectState.physicalStates.Catchable)
+                {
+                    Attach(currentLookingAt);
+                    currentGazeDuration = 0;
+                }
             }
         }
 

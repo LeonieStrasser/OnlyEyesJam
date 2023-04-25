@@ -13,17 +13,15 @@ public class WinZone : MonoBehaviour
     bool timerRun;
 
     LevelManager myManager;
-
-
+    
     // FEEDBACK
     MeshRenderer myRenderer;
     [BoxGroup("Feedback")] [SerializeField] Color colorOnDetach;
     [BoxGroup("Feedback")] [SerializeField] Color colorOnAttach;
     [BoxGroup("Feedback")] [SerializeField] Color colorOnWin;
     [BoxGroup("Feedback")] [SerializeField] ParticleSystem winVFX;
-
-
-    private void Start()
+    
+    void Start()
     {
         myManager = FindObjectOfType<LevelManager>();
         winTimer = stayTimeToWin;
@@ -32,13 +30,16 @@ public class WinZone : MonoBehaviour
         myRenderer = GetComponent<MeshRenderer>();
     }
 
-    private void Update()
+    void Update()
     {
         WintimerProgress();
     }
 
-    private void OnTriggerStay(Collider other)
+    void OnTriggerStay(Collider other)
     {
+        if(!(other.CompareTag("MoveableObject") || other.CompareTag("Attached")))
+            return;
+        
         if (winObject == null && other.tag != "Attached") // Wenn ein Objekt mit !Attached.tag in der Zone erscheint - Starte den Win-Timer-Stuff
         {
             AttachWinObject(other.gameObject);
@@ -61,7 +62,7 @@ public class WinZone : MonoBehaviour
         if (winObject == null) // Wenn kein WInobjekt eingeloggt ist - spars dir 
             return;
 
-        if (other.gameObject == winObject) // Wenn das eingeloggte WIn Objekt die Win Zone verlässt, logg es aus und setze den Timer zurück!
+        if (other.gameObject == winObject) // Wenn das eingeloggte WIn Objekt die Win Zone verlï¿½sst, logg es aus und setze den Timer zurï¿½ck!
         {
             DetachWinObject();
 
@@ -89,15 +90,16 @@ public class WinZone : MonoBehaviour
 
                 if (debug)
                     Debug.Log("WON!!!");
-
             }
         }
     }
 
-    void AttachWinObject(GameObject newWinObject)
+    void AttachWinObject(GameObject _newWinObject)
     {
         timerRun = true;
-        winObject = newWinObject;
+        winObject = _newWinObject;
+        
+        winObject.GetComponent<ObjectState>().ChangePhysicalState(ObjectState.physicalStates.Immovable);
 
         AttachFeedback();
 
@@ -116,6 +118,8 @@ public class WinZone : MonoBehaviour
 
     void OnWin()
     {
+        //winObject.GetComponent<ObjectState>().ChangePhysicalState(ObjectState.physicalStates.Grounded);
+        
         myManager.LevelWon();
         WinFeedback();
 
@@ -133,10 +137,9 @@ public class WinZone : MonoBehaviour
     void DetachFeedback()
     {
         myRenderer.material.color = colorOnDetach;
-
     }
 
-    void AttatchedProgressFeedback() // Während der Win timer hochzählt
+    void AttatchedProgressFeedback() // Wï¿½hrend der Win timer hochzï¿½hlt
     {
         Color lerpedColor = Color.Lerp(colorOnWin, colorOnAttach, winningProgress);
         myRenderer.material.color = lerpedColor;

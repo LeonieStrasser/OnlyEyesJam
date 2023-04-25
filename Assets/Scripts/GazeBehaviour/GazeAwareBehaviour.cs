@@ -62,12 +62,12 @@ public class GazeAwareBehaviour : MonoBehaviour
 
     protected virtual void OnFocusStart()
     {
-        Debug.Log("Focus started", gameObject);
+        
     }
 
     protected virtual void OnFocusEnd()
     {
-        Debug.Log("Focus ended", gameObject);
+        
     }
 
     protected virtual void OnFocusIsActive()

@@ -4982,7 +4982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stayTimeToWin: 5
-  debug: 1
+  debug: 0
   colorOnDetach: {r: 1, g: 0.24056602, b: 0.83978045, a: 0.5176471}
   colorOnAttach: {r: 0.31861702, g: 0.23921567, b: 1, a: 0.5176471}
   colorOnWin: {r: 0.23921567, g: 1, b: 0.46788263, a: 0.5176471}

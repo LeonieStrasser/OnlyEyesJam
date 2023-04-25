@@ -17,11 +17,10 @@ public class GazeAwareButton : GazeAwareBehaviour
 
     // Klicktimer
     float klickTimer;
-    [SerializeField] bool useShader;
 
     private void Awake()
     {
-        if(useShader)
+        if(buttonMesh)
             buttonMat = buttonMesh.material;
         
         ResetKlickTimer();
@@ -66,8 +65,8 @@ public class GazeAwareButton : GazeAwareBehaviour
             // Timer laeuft jeden Frame ab
 
             klickTimer -= Time.deltaTime;
-
-            if(useShader)
+            
+            if(buttonMesh)
                 buttonMat.SetFloat("_FillAmount", 1 - klickTimer / klickTime);
             
             if (klickTimer <= 0)
@@ -82,7 +81,7 @@ public class GazeAwareButton : GazeAwareBehaviour
     {
         klickTimer = klickTime;
         
-        if(useShader)
+        if(buttonMesh)
             buttonMat.SetFloat("_FillAmount", 0);
     }
 
