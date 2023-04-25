@@ -20,8 +20,8 @@ public class GazeManager : MonoBehaviour
     [SerializeField] bool debug;
     
     [Header("Telekinesis Settings")]
-    [SerializeField] float telekinesisMaxDuration = 5;
-    [SerializeField] float timeTillTelekinesis = 3;
+    [SerializeField] public float telekinesisMaxDuration = 5;
+    [SerializeField] public float timeTillTelekinesis = 3;
     [SerializeField] float blinkThreshold = 0.6f;
 
     [SerializeField] bool limitTelekinesisRadius = false;

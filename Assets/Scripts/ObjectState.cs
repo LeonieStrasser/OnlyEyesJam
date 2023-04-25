@@ -8,11 +8,12 @@ public class ObjectState : MonoBehaviour
     [SerializeField] MeshRenderer meshRenderer;
     [SerializeField] GameObject objectCollisionEffect;
     [SerializeField] GameObject glowingOrb;
+    [SerializeField] GameObject impulseSpherePrefab;
     [SerializeField] ParticleSystem telekinesisChannelParticles;
-    [SerializeField] float feedbackFadeInDuration = 4f;
+   float feedbackFadeInDuration;
     [SerializeField] float feedbackFadeOutDuration = 1f;
     [SerializeField] float edgeFadeinDuration = 3f;
-    [SerializeField] float edgeFadeOutDuration = 2f;
+    [SerializeField] float edgeFadeOutDuration = 1f;
 
     Rigidbody rb;
     
@@ -32,7 +33,9 @@ public class ObjectState : MonoBehaviour
 
     private Coroutine feedbackCoroutine;
     private Coroutine edgeFeedbackCoroutine;
+    private Coroutine edgeFadeoutFeedbackCoroutine;
     public AnimationCurve edgeFadinCurve;
+    public AnimationCurve edgeFadOutCurve;
 
     //Color standardColor;
 
@@ -42,6 +45,8 @@ public class ObjectState : MonoBehaviour
         
         visualState = visualStates.Neutral;
         physicalState = physicalStates.Falling;
+
+        feedbackFadeInDuration = GazeManager.Instance.timeTillTelekinesis;
     }
 
     void Update()
@@ -120,6 +125,14 @@ public class ObjectState : MonoBehaviour
     void SetAttachFeedback()
     {
         glowingOrb.SetActive(true);
+
+        if (edgeFadeoutFeedbackCoroutine != null)
+        {
+            StopCoroutine(edgeFadeoutFeedbackCoroutine);
+        }
+        edgeFadeoutFeedbackCoroutine = StartCoroutine(AnimateMaterialFloat("_EmissionFadeOutAmount", 1, GazeManager.Instance.telekinesisMaxDuration, (visualState == visualStates.Attached), edgeFadOutCurve));
+
+        Instantiate(impulseSpherePrefab, this.transform.position, Quaternion.identity);
     }
 
     void SetNeutralFeedbackState()
@@ -141,11 +154,14 @@ public class ObjectState : MonoBehaviour
         }
 
         edgeFeedbackCoroutine = StartCoroutine(LerpMaterialFloat("_EmissionFillAmount", 0, edgeFadeOutDuration, true));
+
+       
     }
 
     void SetCloseToAttachFeedback()
     {
         telekinesisChannelParticles.Play();
+        meshRenderer.material.SetFloat("_EmissionFadeOutAmount", 0);
         edgeFeedbackCoroutine = StartCoroutine(AnimateMaterialFloat("_EmissionFillAmount", 1, edgeFadeinDuration, (visualState == visualStates.CloseToAttach || visualState == visualStates.Attached), edgeFadinCurve));
     }
     

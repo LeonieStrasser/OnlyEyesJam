@@ -109,6 +109,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EdgeSmoothness: 0.74
+    - _EmissionFadeOutAmount: 0
     - _EmissionFillAmount: 0
     - _EmissionIntensity: 2
     - _EnvironmentReflections: 1
