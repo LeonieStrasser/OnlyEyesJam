@@ -95,6 +95,7 @@ MonoBehaviour:
   meshRenderer: {fileID: 3669537452486405445}
   objectCollisionEffect: {fileID: 6995686729726344978, guid: 083e2012ea61c624e9b224fb3e2ef450,
     type: 3}
+  glowingOrb: {fileID: 8157473625223175858}
   telekinesisChannelParticles: {fileID: 2564612338122275154}
   feedbackFadeInDuration: 4
   feedbackFadeOutDuration: 1
@@ -350,6 +351,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GlowingOrb
       objectReference: {fileID: 0}
+    - target: {fileID: 986828581313056485, guid: 896e9f6ff9e263c409f355a515ebaf58,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5112509526903000495, guid: 896e9f6ff9e263c409f355a515ebaf58,
         type: 3}
       propertyPath: m_RootOrder
@@ -430,6 +436,12 @@ PrefabInstance:
 --- !u!4 &4212985530789338616 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5112509526903000495, guid: 896e9f6ff9e263c409f355a515ebaf58,
+    type: 3}
+  m_PrefabInstance: {fileID: 8972507837579497559}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8157473625223175858 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 986828581313056485, guid: 896e9f6ff9e263c409f355a515ebaf58,
     type: 3}
   m_PrefabInstance: {fileID: 8972507837579497559}
   m_PrefabAsset: {fileID: 0}

@@ -7,6 +7,7 @@ public class ObjectState : MonoBehaviour
 {
     [SerializeField] MeshRenderer meshRenderer;
     [SerializeField] GameObject objectCollisionEffect;
+    [SerializeField] GameObject glowingOrb;
     [SerializeField] ParticleSystem telekinesisChannelParticles;
     [SerializeField] float feedbackFadeInDuration = 4f;
     [SerializeField] float feedbackFadeOutDuration = 1f;
@@ -68,6 +69,7 @@ public class ObjectState : MonoBehaviour
                 SetCloseToAttachFeedback();
                 break;
             case visualStates.Attached:
+                SetAttachFeedback();
                 break;
             case visualStates.Neutral:
                 SetNeutralFeedbackState();
@@ -115,9 +117,16 @@ public class ObjectState : MonoBehaviour
         feedbackCoroutine = StartCoroutine(LerpMaterialFloat("_AnimatedBaseTextureOpacity", 1, feedbackFadeInDuration, (visualState == visualStates.LookedAt || visualState == visualStates.CloseToAttach || visualState == visualStates.Attached)));
     }
 
+    void SetAttachFeedback()
+    {
+        glowingOrb.SetActive(true);
+    }
+
     void SetNeutralFeedbackState()
     {
         //meshRenderer.material.SetFloat("_AnimatedBaseTextureOpacity", 0);
+        
+        glowingOrb.SetActive(false);
 
         if (feedbackCoroutine != null)
         {
