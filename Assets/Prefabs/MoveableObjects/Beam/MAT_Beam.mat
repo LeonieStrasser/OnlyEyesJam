@@ -22,7 +22,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: b7fd0454c49a2fd4cad9f3f745692d8f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4208755850268b2409dde6c1ac86951b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -30,7 +30,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DarkenTexture:
-        m_Texture: {fileID: 2800000, guid: ee3339cb8c1d86c4dab849c177696da7, type: 3}
+        m_Texture: {fileID: 2800000, guid: bd5e8c4779413044bb675f32b5d97d8c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -50,19 +50,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _H_hnergottTextur:
-        m_Texture: {fileID: 2800000, guid: 05bbd0e2f58f8b8449d48e2c5afa0baf, type: 3}
+        m_Texture: {fileID: 2800000, guid: 86f714570008b5349a8b7855377aa625, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: b7fd0454c49a2fd4cad9f3f745692d8f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4208755850268b2409dde6c1ac86951b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Maintex:
-        m_Texture: {fileID: 2800000, guid: 035001e6e4cf85942b985c13b85c0aba, type: 3}
+        m_Texture: {fileID: 2800000, guid: b189bda8eedf74a4980bdd4ff5487386, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 1017c056f83382d4fb6bec2ee078742f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 183f016bf7cd108458d8598a3b5af63b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -74,7 +74,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PinLightText:
-        m_Texture: {fileID: 2800000, guid: 94041153271dfb640a5b151960f43ff3, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4c77167b6701c9b40893e5ea13876424, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -104,27 +104,27 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DarkenOpacity: 0
+    - _DarkenOpacity: 1
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EdgeSmoothness: 1.07
-    - _EmissionFillAmount: 0.5
-    - _EmissionIntensity: 0.24
+    - _EdgeSmoothness: 0.74
+    - _EmissionFillAmount: 0
+    - _EmissionIntensity: 2
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _H_hnerOpacity: 1
+    - _H_hnerOpacity: 0.706
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _PinLightOpacity: 1
+    - _PinLightOpacity: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SPeedVariation: 0.1
-    - _Smoothness: 0.5
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Speed: 0.2
@@ -137,18 +137,18 @@ Material:
     - _AnimHighlightColor: {r: 0.6273585, g: 0.9578809, b: 1, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color01: {r: 0.45211816, g: 0.684312, b: 0.75471693, a: 0}
-    - _Color02: {r: 0.34456208, g: 0.8207547, b: 0.6214963, a: 0}
+    - _Color01: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 0}
+    - _Color02: {r: 0.990566, g: 0.9485137, b: 0.9485137, a: 0}
     - _DarkenColor1: {r: 0.42693123, g: 0.7211851, b: 0.735849, a: 0}
     - _DarkenColor2: {r: 0, g: 0, b: 0, a: 0}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _H_hnerLinienColor: {r: 0.9210429, g: 1, b: 0.53301877, a: 0}
-    - _LochPosition: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _H_hnerLinienColor: {r: 0.8018868, g: 0.7073247, b: 0.7073247, a: 0}
+    - _LochPosition: {r: -0.05, g: 0.02, b: 0, a: 0}
     - _PinlightLayerColor: {r: 1, g: 0.6745283, b: 0.6745283, a: 0}
     - _PinlightLayerColor2: {r: 0.9622641, g: 0.19517615, b: 0.19517615, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &959840787239353121
+--- !u!114 &957808331742204790
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
