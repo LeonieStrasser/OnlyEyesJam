@@ -108,14 +108,14 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EdgeSmoothness: 1.07
+    - _EdgeSmoothness: 0.74
     - _EmissionFillAmount: 0
-    - _EmissionIntensity: 0.24
+    - _EmissionIntensity: 2
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _H_hnerOpacity: 1
+    - _H_hnerOpacity: 0.706
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -141,8 +141,8 @@ Material:
     - _Color02: {r: 0.990566, g: 0.9485137, b: 0.9485137, a: 0}
     - _DarkenColor1: {r: 0.42693123, g: 0.7211851, b: 0.735849, a: 0}
     - _DarkenColor2: {r: 0, g: 0, b: 0, a: 0}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _H_hnerLinienColor: {r: 1, g: 1, b: 1, a: 0}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _H_hnerLinienColor: {r: 0.8018868, g: 0.7073247, b: 0.7073247, a: 0}
     - _LochPosition: {r: 0, g: 0, b: 0, a: 0}
     - _PinlightLayerColor: {r: 1, g: 0.6745283, b: 0.6745283, a: 0}
     - _PinlightLayerColor2: {r: 0.9622641, g: 0.19517615, b: 0.19517615, a: 0}

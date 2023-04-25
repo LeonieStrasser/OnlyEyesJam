@@ -115,7 +115,7 @@ Material:
     - _EMissionFillAmount: 0
     - _EdgeSmoothness: 0.43
     - _Emission: 1
-    - _EmissionFillAmount: 0.165
+    - _EmissionFillAmount: 1
     - _EmissionIntensity: 1
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
