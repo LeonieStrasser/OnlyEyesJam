@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Parallax_BG_Mat_1
+  m_Name: Parallax_BG_Mat_3
   m_Shader: {fileID: -6465566751694194690, guid: 937d9ba3070e3ee46ab3174c21491110,
     type: 3}
   m_ValidKeywords: []
@@ -21,8 +21,24 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Main_Tex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_63864ccc9cd847b1941b1ed3c3ea914e_Texture_1:
         m_Texture: {fileID: 2800000, guid: c96d1dcdb5388064a817c0a1e7a6948b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_a7600d9fa0a24dc2bdfa23c7306140d5_Texture_1:
+        m_Texture: {fileID: 2800000, guid: c96d1dcdb5388064a817c0a1e7a6948b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture_Main:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -38,7 +54,17 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _Blurring_Float: 0
+    - _Color_Float: 3.12
+    - _Distance_Float: 31.71
+    - _Opacity_Float: 1
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Threshold_Blueing: 1
     m_Colors:
-    - _Color: {r: 0.6226415, g: 0.5820074, b: 0.56096476, a: 0}
+    - _Blueing_Color: {r: 0.43654326, g: 0.51189435, b: 0.8490566, a: 1}
+    - _Color: {r: 0.8632076, g: 0.9302051, b: 1, a: 0}
+    - _Color_Main: {r: 0.25360447, g: 0.38679245, b: 0.25360447, a: 0}
+    - _Color_Main_Bright: {r: 0.9254903, g: 0.8784314, b: 0.7725491, a: 1}
   m_BuildTextureStacks: []
