@@ -44,15 +44,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ba32d2799b9fd429a7e5e3ab494a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gazePosition: {x: 0, y: 0, z: 0}
   gazeIndicator: {fileID: 0}
   radiusIndicator: {fileID: 0}
-  blinkThreshold: 0.6
-  timeTillTelekinesis: 2
-  telekinesisMaxDuration: 5
-  followSpeed: {x: 0.5, y: 20}
-  impactDistanceMax: 5
-  debug: 1
   useMouseAsGaze: 0
+  enableGazeSmoothing: 1
+  debug: 1
+  telekinesisMaxDuration: 5
+  timeTillTelekinesis: 2
+  blinkThreshold: 0.6
+  limitTelekinesisRadius: 0
+  impactDistanceMax: 5
+  followSpeed: {x: 0.5, y: 20}
+  forcePower: 0
+  minMaxDrag: {x: 0, y: 0}
+  throwVelocity: 5.5
 --- !u!1 &2226075576258034250
 GameObject:
   m_ObjectHideFlags: 0
