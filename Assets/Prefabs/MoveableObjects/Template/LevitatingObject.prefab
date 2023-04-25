@@ -96,7 +96,6 @@ MonoBehaviour:
     type: 3}
   glowingOrb: {fileID: 8157473625223175858}
   telekinesisChannelParticles: {fileID: 2564612338122275154}
-  feedbackFadeInDuration: 4
   feedbackFadeOutDuration: 1
   edgeFadeinDuration: 3
   edgeFadeOutDuration: 2
@@ -131,6 +130,39 @@ MonoBehaviour:
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.09119528
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  edgeFadOutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.3
+      value: 0
+      inSlope: 0.7978057
+      outSlope: 0.7978057
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.8960914
+      value: 0.47556514
+      inSlope: 2.1393068
+      outSlope: 2.1393068
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.06879481
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 5.0470786
+      outSlope: 5.0470786
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
