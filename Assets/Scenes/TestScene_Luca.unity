@@ -1075,7 +1075,7 @@ GameObject:
   - component: {fileID: 603400611}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1115,7 +1115,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5a469088ca9592f45a78a951713a931a, type: 2}
+  - {fileID: 2100000, guid: 6f64616b827ecaa49a6afc0d7ff2a097, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2124,7 +2124,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5a469088ca9592f45a78a951713a931a, type: 2}
+  - {fileID: 2100000, guid: 6f64616b827ecaa49a6afc0d7ff2a097, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2254,6 +2254,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1745894612115770659, guid: fbd01e0a8eaccbb4c8206362ecc2a5f6,
+        type: 3}
+      propertyPath: OnKlickEvents.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745894612115770659, guid: fbd01e0a8eaccbb4c8206362ecc2a5f6,
+        type: 3}
+      propertyPath: OnKlickEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745894612115770659, guid: fbd01e0a8eaccbb4c8206362ecc2a5f6,
+        type: 3}
+      propertyPath: OnKlickEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1920227482}
+    - target: {fileID: 1745894612115770659, guid: fbd01e0a8eaccbb4c8206362ecc2a5f6,
+        type: 3}
+      propertyPath: OnKlickEvents.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745894612115770659, guid: fbd01e0a8eaccbb4c8206362ecc2a5f6,
+        type: 3}
+      propertyPath: OnKlickEvents.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RelodeScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745894612115770659, guid: fbd01e0a8eaccbb4c8206362ecc2a5f6,
+        type: 3}
+      propertyPath: OnKlickEvents.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LevelManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745894612115770659, guid: fbd01e0a8eaccbb4c8206362ecc2a5f6,
+        type: 3}
+      propertyPath: OnKlickEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6163914086842652970, guid: fbd01e0a8eaccbb4c8206362ecc2a5f6,
         type: 3}
       propertyPath: m_Name
@@ -2571,7 +2606,7 @@ MonoBehaviour:
   spawnableObjects:
   - objectPrefab: {fileID: 3669537452450156015, guid: af5ee4c4fa6da7f47b7586e77109dec6,
       type: 3}
-    objectAmount: {x: 2, y: 3}
+    objectAmount: {x: 3, y: 6}
   - objectPrefab: {fileID: 3669537452450156015, guid: dcb246521333c8042bb340f1913d9eb9,
       type: 3}
     objectAmount: {x: 1, y: 1}
@@ -2589,6 +2624,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.79, y: 0, z: 0}
   m_Center: {x: 0, y: 10.91, z: 0}
+--- !u!114 &1920227482 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2226075576504176087, guid: 631f3a63cd11ea5438e6055f7e5015de,
+    type: 3}
+  m_PrefabInstance: {fileID: 1920227477}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920227478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a702118e0a7a824a80b3e48a4f6bbc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1925733938
 GameObject:
   m_ObjectHideFlags: 0
@@ -2627,7 +2674,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5a469088ca9592f45a78a951713a931a, type: 2}
+  - {fileID: 2100000, guid: 6f64616b827ecaa49a6afc0d7ff2a097, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

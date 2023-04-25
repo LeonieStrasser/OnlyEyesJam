@@ -6,7 +6,6 @@ public class PreventRigidbodyRotation : MonoBehaviour
 {
      void Start()
      {
-         // \ (•◡•) /
          Rigidbody rb = GetComponent<Rigidbody>();
          rb.centerOfMass = Vector3.zero;
          rb.inertiaTensorRotation = Quaternion.identity;

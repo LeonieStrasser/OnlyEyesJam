@@ -7,27 +7,28 @@ public class ObjectState : MonoBehaviour
 {
     [SerializeField] MeshRenderer meshRenderer;
     [SerializeField] GameObject objectCollisionEffect;
+    [SerializeField] GameObject glowingOrb;
     [SerializeField] ParticleSystem telekinesisChannelParticles;
     [SerializeField] float feedbackFadeInDuration = 4f;
     [SerializeField] float feedbackFadeOutDuration = 1f;
     [SerializeField] float edgeFadeinDuration = 3f;
     [SerializeField] float edgeFadeOutDuration = 2f;
 
-
-
+    Rigidbody rb;
+    
     public enum physicalStates
     {
-        Grounded, Falling, Catchable, Attached
+        Grounded, Falling, Catchable, Attached, Immovable
     }
 
-    [HideInInspector] public physicalStates physicalState;
+    public physicalStates physicalState;
 
     public enum visualStates
     {
         Neutral, LookedAt, CloseToAttach, Attached
     }
 
-    [HideInInspector] public visualStates visualState;
+    public visualStates visualState;
 
     private Coroutine feedbackCoroutine;
     private Coroutine edgeFeedbackCoroutine;
@@ -37,11 +38,19 @@ public class ObjectState : MonoBehaviour
 
     void Start()
     {
-        // standardColor = meshRenderer.material.color;
+        rb = GetComponent<Rigidbody>();
+        
         visualState = visualStates.Neutral;
         physicalState = physicalStates.Falling;
+    }
 
-
+    void Update()
+    {
+        if (physicalState != physicalStates.Falling)
+            return;
+        
+        if(rb.velocity.magnitude < 0.1f)
+            ChangePhysicalState(physicalStates.Grounded);
     }
 
     public void ChangeVisualState(visualStates _newState)
@@ -57,11 +66,10 @@ public class ObjectState : MonoBehaviour
                 SetChangeFeedback();
                 break;
             case visualStates.CloseToAttach:
-                Debug.Log("CLOSE");
                 SetCloseToAttachFeedback();
                 break;
             case visualStates.Attached:
-                meshRenderer.material.color = Color.green;
+                SetAttachFeedback();
                 break;
             case visualStates.Neutral:
                 SetNeutralFeedbackState();
@@ -85,6 +93,8 @@ public class ObjectState : MonoBehaviour
                 break;
             case physicalStates.Catchable:
                 break;
+            case physicalStates.Immovable:
+                break;
             case physicalStates.Grounded:
                 break;
         }
@@ -92,6 +102,9 @@ public class ObjectState : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
+        if(!(other.gameObject.CompareTag("MoveableObject") || other.gameObject.CompareTag("Ground")))
+            return;
+        
         if (physicalState != physicalStates.Attached)
         {
             ChangePhysicalState(physicalStates.Grounded);
@@ -104,9 +117,16 @@ public class ObjectState : MonoBehaviour
         feedbackCoroutine = StartCoroutine(LerpMaterialFloat("_AnimatedBaseTextureOpacity", 1, feedbackFadeInDuration, (visualState == visualStates.LookedAt || visualState == visualStates.CloseToAttach || visualState == visualStates.Attached)));
     }
 
+    void SetAttachFeedback()
+    {
+        glowingOrb.SetActive(true);
+    }
+
     void SetNeutralFeedbackState()
     {
         //meshRenderer.material.SetFloat("_AnimatedBaseTextureOpacity", 0);
+        
+        glowingOrb.SetActive(false);
 
         if (feedbackCoroutine != null)
         {
@@ -128,11 +148,7 @@ public class ObjectState : MonoBehaviour
         telekinesisChannelParticles.Play();
         edgeFeedbackCoroutine = StartCoroutine(AnimateMaterialFloat("_EmissionFillAmount", 1, edgeFadeinDuration, (visualState == visualStates.CloseToAttach || visualState == visualStates.Attached), edgeFadinCurve));
     }
-
-
-
-
-
+    
     IEnumerator LerpMaterialFloat(string _valueName, float _endValue, float _duration, bool _condition)
     {
         // Cache the ID of the material property
