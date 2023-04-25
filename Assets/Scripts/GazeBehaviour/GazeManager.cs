@@ -29,6 +29,9 @@ public class GazeManager : MonoBehaviour
 
     [MinMaxSlider(0f, 50f)] [SerializeField]
     Vector2 followSpeed;
+    [SerializeField] float forcePower;
+    [MinMaxSlider(0f, 5f)] [SerializeField]
+    Vector2 minMaxDrag;
     [SerializeField] float throwVelocity = 5.5f;
 
     GameObject currentLookingAt, currentAttachedObject;
@@ -222,6 +225,7 @@ public class GazeManager : MonoBehaviour
         attachedRb = currentAttachedObject.GetComponent<Rigidbody>();
         attachedRb.useGravity = false;
         attachedRb.velocity *= 0.5f;
+        attachedRb.drag = minMaxDrag.y;
 
         currentAttachedObject.tag = "Attached";
         
@@ -242,6 +246,7 @@ public class GazeManager : MonoBehaviour
         currentAttachedObject.tag = "MoveableObject";
 
         attachedRb.useGravity = true;
+        attachedRb.drag = minMaxDrag.x;
         attachedRb = null;
         currentAttachedObject = null;
 
@@ -270,7 +275,7 @@ public class GazeManager : MonoBehaviour
 
         if (distanceToGaze > 15f)
             //attachedRb.transform.position += ((Vector3)directionToTarget * currentFollowSpeed * Time.deltaTime);
-            attachedRb.AddForce((Vector3)directionToTarget * (currentFollowSpeed * Time.deltaTime * 80f));
+            attachedRb.AddForce((Vector3)directionToTarget * (currentFollowSpeed * Time.deltaTime * forcePower));
     }
 
     void BlinkDetection()

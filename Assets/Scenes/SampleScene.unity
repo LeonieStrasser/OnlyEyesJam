@@ -545,13 +545,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2226075575930718624, guid: 631f3a63cd11ea5438e6055f7e5015de,
         type: 3}
+      propertyPath: forcePower
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226075575930718624, guid: 631f3a63cd11ea5438e6055f7e5015de,
+        type: 3}
+      propertyPath: minMaxDrag.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226075575930718624, guid: 631f3a63cd11ea5438e6055f7e5015de,
+        type: 3}
+      propertyPath: minMaxDrag.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226075575930718624, guid: 631f3a63cd11ea5438e6055f7e5015de,
+        type: 3}
       propertyPath: gazeIndicator
       value: 
       objectReference: {fileID: 1529361630}
     - target: {fileID: 2226075575930718624, guid: 631f3a63cd11ea5438e6055f7e5015de,
         type: 3}
       propertyPath: throwVelocity
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2226075575930718624, guid: 631f3a63cd11ea5438e6055f7e5015de,
         type: 3}
@@ -1369,7 +1384,7 @@ PrefabInstance:
     - target: {fileID: 8360033462615788196, guid: 49ba1c72a19fa6d4b8ceb5f040b69b08,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8360033462615788196, guid: 49ba1c72a19fa6d4b8ceb5f040b69b08,
         type: 3}
@@ -1520,7 +1535,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1925733943
 MonoBehaviour:
