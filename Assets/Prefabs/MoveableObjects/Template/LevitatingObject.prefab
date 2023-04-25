@@ -95,6 +95,8 @@ MonoBehaviour:
   objectCollisionEffect: {fileID: 6995686729726344978, guid: 083e2012ea61c624e9b224fb3e2ef450,
     type: 3}
   glowingOrb: {fileID: 8157473625223175858}
+  impulseSpherePrefab: {fileID: 6779013393584454411, guid: 30e84a23f83392145ab4b5141343c783,
+    type: 3}
   telekinesisChannelParticles: {fileID: 2564612338122275154}
   feedbackFadeOutDuration: 1
   edgeFadeinDuration: 3

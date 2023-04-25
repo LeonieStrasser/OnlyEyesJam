@@ -8,6 +8,7 @@ public class ObjectState : MonoBehaviour
     [SerializeField] MeshRenderer meshRenderer;
     [SerializeField] GameObject objectCollisionEffect;
     [SerializeField] GameObject glowingOrb;
+    [SerializeField] GameObject impulseSpherePrefab;
     [SerializeField] ParticleSystem telekinesisChannelParticles;
    float feedbackFadeInDuration;
     [SerializeField] float feedbackFadeOutDuration = 1f;
@@ -130,6 +131,8 @@ public class ObjectState : MonoBehaviour
             StopCoroutine(edgeFadeoutFeedbackCoroutine);
         }
         edgeFadeoutFeedbackCoroutine = StartCoroutine(AnimateMaterialFloat("_EmissionFadeOutAmount", 1, GazeManager.Instance.telekinesisMaxDuration, (visualState == visualStates.Attached), edgeFadOutCurve));
+
+        Instantiate(impulseSpherePrefab, this.transform.position, Quaternion.identity);
     }
 
     void SetNeutralFeedbackState()
@@ -153,11 +156,6 @@ public class ObjectState : MonoBehaviour
         edgeFeedbackCoroutine = StartCoroutine(LerpMaterialFloat("_EmissionFillAmount", 0, edgeFadeOutDuration, true));
 
        
-        //if (edgeFadeoutFeedbackCoroutine != null)
-        //{
-        //    StopCoroutine(edgeFadeoutFeedbackCoroutine);
-        //}
-        //edgeFadeoutFeedbackCoroutine = StartCoroutine(AnimateMaterialFloat("_EmissionFadeOutAmount", 0, 0.1f, (visualState == visualStates.Attached), edgeFadOutCurve));
     }
 
     void SetCloseToAttachFeedback()
