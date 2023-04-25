@@ -57,6 +57,7 @@ public class ObjectState : MonoBehaviour
                 SetChangeFeedback();
                 break;
             case visualStates.CloseToAttach:
+                Debug.Log("CLOSE");
                 SetCloseToAttachFeedback();
                 break;
             case visualStates.Attached:

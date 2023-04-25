@@ -33,7 +33,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3669537452486405451}
-  - {fileID: 8039180142974172027}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -95,8 +94,17 @@ MonoBehaviour:
     type: 3}
   telekinesisChannelParticles: {fileID: 0}
   feedbackFadeInDuration: 4
+  feedbackFadeOutDuration: 1
+  edgeFadeinDuration: 3
+  edgeFadeOutDuration: 2
   physicalState: 0
   visualState: 0
+  edgeFadinCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3669537452486405440
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,78 +210,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1001 &4307210920429470031
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 3669537452450156019}
-    m_Modifications:
-    - target: {fileID: 6077236327818508852, guid: 17750829b1645dd41ad82dc074bd4e70,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6077236327818508852, guid: 17750829b1645dd41ad82dc074bd4e70,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6077236327818508852, guid: 17750829b1645dd41ad82dc074bd4e70,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6077236327818508852, guid: 17750829b1645dd41ad82dc074bd4e70,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6077236327818508852, guid: 17750829b1645dd41ad82dc074bd4e70,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6077236327818508852, guid: 17750829b1645dd41ad82dc074bd4e70,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6077236327818508852, guid: 17750829b1645dd41ad82dc074bd4e70,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6077236327818508852, guid: 17750829b1645dd41ad82dc074bd4e70,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6077236327818508852, guid: 17750829b1645dd41ad82dc074bd4e70,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6077236327818508852, guid: 17750829b1645dd41ad82dc074bd4e70,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6077236327818508852, guid: 17750829b1645dd41ad82dc074bd4e70,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6995686729726344978, guid: 17750829b1645dd41ad82dc074bd4e70,
-        type: 3}
-      propertyPath: m_Name
-      value: GlowingOrb
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 17750829b1645dd41ad82dc074bd4e70, type: 3}
---- !u!4 &8039180142974172027 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6077236327818508852, guid: 17750829b1645dd41ad82dc074bd4e70,
-    type: 3}
-  m_PrefabInstance: {fileID: 4307210920429470031}
-  m_PrefabAsset: {fileID: 0}
