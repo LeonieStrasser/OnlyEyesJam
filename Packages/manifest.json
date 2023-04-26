@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.coffee.ui-particle": "https://github.com/mob-sakai/ParticleEffectForUGUI.git",
+    "com.coffee.ui-particle": "file:C:/Users/fabia/Downloads/ParticleEffectForUGUI-main",
     "com.tobii.gaming.sdk": "file:../TobiiUnitySDK_5.0.0.3",
     "com.unity.collab-proxy": "2.0.3",
     "com.unity.ide.rider": "3.0.18",
