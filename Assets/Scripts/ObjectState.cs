@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class ObjectState : MonoBehaviour
 {
+    [HideInInspector] public bool hasSomethingUnderneath;
+    
     [SerializeField] MeshRenderer meshRenderer;
     [SerializeField] GameObject objectCollisionEffect;
     [SerializeField] GameObject glowingOrb;
     [SerializeField] GameObject impulseSpherePrefab;
     [SerializeField] ParticleSystem telekinesisChannelParticles;
-   float feedbackFadeInDuration;
+    float feedbackFadeInDuration;
     [SerializeField] float feedbackFadeOutDuration = 1f;
     [SerializeField] float edgeFadeinDuration = 3f;
     [SerializeField] float edgeFadeOutDuration = 1f;
@@ -51,10 +53,17 @@ public class ObjectState : MonoBehaviour
 
     void Update()
     {
-        if (physicalState != physicalStates.Falling)
-            return;
+        Debug.DrawRay(transform.position, Vector3.down * 1.3f, Color.red);
+        if (Physics.Raycast(transform.position, Vector3.down, 1.3f))
+        {
+            hasSomethingUnderneath = true;
+        }
+        else
+        {
+            
+        }
         
-        if(rb.velocity.magnitude < 0.1f)
+        if(physicalState == physicalStates.Falling && rb.velocity.magnitude < 0.1f)
             ChangePhysicalState(physicalStates.Grounded);
     }
 

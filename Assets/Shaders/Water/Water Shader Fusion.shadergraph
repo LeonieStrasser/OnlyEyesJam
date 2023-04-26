@@ -3919,16 +3919,40 @@
     "m_Name": "",
     "m_ChildObjectList": [
         {
-            "m_Id": "de71953590eb41de8036a50902855260"
-        },
-        {
-            "m_Id": "d9a2bef8b2b446a29afefa050735e4fc"
-        },
-        {
             "m_Id": "e0d691f4397743e385a0d01bd34d2d4c"
         },
         {
             "m_Id": "3388f020ee204620837d2a183e39f817"
+        },
+        {
+            "m_Id": "121b56963a8a4f6a87921aa1dcf5c2d1"
+        },
+        {
+            "m_Id": "dceb962f37954ec9ad1d1972a1fa3d3f"
+        },
+        {
+            "m_Id": "d3c6ba9b60f8469c983adf6742ed190f"
+        },
+        {
+            "m_Id": "bee21434d96242a9b1949c5270afda0e"
+        },
+        {
+            "m_Id": "33e3b162a9fd4d1e8932a9be51a850a3"
+        },
+        {
+            "m_Id": "d2d6cb92e49d41329257c50b32d8ce6d"
+        },
+        {
+            "m_Id": "3e610f70eabe42e38108365eb4effd8b"
+        },
+        {
+            "m_Id": "07f90bf233944effb364962d12bf31db"
+        },
+        {
+            "m_Id": "de71953590eb41de8036a50902855260"
+        },
+        {
+            "m_Id": "d9a2bef8b2b446a29afefa050735e4fc"
         },
         {
             "m_Id": "76d0e51121224996986a9b3cbac8acff"
@@ -3937,31 +3961,7 @@
             "m_Id": "4c57e252a13e472fb0315f394a887388"
         },
         {
-            "m_Id": "bee21434d96242a9b1949c5270afda0e"
-        },
-        {
-            "m_Id": "121b56963a8a4f6a87921aa1dcf5c2d1"
-        },
-        {
-            "m_Id": "3e610f70eabe42e38108365eb4effd8b"
-        },
-        {
-            "m_Id": "d3c6ba9b60f8469c983adf6742ed190f"
-        },
-        {
-            "m_Id": "dceb962f37954ec9ad1d1972a1fa3d3f"
-        },
-        {
-            "m_Id": "33e3b162a9fd4d1e8932a9be51a850a3"
-        },
-        {
-            "m_Id": "07f90bf233944effb364962d12bf31db"
-        },
-        {
             "m_Id": "ea8c2729d8ec479bbb46996353e12227"
-        },
-        {
-            "m_Id": "d2d6cb92e49d41329257c50b32d8ce6d"
         }
     ]
 }
@@ -8467,8 +8467,8 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 0.5,
-    "m_FloatType": 0,
+    "m_Value": 0.10000000149011612,
+    "m_FloatType": 1,
     "m_RangeValues": {
         "x": 0.0,
         "y": 1.0
