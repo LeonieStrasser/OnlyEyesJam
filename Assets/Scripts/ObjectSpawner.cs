@@ -14,12 +14,13 @@ public class ObjectSpawner : MonoBehaviour
         StartCoroutine(SpawnObjects());
     }
     
-    Vector3 RandomPointInBounds(Bounds _bounds)
+    Vector3 RandomPointInZone()
     {
+        var bounds = spawnZone.bounds;
         return new Vector3(
-            Random.Range(_bounds.min.x, _bounds.max.x),
-            Random.Range(_bounds.min.y, _bounds.max.y),
-            Random.Range(_bounds.min.z, _bounds.max.z)
+            Random.Range(bounds.min.x, bounds.max.x),
+            Random.Range(bounds.min.y, bounds.max.y),
+            Random.Range(bounds.min.z, bounds.max.z)
         );
     }
 
@@ -31,11 +32,11 @@ public class ObjectSpawner : MonoBehaviour
         {
             for (int i = 0; i < Random.Range(spawnableObject.objectAmount.x, spawnableObject.objectAmount.y + 1); i++)
             {
-                Vector3 spawnPoint = RandomPointInBounds(spawnZone.bounds);
+                Vector3 spawnPoint = RandomPointInZone();
 
                 while (spawnPoint.x > lastSpawnX - 3 && spawnPoint.x < lastSpawnX + 3)
                 {
-                    spawnPoint = RandomPointInBounds(spawnZone.bounds);
+                    spawnPoint = RandomPointInZone();
                 }
 
                 lastSpawnX = spawnPoint.x;
@@ -45,5 +46,11 @@ public class ObjectSpawner : MonoBehaviour
                 yield return new WaitForSeconds(0.05f);
             }
         }
+    }
+
+    public void RespawnSpecificObject(GameObject _object)
+    {
+        _object.transform.position = RandomPointInZone();
+        _object.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 }
