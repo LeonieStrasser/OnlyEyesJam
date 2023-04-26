@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3669537452450156018}
   - component: {fileID: 1802820073855958441}
   - component: {fileID: 7081918321756029838}
+  - component: {fileID: 1681446294454754026}
   m_Layer: 0
   m_Name: LevitatingObject
   m_TagString: MoveableObject
@@ -101,6 +102,7 @@ MonoBehaviour:
   feedbackFadeOutDuration: 1
   edgeFadeinDuration: 3
   edgeFadeOutDuration: 2
+  debugMaterial: {fileID: 2100000, guid: 3f92dbd98a3c57b499f742e4247b4e98, type: 2}
   physicalState: 0
   visualState: 0
   edgeFadinCurve:
@@ -181,6 +183,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 409ffa2a011db1e4f83fb711c2e1bb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1681446294454754026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3669537452450156015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62440d0fa9f4625439b260857553a632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contactedConductors: []
 --- !u!1001 &4041431042416272468
 PrefabInstance:
   m_ObjectHideFlags: 0
