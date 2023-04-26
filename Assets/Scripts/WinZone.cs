@@ -8,6 +8,7 @@ public class WinZone : MonoBehaviour
     [SerializeField] float stayTimeToWin = 5;
     [SerializeField] bool debug;
     GameObject winObject;
+    public GameObject WinObject { get { return winObject; } }
     bool attachTriggered;
     bool winzoneSucceeded;
     float winTimer;

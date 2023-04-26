@@ -11,7 +11,7 @@ public class ConductorManager : MonoBehaviour
         allConnectedGroups = new List<ConductorList>();
     }
 
-    bool CheckConnectionGroupsForConductor(Conductor _conductorToCheck, out ConductorList _foundInList)
+    public bool CheckConnectionGroupsForConductor(Conductor _conductorToCheck, out ConductorList _foundInList)
     {
         foreach (var item in allConnectedGroups)
         {
@@ -77,44 +77,45 @@ public class ConductorManager : MonoBehaviour
     {
         ConductorList _partnersList;
         ConductorList _reporterList;
-        bool _foundPartnerInAnyGroup = CheckConnectionGroupsForConductor(_contactPartner, out _partnersList); // Schau nach ob der partner in einer gruppe bereits existiert
-        bool _foundReporterInAnyGroup = CheckConnectionGroupsForConductor(_reporter, out _reporterList); // Schau nach ob der reporter bereits in eienr Gruppe existiert
+        bool _foundPartnerInAnyGroup = CheckConnectionGroupsForConductor(_contactPartner, out _partnersList);
+        bool _foundReporterInAnyGroup = CheckConnectionGroupsForConductor(_reporter, out _reporterList);
 
-        // EIgentlich sollte die Gruppe die selbe sein
         if (_partnersList != _reporterList)
             Debug.LogError("Hier ist ein Bug! Die beiden Listen von Disconnectreporter und Partner sind verschiedene!!! WTF Ich hoffe dieser Error wird nie getriggert!");
 
-        // reporter! Hast du noch Partner?
-        // Wenn nein - du wirst aus deiner Gruppe geworfen
         if (_reporter.contactedConductors.Count == 0)
         {
             _reporterList.allCunductors.Remove(_reporter);
             SetDisconnectedItemFeedback(_reporter);
+            if (_reporterList.allCunductors.Count == 0) // check if list is empty
+            {
+                allConnectedGroups.Remove(_reporterList); // remove empty list
+            }
         }
         else
         {
-            // Wenn ja -- Wir müssen rausfinden ob die Gruppe getrennt werden muss 
             List<Conductor> _connectedListOfReporter = new List<Conductor>();
             List<Conductor> _connectedListOfPartner = new List<Conductor>();
-            bool _groupeSeperationNeeded = CheckIfGroupWasDisconnected(_reporter, _contactPartner, out _connectedListOfReporter, out _connectedListOfPartner); // bool
+            bool _groupeSeperationNeeded = CheckIfGroupWasDisconnected(_reporter, _contactPartner, out _connectedListOfReporter, out _connectedListOfPartner);
 
-            // Wenn die Gruppe Disconnected wurde - also der Bool true ist
             if (_groupeSeperationNeeded)
             {
-                // Separiere die Liste in zwei Listen
-                RemoveAListOfNamesFromList(_reporterList.allCunductors, _connectedListOfReporter); // Nachbarn vom Reporter in der Gruppenliste löschen
-                ConductorList _newConnectionGroup = AddNewConnectionGroup();                       // Neue Liste mit den Nachbarn des Reporters erstellen
+                RemoveAListOfNamesFromList(_reporterList.allCunductors, _connectedListOfReporter);
+                ConductorList _newConnectionGroup = AddNewConnectionGroup();
 
-                foreach (var item in _connectedListOfReporter) // Pack alle Nachbarn in die neue Liste
+                foreach (var item in _connectedListOfReporter)
                 {
                     _newConnectionGroup.allCunductors.Add(item);
                 }
 
+                if (_reporterList.allCunductors.Count == 0) // check if list is empty
+                {
+                    allConnectedGroups.Remove(_reporterList); // remove empty list
+                }
             }
-            // Ansonsten kann alles so bleifen -- doppel uff
+
+            SetConnectionGroupFeedback();
         }
-
-
     }
 
 

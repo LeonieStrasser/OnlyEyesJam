@@ -16,6 +16,8 @@ public class ObjectState : MonoBehaviour
     [SerializeField] float edgeFadeOutDuration = 1f;
 
     Rigidbody rb;
+
+    [SerializeField] Material debugMaterial;
     
     public enum physicalStates
     {
@@ -26,7 +28,7 @@ public class ObjectState : MonoBehaviour
 
     public enum visualStates
     {
-        Neutral, LookedAt, CloseToAttach, Attached
+        Neutral, LookedAt, CloseToAttach, Attached, WinGroup
     }
 
     public visualStates visualState;
@@ -79,6 +81,9 @@ public class ObjectState : MonoBehaviour
             case visualStates.Neutral:
                 SetNeutralFeedbackState();
                 telekinesisChannelParticles.Stop();
+                break;
+            case visualStates.WinGroup:
+                SetWinFeedback();
                 break;
         }
     }
@@ -163,6 +168,11 @@ public class ObjectState : MonoBehaviour
         telekinesisChannelParticles.Play();
         meshRenderer.material.SetFloat("_EmissionFadeOutAmount", 0);
         edgeFeedbackCoroutine = StartCoroutine(AnimateMaterialFloat("_EmissionFillAmount", 1, edgeFadeinDuration, (visualState == visualStates.CloseToAttach || visualState == visualStates.Attached), edgeFadinCurve));
+    }
+
+    void SetWinFeedback()
+    {
+        meshRenderer.material = debugMaterial;
     }
     
     IEnumerator LerpMaterialFloat(string _valueName, float _endValue, float _duration, bool _condition)
