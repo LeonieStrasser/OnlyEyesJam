@@ -4984,6 +4984,7 @@ MonoBehaviour:
   stayTimeToWin: 5
   debug: 0
   colorOnDetach: {r: 1, g: 0.24056602, b: 0.83978045, a: 0.5176471}
-  colorOnAttach: {r: 0.31861702, g: 0.23921567, b: 1, a: 0.5176471}
+  colorOnEnter: {r: 0.0828116, g: 0, b: 0.90588236, a: 0.50980395}
+  colorOnAttachTrigger: {r: 1, g: 0.9171872, b: 0.18396229, a: 0.5019608}
   colorOnWin: {r: 0.23921567, g: 1, b: 0.46788263, a: 0.5176471}
   winVFX: {fileID: 8211825008766146855}

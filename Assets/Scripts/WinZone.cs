@@ -8,19 +8,23 @@ public class WinZone : MonoBehaviour
     [SerializeField] float stayTimeToWin = 5;
     [SerializeField] bool debug;
     GameObject winObject;
+    bool attachTriggered;
+    bool winzoneSucceeded;
     float winTimer;
     float winningProgress; // timeProgress zwischen 0 und 1
     bool timerRun;
 
+
     LevelManager myManager;
-    
+
     // FEEDBACK
     MeshRenderer myRenderer;
     [BoxGroup("Feedback")] [SerializeField] Color colorOnDetach;
-    [BoxGroup("Feedback")] [SerializeField] Color colorOnAttach;
+    [BoxGroup("Feedback")] [SerializeField] Color colorOnEnter;
+    [BoxGroup("Feedback")] [SerializeField] Color colorOnAttachTrigger;
     [BoxGroup("Feedback")] [SerializeField] Color colorOnWin;
     [BoxGroup("Feedback")] [SerializeField] ParticleSystem winVFX;
-    
+
     void Start()
     {
         myManager = FindObjectOfType<LevelManager>();
@@ -33,45 +37,67 @@ public class WinZone : MonoBehaviour
     void Update()
     {
         WintimerProgress();
+
+
     }
 
     void OnTriggerStay(Collider other)
     {
-        if(!(other.CompareTag("MoveableObject") || other.CompareTag("Attached")))
+        if (!(other.CompareTag("MoveableObject")) && !(other.CompareTag("Attached"))) // Wenn es kein Hühnergott ist, dann ists eh egal!
             return;
-        
+        else if (other.CompareTag("Attached") && !attachTriggered) // Wenn es Hühnergott ist der vom Player grad bewegt wird - Triggerfeedback
+        {
+            AttachTriggerFeedback();
+            attachTriggered = true;
+        }
+
+
         if (winObject == null && other.tag != "Attached") // Wenn ein Objekt mit !Attached.tag in der Zone erscheint - Starte den Win-Timer-Stuff
         {
+            attachTriggered = false;
             AttachWinObject(other.gameObject);
         }
         else if (winObject != null && other.tag == "Attached") // Wenn das Eingeloggte Win Objekt attached wird aber noch in der TriggerZone chillt
         {
             DetachWinObject();
-
+            AttachTriggerFeedback();
+            attachTriggered = true;
             if (debug)
             {
                 Debug.Log("Win object was Attached by player!");
                 Debug.Log("Win Timer wurde resettet!");
             }
         }
+
     }
 
 
     private void OnTriggerExit(Collider other)
     {
-        if (winObject == null) // Wenn kein WInobjekt eingeloggt ist - spars dir 
-            return;
-
-        if (other.gameObject == winObject) // Wenn das eingeloggte WIn Objekt die Win Zone verl�sst, logg es aus und setze den Timer zur�ck!
+        if (other.CompareTag("MoveableObject") || (other.CompareTag("Attached")))
         {
-            DetachWinObject();
 
-            if (debug)
+            attachTriggered = false;
+
+            if (winObject == null) // Wenn kein WInobjekt eingeloggt ist verlässt ein attchter Block die Winzone
             {
-                Debug.Log("Win object left Winzone!");
-                Debug.Log("Win Timer wurde resettet!");
+                DetachFeedback();
+                return;
+            }
+            else if (other.gameObject == winObject) // Wenn das eingeloggte WIn Objekt die Win Zone verl�sst, logg es aus und setze den Timer zur�ck!
+            {
+
+                DetachWinObject();
+
+                if (debug)
+                {
+                    Debug.Log("Win object left Winzone!");
+                    Debug.Log("Win Timer wurde resettet!");
+                }
             }
         }
+
+
     }
 
     void WintimerProgress()
@@ -85,8 +111,9 @@ public class WinZone : MonoBehaviour
 
             if (winTimer <= 0)
             {
-                // WIN!!!!!!!!!!!!!!
-                OnWin();
+                // MELDE DEM LEVELMANAGER EINEN ERFOOOLG!!! JUHUUU!
+                if (!winzoneSucceeded)
+                    OnSucceed();
 
                 if (debug)
                     Debug.Log("WON!!!");
@@ -98,10 +125,10 @@ public class WinZone : MonoBehaviour
     {
         timerRun = true;
         winObject = _newWinObject;
-        
+
         winObject.GetComponent<ObjectState>().ChangePhysicalState(ObjectState.physicalStates.Immovable);
 
-        AttachFeedback();
+        EnterFeedback();
 
         if (debug)
             Debug.Log("Win object entered Winzone!");
@@ -113,25 +140,43 @@ public class WinZone : MonoBehaviour
         timerRun = false;
         winTimer = stayTimeToWin;
 
+        if (winzoneSucceeded)
+        {
+            winzoneSucceeded = false;
+            LevelManager.instance.ReportLostWinZone();
+        }
+
+
         DetachFeedback();
     }
 
-    void OnWin()
+    void OnSucceed()
+    {
+        winzoneSucceeded = true;
+        LevelManager.instance.ReportSuccededWinZone();
+
+    }
+
+    public void SetWin()
     {
         //winObject.GetComponent<ObjectState>().ChangePhysicalState(ObjectState.physicalStates.Grounded);
-        
+
         myManager.LevelWon();
         WinFeedback();
 
-        this.enabled = false;
+        this.gameObject.SetActive(false);
     }
 
 
     #region feedback
-
-    void AttachFeedback()
+    void AttachTriggerFeedback()
     {
-        myRenderer.material.color = colorOnAttach;
+        myRenderer.material.color = colorOnAttachTrigger;
+    }
+
+    void EnterFeedback()
+    {
+        myRenderer.material.color = colorOnEnter;
     }
 
     void DetachFeedback()
@@ -141,12 +186,13 @@ public class WinZone : MonoBehaviour
 
     void AttatchedProgressFeedback() // W�hrend der Win timer hochz�hlt
     {
-        Color lerpedColor = Color.Lerp(colorOnWin, colorOnAttach, winningProgress);
+        Color lerpedColor = Color.Lerp(colorOnWin, colorOnEnter, winningProgress);
         myRenderer.material.color = lerpedColor;
     }
 
     void WinFeedback()
     {
+        winVFX.transform.SetParent(null);
         winVFX.Play();
     }
 
