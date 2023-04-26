@@ -43,24 +43,30 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AmbientOcclusion: 0.608
-    - _Depth: 0.88
+    - _AlphaTransmission: 1
+    - _AmbientOcclusion: 0.89
+    - _Depth: 4.97
     - _Displacement: 0.045
-    - _DistortionScale: 50
+    - _DistortionScale: 0.47
     - _Metallic: 0.572
-    - _NormalStrength: 0.18
+    - _NormalStrength: 3.48
+    - _NormalStrength_1: 0.74
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ShoreBlend: 2.05
+    - _ShoreBlend: 1.92
+    - _ShoreOffset: 0.96
     - _Smoothness: 1
     - _Speed: 0.05
-    - _Strength: 0.49
+    - _Strength: 0.498
     - _TestFloat: 1
+    - _UseShaderAlpha: 1
+    - _WaterClarity: 0.639
+    - _WaveStrength: 0.1
     m_Colors:
-    - _Deep_Water_Color: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 0.9647059}
+    - _Deep_Water_Color: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 0.9647059}
     - _Shallow_Water_Color: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 0.72156864}
-    - _Specular: {r: 0, g: 0, b: 0, a: 0}
-    - _Speeds: {r: 0.1, g: -0.1, b: 0.1, a: 0.1}
+    - _Specular: {r: 0.509434, g: 0.34082478, b: 0.06488074, a: 0}
+    - _Speeds: {r: 0.2, g: -0.2, b: 0.2, a: 0.2}
     - _Tiling: {r: 0.1, g: 0.1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3415081616588165083
