@@ -62,7 +62,9 @@ public class GazeManager : MonoBehaviour
     void Start()
     {
         TobiiAPI.Start(new TobiiSettings());
-        
+
+        useMouseAsGaze = !TobiiAPI.IsConnected;
+
         mainCam = Camera.main;
 
         indicatorFill = gazeIndicator.GetChild(0).GetComponent<Image>();
