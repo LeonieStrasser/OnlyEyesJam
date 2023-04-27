@@ -27,6 +27,7 @@ public class GazeManager : MonoBehaviour
     [SerializeField] bool limitTelekinesisRadius = false;
     [ShowIf("limitTelekinesisRadius")]
     [SerializeField] float impactDistanceMax = 800;
+    [SerializeField] float objectPutDownDistance = 1.5f;
 
     [MinMaxSlider(0f, 50f)] [SerializeField]
     Vector2 followSpeed;
@@ -77,12 +78,14 @@ public class GazeManager : MonoBehaviour
 
         BlinkDetection();
         
-        if (currentAttachedObject)
-        {
+        if (currentAttachedObject) // ugly, aber falls das Objekt irgendwo detached wird muss das leider sein
             UpdateTelekinesisUI();
-            
+        
+        if (currentAttachedObject)
             ObjectMovement();
-        }
+        
+        if (currentAttachedObject)
+            CheckForObjectPutDown();
     }
 
     void UpdateGazePosition()
@@ -219,6 +222,20 @@ public class GazeManager : MonoBehaviour
             //currentFocusedObjectState.ChangePhysicalState(ObjectState.physicalStates.Catchable);
             currentFocusedObjectState.ChangePhysicalState(ObjectState.physicalStates.Falling);
             Detach();
+        }
+    }
+
+    void CheckForObjectPutDown()
+    {
+        Debug.DrawLine(objectPosOnScreen, new Vector3(objectPosOnScreen.x, objectPosOnScreen.y - objectPutDownDistance));
+        
+        if (currentFocusedObjectState.hasSomethingUnderneath &&
+            gazePosition.y < objectPosOnScreen.y - objectPutDownDistance)
+        {
+            Detach();
+
+            if (debug)
+                Debug.Log("Object was put down");
         }
     }
 

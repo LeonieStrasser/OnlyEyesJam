@@ -67,11 +67,13 @@ public class ObjectState : MonoBehaviour
     void UnderneathCheck()
     {
         Bounds bounds = meshRenderer.bounds;
+        
 
-        boxCastWidth = bounds.size.x;
-        boxCastHeight = 0.5f;
+        boxCastWidth = bounds.size.x * 0.75f;
+        boxCastHeight = 0.25f;
 
-        castPos = new Vector3(transform.position.x, transform.position.y - bounds.extents.y);
+        //castPos = new Vector3(transform.position.x, transform.position.y - bounds.extents.y);
+        castPos = new Vector3(bounds.min.x + (bounds.max.x - bounds.min.x) * 0.5f, bounds.min.y);
         
         hasSomethingUnderneath = Physics.BoxCast(castPos, new Vector3(boxCastWidth, boxCastHeight, 1), Vector3.down);
     }
