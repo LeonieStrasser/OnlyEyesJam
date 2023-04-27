@@ -5,16 +5,22 @@ using UnityEngine;
 
 public class ObjectState : MonoBehaviour
 {
+    [HideInInspector] public bool hasSomethingUnderneath;
+    
     [SerializeField] MeshRenderer meshRenderer;
     [SerializeField] GameObject objectCollisionEffect;
     [SerializeField] GameObject glowingOrb;
     [SerializeField] GameObject impulseSpherePrefab;
+    
     [SerializeField] ParticleSystem telekinesisChannelParticles;
-   float feedbackFadeInDuration;
+    
     [SerializeField] float feedbackFadeOutDuration = 1f;
     [SerializeField] float edgeFadeinDuration = 3f;
     [SerializeField] float edgeFadeOutDuration = 1f;
-
+    
+    float feedbackFadeInDuration;
+    float boxCastWidth, boxCastHeight;
+    
     Rigidbody rb;
 
     [SerializeField] Material debugMaterial;
@@ -38,8 +44,8 @@ public class ObjectState : MonoBehaviour
     private Coroutine edgeFadeoutFeedbackCoroutine;
     public AnimationCurve edgeFadinCurve;
     public AnimationCurve edgeFadOutCurve;
-
-    //Color standardColor;
+    
+    Vector3 castPos;
 
     void Start()
     {
@@ -53,11 +59,31 @@ public class ObjectState : MonoBehaviour
 
     void Update()
     {
-        if (physicalState != physicalStates.Falling)
-            return;
-        
-        if(rb.velocity.magnitude < 0.1f)
+        if(physicalState == physicalStates.Attached)
+            UnderneathCheck();
+
+        if(physicalState == physicalStates.Falling && rb.velocity.magnitude < 0.1f)
             ChangePhysicalState(physicalStates.Grounded);
+    }
+
+    void UnderneathCheck()
+    {
+        Bounds bounds = meshRenderer.bounds;
+        
+
+        boxCastWidth = bounds.size.x * 0.75f;
+        boxCastHeight = 0.25f;
+
+        //castPos = new Vector3(transform.position.x, transform.position.y - bounds.extents.y);
+        castPos = new Vector3(bounds.min.x + (bounds.max.x - bounds.min.x) * 0.5f, bounds.min.y);
+        
+        hasSomethingUnderneath = Physics.BoxCast(castPos, new Vector3(boxCastWidth, boxCastHeight, 1), Vector3.down);
+    }
+    
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(castPos, new Vector3(boxCastWidth, boxCastHeight, 1));
     }
 
     public void ChangeVisualState(visualStates _newState)
