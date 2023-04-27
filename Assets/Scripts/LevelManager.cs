@@ -25,6 +25,8 @@ public class LevelManager : MonoBehaviour
 
     levelState currentLevelState;
 
+    CubeGroupFeedback myWinFeedback;
+
     private void Awake()
     {
         instance = this;
@@ -40,6 +42,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         currentLevelState = levelState.play;
+        myWinFeedback = FindObjectOfType<CubeGroupFeedback>();
 
     }
 

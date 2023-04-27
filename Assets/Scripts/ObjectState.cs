@@ -47,6 +47,9 @@ public class ObjectState : MonoBehaviour
     
     Vector3 castPos;
 
+
+    CubeGroupFeedback myGroupFeedback;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -55,6 +58,8 @@ public class ObjectState : MonoBehaviour
         physicalState = physicalStates.Falling;
 
         feedbackFadeInDuration = GazeManager.Instance.timeTillTelekinesis;
+
+        myGroupFeedback = FindObjectOfType<CubeGroupFeedback>();
     }
 
     void Update()
@@ -64,6 +69,11 @@ public class ObjectState : MonoBehaviour
 
         if(physicalState == physicalStates.Falling && rb.velocity.magnitude < 0.1f)
             ChangePhysicalState(physicalStates.Grounded);
+
+        if(visualState == visualStates.WinGroup)
+        {
+            meshRenderer.material.SetFloat("_RainWorldBorder", myGroupFeedback.RainWorldBorder);
+        }
     }
 
     void UnderneathCheck()
@@ -198,7 +208,7 @@ public class ObjectState : MonoBehaviour
 
     void SetWinFeedback()
     {
-        meshRenderer.material = debugMaterial;
+        //meshRenderer.material = debugMaterial;
     }
     
     IEnumerator LerpMaterialFloat(string _valueName, float _endValue, float _duration, bool _condition)

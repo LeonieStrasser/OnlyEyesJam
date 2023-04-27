@@ -1114,6 +1114,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1806055160171150439, guid: 631f3a63cd11ea5438e6055f7e5015de,
+        type: 3}
+      propertyPath: rainWorldBorder
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806055160171150439, guid: 631f3a63cd11ea5438e6055f7e5015de,
+        type: 3}
+      propertyPath: winEffectDuration
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2226075576504176087, guid: 631f3a63cd11ea5438e6055f7e5015de,
         type: 3}
       propertyPath: winObject
