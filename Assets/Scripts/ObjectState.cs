@@ -11,12 +11,16 @@ public class ObjectState : MonoBehaviour
     [SerializeField] GameObject objectCollisionEffect;
     [SerializeField] GameObject glowingOrb;
     [SerializeField] GameObject impulseSpherePrefab;
+    
     [SerializeField] ParticleSystem telekinesisChannelParticles;
-    float feedbackFadeInDuration;
+    
     [SerializeField] float feedbackFadeOutDuration = 1f;
     [SerializeField] float edgeFadeinDuration = 3f;
     [SerializeField] float edgeFadeOutDuration = 1f;
-
+    
+    float feedbackFadeInDuration;
+    float boxCastWidth, boxCastHeight;
+    
     Rigidbody rb;
     
     public enum physicalStates
@@ -38,8 +42,8 @@ public class ObjectState : MonoBehaviour
     private Coroutine edgeFadeoutFeedbackCoroutine;
     public AnimationCurve edgeFadinCurve;
     public AnimationCurve edgeFadOutCurve;
-
-    //Color standardColor;
+    
+    Vector3 castPos;
 
     void Start()
     {
@@ -53,18 +57,29 @@ public class ObjectState : MonoBehaviour
 
     void Update()
     {
-        Debug.DrawRay(transform.position, Vector3.down * 1.3f, Color.red);
-        if (Physics.Raycast(transform.position, Vector3.down, 1.3f))
-        {
-            hasSomethingUnderneath = true;
-        }
-        else
-        {
-            
-        }
-        
+        if(physicalState == physicalStates.Attached)
+            UnderneathCheck();
+
         if(physicalState == physicalStates.Falling && rb.velocity.magnitude < 0.1f)
             ChangePhysicalState(physicalStates.Grounded);
+    }
+
+    void UnderneathCheck()
+    {
+        Bounds bounds = meshRenderer.bounds;
+
+        boxCastWidth = bounds.size.x;
+        boxCastHeight = 0.5f;
+
+        castPos = new Vector3(transform.position.x, transform.position.y - bounds.extents.y);
+        
+        hasSomethingUnderneath = Physics.BoxCast(castPos, new Vector3(boxCastWidth, boxCastHeight, 1), Vector3.down);
+    }
+    
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(castPos, new Vector3(boxCastWidth, boxCastHeight, 1));
     }
 
     public void ChangeVisualState(visualStates _newState)
