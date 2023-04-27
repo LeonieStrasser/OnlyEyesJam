@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Attached
   - Ground
+  - MoveableObject
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - SpawnZone
   - Water
   - UI
   - 

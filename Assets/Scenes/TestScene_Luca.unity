@@ -2824,17 +2824,18 @@ MonoBehaviour:
   spawnableObjects:
   - objectPrefab: {fileID: 1355574656850162628, guid: 86ff1bd822865bb4881fb7bc46985059,
       type: 3}
-    objectAmount: {x: 3, y: 6}
+    objectAmount: {x: 3, y: 5}
   - objectPrefab: {fileID: 6659677096032284390, guid: 0490cfcfe3348b746a48164e30894c3e,
       type: 3}
-    objectAmount: {x: 1, y: 2}
+    objectAmount: {x: 1, y: 3}
   - objectPrefab: {fileID: 986871300592403083, guid: 2e590c7d1f4ddd64ea8f3892a8abf1b0,
       type: 3}
-    objectAmount: {x: 1, y: 2}
+    objectAmount: {x: 1, y: 3}
   - objectPrefab: {fileID: 8484740592393215980, guid: 41726eacb9f6bba4087fe49361ce95e6,
       type: 3}
-    objectAmount: {x: 1, y: 2}
+    objectAmount: {x: 1, y: 3}
   spawnZone: {fileID: 1920227480}
+  maxPositionFindAttempts: 500
 --- !u!65 &1920227480
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2846,8 +2847,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.79, y: 0, z: 0}
-  m_Center: {x: 0, y: 10.91, z: 0}
+  m_Size: {x: 10.79, y: 4.39, z: 0}
+  m_Center: {x: 0, y: 10.1, z: 0}
 --- !u!114 &1920227482 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2226075576504176087, guid: 631f3a63cd11ea5438e6055f7e5015de,
