@@ -8,19 +8,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: mat_winZone
-  m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
-  m_ValidKeywords:
-  - _SURFACE_TYPE_TRANSPARENT
+  m_Shader: {fileID: -6465566751694194690, guid: f00766fca64aaf343b45fdeae3dce2b5,
+    type: 3}
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap:
-    RenderType: Transparent
-  disabledShaderPasses:
-  - DepthOnly
-  - SHADOWCASTER
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -82,6 +79,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Alpha: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BlendOp: 0
@@ -91,15 +89,24 @@ Material:
     - _CameraNearFadeDistance: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
+    - _ColorAmount: 0.61
+    - _ColorBlendFactor: 0.99
+    - _ColorBlendOffset: -0.12
     - _ColorMode: 0
     - _Cull: 2
     - _Cutoff: 0.5
+    - _DeformScale: 40
+    - _DeformSpeed: 0.05
+    - _DeformStrength: 0.15
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DistortionBlend: 0.5
     - _DistortionEnabled: 0
+    - _DistortionOffset: 0.669
+    - _DistortionSpeed: 0.05
     - _DistortionStrength: 1
     - _DistortionStrengthScaled: 0.1
+    - _Distortion_Scale: 40
     - _DstBlend: 10
     - _EnvironmentReflections: 1
     - _FlipbookBlending: 0
@@ -111,10 +118,13 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SampleGI: 0
-    - _Smoothness: 0.5
+    - _Slider1: 0.507
+    - _Slider2: 0.5
+    - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
     - _SoftParticlesEnabled: 0
     - _SoftParticlesFarFadeDistance: 1
@@ -129,9 +139,15 @@ Material:
     - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 0.5372549, b: 0.47450978, a: 0.57254905}
+    - _Color1: {r: 1, g: 0, b: 0, a: 0.3254902}
+    - _Color2: {r: 1, g: 0.79322517, b: 0, a: 0.54509807}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
+    - _InnerColor: {r: 0, g: 0.8818593, b: 1, a: 0.7607843}
+    - _OuterColor: {r: 0.23829652, g: 0.8637125, b: 0.990566, a: 0.8666667}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _Specular_Color: {r: 0.128, g: 0.128, b: 0.128, a: 0.09803922}
   m_BuildTextureStacks: []
 --- !u!114 &7042610435426930790
 MonoBehaviour:
