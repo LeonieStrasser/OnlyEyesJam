@@ -57,9 +57,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab7c65afff954f14e928f497bfb3185e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rainWorldBorder: 19.87
+  rainWorldBorder: -8
   maxWorldValue: 20
   minWorldValue: -10
+  winEffectDuration: 5
   allMovableMaterials:
   - {fileID: 2100000, guid: 64b396dceb036be47b453a7fd100101b, type: 2}
   - {fileID: 2100000, guid: 5a469088ca9592f45a78a951713a931a, type: 2}

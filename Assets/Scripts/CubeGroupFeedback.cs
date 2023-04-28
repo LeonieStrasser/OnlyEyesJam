@@ -12,8 +12,6 @@ public class CubeGroupFeedback : MonoBehaviour
         {
             rainWorldBorder = value;
 
-           
-
         }
 
         get
@@ -28,9 +26,9 @@ public class CubeGroupFeedback : MonoBehaviour
 
     public Material[] allMovableMaterials;
 
- 
 
-    
+
+
 
 
 
@@ -38,10 +36,10 @@ public class CubeGroupFeedback : MonoBehaviour
 
     public void StartWingroupsEffect()
     {
-        
+
         StartCoroutine(LerpWorldFloat(minWorldValue, maxWorldValue, winEffectDuration));
     }
-  
+
 
 
     IEnumerator LerpWorldFloat(float _startValue, float _endValue, float _duration)

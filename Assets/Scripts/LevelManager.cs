@@ -51,7 +51,16 @@ public class LevelManager : MonoBehaviour
         currentLevelState = levelState.won;
         winObject.SetActive(true);
 
+
+
+
+
         //Cube Gruppe Feedback
+
+        // Setze den World Border Effeki in Gang
+        myWinFeedback.StartWingroupsEffect();
+        // Sag den Cubes bescheid
+
         List<ConductorList> _allWingroups = new List<ConductorList>();
         foreach (var item in allWinZones) // Geh alle WInzones durch
         {
@@ -118,6 +127,7 @@ public class LevelManager : MonoBehaviour
         if (succededWinzones == allWinZones.Count)
         {
             // Level gewonnen!
+            LevelWon();
             foreach (var item in allWinZones)
             {
                 item.SetWin();
