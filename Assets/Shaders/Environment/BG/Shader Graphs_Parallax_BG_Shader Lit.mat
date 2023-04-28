@@ -22,7 +22,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c96d1dcdb5388064a817c0a1e7a6948b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8a1b5b5a4fdcb0640977ab9451730ce0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_c555658a483f43b3ae2dc44a289f693b_Texture_1:
@@ -47,8 +47,16 @@ Material:
     - _QueueControl: 1
     - _QueueOffset: 0
     - _Smoothness: 0
+    - _Value_A: 0
+    - _Value_B: 0.3
+    - _Value_C: 0.6
+    - _Value_D: 1
     m_Colors:
     - _Blueing_Color: {r: 0.45523316, g: 0.49828106, b: 0.62264144, a: 0}
+    - _Color_A: {r: 0.6392157, g: 0.7490196, b: 0.7411765, a: 1}
+    - _Color_B: {r: 0.9215687, g: 0.8627452, b: 0.7686275, a: 1}
+    - _Color_C: {r: 0.9176471, g: 0.8509805, b: 0.7568628, a: 1}
+    - _Color_D: {r: 1, g: 1, b: 1, a: 1}
     - _Color_Main: {r: 0.25360447, g: 0.38679245, b: 0.25360447, a: 0}
     - _Color_Main_Bright: {r: 0.9254903, g: 0.8784314, b: 0.7725491, a: 1}
   m_BuildTextureStacks: []

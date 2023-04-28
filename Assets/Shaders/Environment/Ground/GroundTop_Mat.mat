@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: GroundTop_Mat
-  m_Shader: {fileID: -6465566751694194690, guid: 2b8d5d2c7469bdc46b80e0fe86b8bf68,
+  m_Shader: {fileID: -6465566751694194690, guid: 93ade812a10cf784bac5b672bab46e7f,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -40,6 +40,26 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_08556205eeca45c5ae7776ebdf591385_Texture_1:
         m_Texture: {fileID: 2800000, guid: 7412015e637b0b947b0e957050aba24c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_0de3709c7cad4bafa8f4ec76d710f843_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 8514e952ec35585419fa25c94969e614, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_481ec14ebcc147f8a74c91265cb45b95_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 8e596b2e87968494e874b9913fb4782c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_7fc8bd3136034e4f821f88c52a9a72c2_Texture_1:
+        m_Texture: {fileID: 2800000, guid: d7fd3db7dd31c9b47a108fb8ab9bde4e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_996deb4d459540a998ea1b11269cf043_Texture_1:
+        m_Texture: {fileID: 2800000, guid: d7fd3db7dd31c9b47a108fb8ab9bde4e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_a23a5e05064748daba7880ddd5994234_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 8e596b2e87968494e874b9913fb4782c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_d68b3501d5b348a98cf92082aba6c84b_Texture_1:
