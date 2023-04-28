@@ -130,7 +130,7 @@ Material:
     - _PinLightOpacity: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RainWorldBorder: -10
+    - _RainWorldBorder: -200.81
     - _RainborderNoise: 76.45
     - _RainborderNoiseScale: 40
     - _ReceiveShadows: 1
