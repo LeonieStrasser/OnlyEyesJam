@@ -66,6 +66,96 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 5a469088ca9592f45a78a951713a931a, type: 2}
   - {fileID: 2100000, guid: d8ce03da7d83a11469244aa4fafb0e96, type: 2}
   - {fileID: 2100000, guid: bab3dc0434607de4089675557828a8e5, type: 2}
+--- !u!1 &330603071
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 330603072}
+  - component: {fileID: 330603073}
+  m_Layer: 3
+  m_Name: ObjectSpawnZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &330603072
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330603071}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2226075576504176086}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &330603073
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330603071}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.79, y: 4.39, z: 0}
+  m_Center: {x: 0, y: 10.1, z: 0}
+--- !u!1 &1053174955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1053174956}
+  - component: {fileID: 1053174957}
+  m_Layer: 3
+  m_Name: WinSpawnZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1053174956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053174955}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2226075576504176086}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1053174957
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053174955}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 4.15, z: 0}
+  m_Center: {x: 0, y: 0.82, z: 0}
 --- !u!1 &2226075575930718627
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,20 +202,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gazePosition: {x: 0, y: 0, z: 0}
   gazeIndicator: {fileID: 0}
-  radiusIndicator: {fileID: 0}
   useMouseAsGaze: 0
+  enableGazeIndicator: 0
   enableGazeSmoothing: 1
-  debug: 1
-  telekinesisMaxDuration: 5
-  timeTillTelekinesis: 2
+  debug: 0
+  telekinesisMaxDuration: 7
+  timeTillTelekinesis: 4
   blinkThreshold: 0.6
   limitTelekinesisRadius: 0
-  impactDistanceMax: 5
-  objectPutDownDistance: 1.5
+  impactDistanceMax: 800
+  objectPutDownDistance: 200
   followSpeed: {x: 0.5, y: 20}
-  forcePower: 0
-  minMaxDrag: {x: 0, y: 0}
-  throwVelocity: 5.5
+  forcePower: 250
+  minMaxDrag: {x: 0, y: 2}
+  throwVelocity: 13
 --- !u!1 &2226075576258034250
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,6 +275,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2226075576504176086}
   - component: {fileID: 2226075576504176087}
+  - component: {fileID: 1920227479}
   m_Layer: 3
   m_Name: Level Manager
   m_TagString: Untagged
@@ -203,7 +294,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 330603072}
+  - {fileID: 1053174956}
   m_Father: {fileID: 2226075577233482398}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -220,8 +313,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winObject: {fileID: 0}
-  debug: 1
+  sceneTransitionAnim: {fileID: 0}
+  debug: 0
   allWinZones: []
+--- !u!114 &1920227479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2226075576504176073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d30baa126f57cd40b8ef729a421e488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnableObjects:
+  - objectPrefab: {fileID: 1355574656850162628, guid: 86ff1bd822865bb4881fb7bc46985059,
+      type: 3}
+    objectAmount: {x: 3, y: 5}
+  - objectPrefab: {fileID: 6659677096032284390, guid: 0490cfcfe3348b746a48164e30894c3e,
+      type: 3}
+    objectAmount: {x: 1, y: 3}
+  - objectPrefab: {fileID: 986871300592403083, guid: 2e590c7d1f4ddd64ea8f3892a8abf1b0,
+      type: 3}
+    objectAmount: {x: 1, y: 3}
+  - objectPrefab: {fileID: 8484740592393215980, guid: 41726eacb9f6bba4087fe49361ce95e6,
+      type: 3}
+    objectAmount: {x: 1, y: 3}
+  objectSpawnZone: {fileID: 330603073}
+  winSpawnZone: {fileID: 1053174957}
+  winZonePrefab: {fileID: 8360033462615788185, guid: 49ba1c72a19fa6d4b8ceb5f040b69b08,
+    type: 3}
+  maxPositionFindAttempts: 500
+  winZoneAmount: {x: 1, y: 1}
 --- !u!1 &2226075577233482385
 GameObject:
   m_ObjectHideFlags: 0
