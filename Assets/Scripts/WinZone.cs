@@ -162,7 +162,7 @@ public class WinZone : MonoBehaviour
     {
         //winObject.GetComponent<ObjectState>().ChangePhysicalState(ObjectState.physicalStates.Grounded);
 
-        myManager.LevelWon();
+     
         WinFeedback();
 
         this.gameObject.SetActive(false);
