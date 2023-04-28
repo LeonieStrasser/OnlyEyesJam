@@ -1,8 +1,6 @@
 using NaughtyAttributes;
 using Tobii.Gaming;
-using Unity.VisualScripting;
 using UnityEngine;
-using Image = UnityEngine.UI.Image;
 
 public class GazeManager : MonoBehaviour
 {
@@ -12,10 +10,10 @@ public class GazeManager : MonoBehaviour
     
     [Header("References")]
     [SerializeField] RectTransform gazeIndicator;
-    [SerializeField] RectTransform radiusIndicator;
-    
+
     [Header("General Settings")]
     [SerializeField] bool useMouseAsGaze;
+    [SerializeField] bool enableGazeIndicator;
     [SerializeField] bool enableGazeSmoothing = true;
     [SerializeField] bool debug;
     
@@ -43,8 +41,6 @@ public class GazeManager : MonoBehaviour
 
     Rigidbody attachedRb;
 
-    Image indicatorFill;
-    
     Vector2 objectPosOnScreen;
     Vector2 directionToTarget;
 
@@ -64,10 +60,10 @@ public class GazeManager : MonoBehaviour
         TobiiAPI.Start(new TobiiSettings());
 
         useMouseAsGaze = !TobiiAPI.IsConnected;
+        
+        gazeIndicator.gameObject.SetActive(enableGazeIndicator);
 
         mainCam = Camera.main;
-
-        indicatorFill = gazeIndicator.GetChild(0).GetComponent<Image>();
 
         currentGazeDuration = 0;
     }
@@ -111,10 +107,6 @@ public class GazeManager : MonoBehaviour
             return;
         
         currentImpactDistance = Mathf.Lerp(impactDistanceMax, 0, currentTelekinesisDuration / telekinesisMaxDuration);
-        
-        RectTransform rt = radiusIndicator;
-        rt.position = objectPosOnScreen;
-        rt.sizeDelta = new Vector2(currentImpactDistance * 2, currentImpactDistance * 2);
     }
 
     void DetectObjectSwitch()
@@ -131,8 +123,7 @@ public class GazeManager : MonoBehaviour
             {
                 currentLookingAt = focusedObject;
                 currentGazeDuration = 0;
-                indicatorFill.fillAmount = 0;
-                
+
                 if(currentFocusedObjectState)
                     currentFocusedObjectState?.ChangeVisualState(ObjectState.visualStates.Neutral);
                 
@@ -142,11 +133,7 @@ public class GazeManager : MonoBehaviour
 
             if (currentFocusedObjectState?.physicalState != ObjectState.physicalStates.Immovable)
             {
-
                 currentGazeDuration += Time.deltaTime;
-
-                if (debug)
-                    indicatorFill.fillAmount = currentGazeDuration / timeTillTelekinesis;
 
                 // telekinesis channeling is halfway done
                 if (currentGazeDuration / timeTillTelekinesis >= 0.5f)
@@ -169,8 +156,7 @@ public class GazeManager : MonoBehaviour
         {
             currentLookingAt = null;
             currentGazeDuration = 0;
-            indicatorFill.fillAmount = 0;
-            
+
             if(currentFocusedObjectState)
                 currentFocusedObjectState?.ChangeVisualState(ObjectState.visualStates.Neutral);
             
@@ -259,8 +245,6 @@ public class GazeManager : MonoBehaviour
 
         currentTelekinesisDuration = 0;
         currentImpactDistance = impactDistanceMax;
-
-        radiusIndicator.gameObject.SetActive(true);
     }
 
     void Detach()
@@ -277,8 +261,6 @@ public class GazeManager : MonoBehaviour
 
         currentFocusedObjectState.ChangeVisualState(ObjectState.visualStates.Neutral);
         currentFocusedObjectState = null;
-
-        radiusIndicator.gameObject.SetActive(false);
     }
 
     void CalculateGazeData()
@@ -299,7 +281,6 @@ public class GazeManager : MonoBehaviour
         float currentFollowSpeed = Mathf.Lerp(followSpeed.x, followSpeed.y, distanceToGaze / impactDistanceMax);
 
         if (distanceToGaze > 15f)
-            //attachedRb.transform.position += ((Vector3)directionToTarget * currentFollowSpeed * Time.deltaTime);
             attachedRb.AddForce((Vector3)directionToTarget * (currentFollowSpeed * Time.deltaTime * forcePower));
     }
 
