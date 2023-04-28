@@ -53,15 +53,15 @@ Material:
     - _NormalStrength_1: 0.74
     - _QueueControl: 1
     - _QueueOffset: 0
-    - _ShoreBlend: 1.92
+    - _ShoreBlend: 1.04
     - _ShoreOffset: 0.96
-    - _Smoothness: 1
+    - _Smoothness: 0.809
     - _Speed: 0.05
-    - _Strength: 0.498
+    - _Strength: 0.48
     - _TestFloat: 1
     - _UseShaderAlpha: 1
     - _WaterClarity: 0.639
-    - _WaveStrength: 0.1
+    - _WaveStrength: 0.01
     m_Colors:
     - _Deep_Water_Color: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 0.9647059}
     - _Shallow_Water_Color: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 0.72156864}
