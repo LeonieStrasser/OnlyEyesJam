@@ -11,6 +11,7 @@ public class ColorChanger : MonoBehaviour
 
     [BoxGroup("Materialgroups to change Color")] [SerializeField] CustomizableMaterial stoneColorChangeMats;
 
+    [Button]
     void LodeColorsInScene(ColorPaletteSetup _currentPalette)
     {
         // für jedes Material das CustomizableMaterial x hat to folgendes

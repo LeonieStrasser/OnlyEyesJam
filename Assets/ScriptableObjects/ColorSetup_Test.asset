@@ -15,23 +15,23 @@ MonoBehaviour:
   allColorValueSets:
   - materialName: "Color f\xFCr STeine"
     allColorValues:
-    - valueName: 
+    - valueName: _Color01
       color: {r: 0, g: 0, b: 0, a: 0}
-    - valueName: 
+    - valueName: _Color02
       color: {r: 0, g: 0, b: 0, a: 0}
-    - valueName: 
+    - valueName: _H_hnerLinienColor
       color: {r: 0, g: 0, b: 0, a: 0}
-    - valueName: 
+    - valueName: _EmissionColor
       color: {r: 0, g: 0, b: 0, a: 0}
-    - valueName: 
+    - valueName: _PinlightLayerColor
       color: {r: 0, g: 0, b: 0, a: 0}
-    - valueName: 
+    - valueName: _PinlightLayerColor2
       color: {r: 0, g: 0, b: 0, a: 0}
-    - valueName: 
+    - valueName: _DarkenColor1
       color: {r: 0, g: 0, b: 0, a: 0}
-    - valueName: 
+    - valueName: _DarkenColor2
       color: {r: 0, g: 0, b: 0, a: 0}
-    - valueName: 
+    - valueName: _AnimHighlightColor
       color: {r: 0, g: 0, b: 0, a: 0}
-    - valueName: 
+    - valueName: _OverlayColor
       color: {r: 0, g: 0, b: 0, a: 0}

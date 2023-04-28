@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6310660023562023644
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6310660023562023645}
+  - component: {fileID: 6310660023562023646}
+  m_Layer: 0
+  m_Name: ColorManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6310660023562023645
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6310660023562023644}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6310660023562023646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6310660023562023644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1747b2ca5b4c876458b1edfaf0e11a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allColorSetups:
+  - {fileID: 11400000, guid: 19e6f083752aacc4d995cf3b5e526062, type: 2}
+  currentSetup: {fileID: 11400000, guid: 19e6f083752aacc4d995cf3b5e526062, type: 2}
+  stoneColorChangeMats:
+    materialType: SteinMaterials
+    materials:
+    - {fileID: 2100000, guid: 5a469088ca9592f45a78a951713a931a, type: 2}
+    - {fileID: 2100000, guid: 64b396dceb036be47b453a7fd100101b, type: 2}
+    - {fileID: 2100000, guid: d8ce03da7d83a11469244aa4fafb0e96, type: 2}
+    - {fileID: 2100000, guid: bab3dc0434607de4089675557828a8e5, type: 2}
+    colorValues:
+    - valueName: _Color01
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color02
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _H_hnerLinienColor
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _EmissionColor
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _PinlightLayerColor
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _PinlightLayerColor2
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _DarkenColor1
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _DarkenColor2
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _AnimHighlightColor
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _OverlayColor
+      color: {r: 0, g: 0, b: 0, a: 0}
