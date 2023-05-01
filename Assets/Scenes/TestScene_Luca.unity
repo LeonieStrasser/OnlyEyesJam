@@ -4451,6 +4451,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 330603073, guid: 631f3a63cd11ea5438e6055f7e5015de, type: 3}
+      propertyPath: m_Center.y
+      value: 11.45
+      objectReference: {fileID: 0}
     - target: {fileID: 1920227479, guid: 631f3a63cd11ea5438e6055f7e5015de, type: 3}
       propertyPath: winZoneAmount.x
       value: 2
@@ -4458,6 +4462,10 @@ PrefabInstance:
     - target: {fileID: 1920227479, guid: 631f3a63cd11ea5438e6055f7e5015de, type: 3}
       propertyPath: winZoneAmount.y
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920227479, guid: 631f3a63cd11ea5438e6055f7e5015de, type: 3}
+      propertyPath: maxCombinedWinZoneHeight
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2226075575930718624, guid: 631f3a63cd11ea5438e6055f7e5015de,
         type: 3}

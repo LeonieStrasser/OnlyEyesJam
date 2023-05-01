@@ -129,8 +129,10 @@ public class LevelManager : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
         
+        myConductorManager.ClearConductorList();
         spawner.ClearAllObjects();
         ClearWinZones();
+        succededWinzones = 0;
         
         // FARBEN ÄNDERN
         
@@ -141,7 +143,7 @@ public class LevelManager : MonoBehaviour
         
         spawner.StartSpawning();
         
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
         
         spawner.PlaceWinZones();
     }

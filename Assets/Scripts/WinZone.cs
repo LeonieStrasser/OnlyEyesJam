@@ -181,7 +181,7 @@ public class WinZone : MonoBehaviour
 
     void WinFeedback()
     {
-        winVFX.transform.SetParent(null);
+        //winVFX.transform.SetParent(null);
         winVFX.Play();
     }
 

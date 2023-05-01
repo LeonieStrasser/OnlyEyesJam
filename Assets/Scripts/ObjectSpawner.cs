@@ -14,7 +14,8 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] BoxCollider winSpawnZone;
 
     [SerializeField] GameObject winZonePrefab;
-
+    [SerializeField] float maxCombinedWinZoneHeight = 3;
+    
     [SerializeField] int maxPositionFindAttempts = 500;
 
     [MinMaxSlider(1, 5)] [SerializeField] Vector2Int winZoneAmount = Vector2Int.one;
@@ -41,9 +42,18 @@ public class ObjectSpawner : MonoBehaviour
 
     public void PlaceWinZones()
     {
+        float addedHeight = 0;
+        
         for (int i = 0; i < Random.Range(winZoneAmount.x, winZoneAmount.y + 1); i++)
         {
             Vector3 winZonePosition = RandomPointInZone(winSpawnZone.bounds, 2.5f);
+
+            if (addedHeight + winZonePosition.y > maxCombinedWinZoneHeight)
+            {
+                winZonePosition.y = Random.Range(0, maxCombinedWinZoneHeight - addedHeight);
+            }
+            
+            addedHeight += winZonePosition.y;
             
             GameObject newWinZone = Instantiate(winZonePrefab, winZonePosition, Quaternion.identity);
             newWinZone.transform.localScale = Vector3.zero;
