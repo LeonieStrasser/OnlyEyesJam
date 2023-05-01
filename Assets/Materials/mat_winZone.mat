@@ -96,8 +96,8 @@ Material:
     - _Cull: 2
     - _Cutoff: 0.5
     - _DeformScale: 150
-    - _DeformSpeed: 0.02
-    - _DeformStrength: 0.1
+    - _DeformSpeed: 0.05
+    - _DeformStrength: 0.02
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DistortionBlend: 0.5

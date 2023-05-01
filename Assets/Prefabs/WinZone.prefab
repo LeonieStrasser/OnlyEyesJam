@@ -4964,6 +4964,7 @@ GameObject:
   - component: {fileID: 8360033462615788196}
   - component: {fileID: 8219215479328907530}
   - component: {fileID: 281700677575397912}
+  - component: {fileID: 8900428674065482122}
   m_Layer: 0
   m_Name: WinZone
   m_TagString: Untagged
@@ -5004,13 +5005,11 @@ MonoBehaviour:
   debug: 0
   meshRen: {fileID: 8432198144204429360}
   idleColor: {r: 1, g: 0.5372549, b: 0.4745098, a: 0.57254905}
-  idleDeformStrength: 0.1
-  idleDeformSpeed: 0.02
-  colorOnEnter: {r: 1, g: 0.3552284, b: 0.26999998, a: 0.5803922}
-  colorOnAttachTrigger: {r: 1, g: 0.6781046, b: 0.22745097, a: 0.5882353}
-  colorOnWin: {r: 0.23921567, g: 1, b: 0.46788263, a: 0.5176471}
-  winningDeformStrength: 0.2
-  winningDeformSpeed: 0.04
+  idleDeformStrength: 0.02
+  colorOnEnter: {r: 1, g: 0.5309028, b: 0.27058828, a: 0.5686275}
+  colorOnAttachTrigger: {r: 1, g: 0.5372549, b: 0.47450984, a: 0.5686275}
+  colorOnWin: {r: 1, g: 0.81260896, b: 0.23921567, a: 0.6509804}
+  winningDeformStrength: 0.03
   winVFX: {fileID: 8211825008766146855}
 --- !u!135 &281700677575397912
 SphereCollider:
@@ -5025,3 +5024,24 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.55
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &8900428674065482122
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8360033462615788185}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 94c0acda001dc9d438eb8f5ece44eca6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

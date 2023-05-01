@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using NaughtyAttributes;
+using Random = System.Random;
 
 public class WinZone : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class WinZone : MonoBehaviour
     float winningProgress; // timeProgress zwischen 0 und 1
     bool timerRun;
 
+    Animator anim;
+
     LevelManager myManager;
 
     Material mat;
@@ -25,19 +28,18 @@ public class WinZone : MonoBehaviour
     [SerializeField] MeshRenderer meshRen;
     [BoxGroup("Feedback")] [SerializeField] Color idleColor;
     [BoxGroup("Feedback")] [SerializeField] float idleDeformStrength;
-    [BoxGroup("Feedback")] [SerializeField] float idleDeformSpeed;
-    
+
     [BoxGroup("Feedback")] [SerializeField] Color colorOnEnter;
     [BoxGroup("Feedback")] [SerializeField] Color colorOnAttachTrigger;
-    
+
     [BoxGroup("Feedback")] [SerializeField] Color colorOnWin;
     [BoxGroup("Feedback")] [SerializeField] float winningDeformStrength;
-    [BoxGroup("Feedback")] [SerializeField] float winningDeformSpeed;
     [BoxGroup("Feedback")] [SerializeField] ParticleSystem winVFX;
 
     void Start()
     {
         myManager = FindObjectOfType<LevelManager>();
+        anim = GetComponent<Animator>();
 
         mat = meshRen.material;
         
@@ -174,11 +176,14 @@ public class WinZone : MonoBehaviour
     void AttachTriggerFeedback()
     {
         mat.SetColor(Shader.PropertyToID("_Color"), colorOnAttachTrigger);
+
+        anim.SetTrigger(Animator.StringToHash("contactWobble"));
     }
 
     void EnterFeedback()
     {
         mat.SetColor(Shader.PropertyToID("_Color"), colorOnEnter);
+        anim.SetTrigger(Animator.StringToHash("contactWobble"));
         Debug.Log("Enter Feedback!");
     }
 
@@ -187,7 +192,6 @@ public class WinZone : MonoBehaviour
         mat.SetColor(Shader.PropertyToID("_Color"), idleColor);
         
         mat.SetFloat(Shader.PropertyToID("_DeformStrength"), idleDeformStrength);
-        mat.SetFloat(Shader.PropertyToID("_DeformSpeed"), idleDeformSpeed);
     }
 
     void AttatchedProgressFeedback() // W�hrend der Win timer hochz�hlt
