@@ -15,11 +15,10 @@ public class WinZone : MonoBehaviour
     float winningProgress; // timeProgress zwischen 0 und 1
     bool timerRun;
 
-
     LevelManager myManager;
 
     // FEEDBACK
-    MeshRenderer myRenderer;
+    [SerializeField] MeshRenderer meshRen;
     [BoxGroup("Feedback")] [SerializeField] Color colorOnDetach;
     [BoxGroup("Feedback")] [SerializeField] Color colorOnEnter;
     [BoxGroup("Feedback")] [SerializeField] Color colorOnAttachTrigger;
@@ -31,15 +30,11 @@ public class WinZone : MonoBehaviour
         myManager = FindObjectOfType<LevelManager>();
         winTimer = stayTimeToWin;
         timerRun = false;
-
-        myRenderer = GetComponent<MeshRenderer>();
     }
 
     void Update()
     {
         WintimerProgress();
-
-
     }
 
     void OnTriggerStay(Collider other)
@@ -73,7 +68,7 @@ public class WinZone : MonoBehaviour
     }
 
 
-    private void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("MoveableObject") || (other.CompareTag("Attached")))
         {
@@ -97,8 +92,6 @@ public class WinZone : MonoBehaviour
                 }
             }
         }
-
-
     }
 
     void WintimerProgress()
@@ -146,8 +139,7 @@ public class WinZone : MonoBehaviour
             winzoneSucceeded = false;
             LevelManager.instance.ReportLostWinZone();
         }
-
-
+        
         DetachFeedback();
     }
 
@@ -155,45 +147,41 @@ public class WinZone : MonoBehaviour
     {
         winzoneSucceeded = true;
         LevelManager.instance.ReportSuccededWinZone();
-
     }
 
     public void SetWin()
     {
         //winObject.GetComponent<ObjectState>().ChangePhysicalState(ObjectState.physicalStates.Grounded);
 
-     
         WinFeedback();
-
-        this.gameObject.SetActive(false);
     }
-
-
+    
     #region feedback
     void AttachTriggerFeedback()
     {
-        myRenderer.material.color = colorOnAttachTrigger;
+        meshRen.material.SetColor(Shader.PropertyToID("_Color"), colorOnAttachTrigger);
     }
 
     void EnterFeedback()
     {
-        myRenderer.material.color = colorOnEnter;
+        meshRen.material.SetColor(Shader.PropertyToID("_Color"), colorOnEnter);
+        Debug.Log("Enter Feedback!");
     }
 
     void DetachFeedback()
     {
-        myRenderer.material.color = colorOnDetach;
+        meshRen.material.SetColor(Shader.PropertyToID("_Color"), colorOnDetach);
     }
 
     void AttatchedProgressFeedback() // W�hrend der Win timer hochz�hlt
     {
         Color lerpedColor = Color.Lerp(colorOnWin, colorOnEnter, winningProgress);
-        myRenderer.material.color = lerpedColor;
+        meshRen.material.SetColor(Shader.PropertyToID("_Color"), lerpedColor);
     }
 
     void WinFeedback()
     {
-        winVFX.transform.SetParent(null);
+        //winVFX.transform.SetParent(null);
         winVFX.Play();
     }
 

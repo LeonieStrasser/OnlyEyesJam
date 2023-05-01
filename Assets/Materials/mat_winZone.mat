@@ -90,14 +90,14 @@ Material:
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _ColorAmount: 0.61
-    - _ColorBlendFactor: 0.99
-    - _ColorBlendOffset: -0.12
+    - _ColorBlendFactor: 2.4
+    - _ColorBlendOffset: 0
     - _ColorMode: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DeformScale: 40
-    - _DeformSpeed: 0.05
-    - _DeformStrength: 0.15
+    - _DeformScale: 150
+    - _DeformSpeed: 0.02
+    - _DeformStrength: 0.1
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DistortionBlend: 0.5
@@ -142,9 +142,9 @@ Material:
     - _Color1: {r: 1, g: 0, b: 0, a: 0.3254902}
     - _Color2: {r: 1, g: 0.79322517, b: 0, a: 0.54509807}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
-    - _InnerColor: {r: 0, g: 0.8818593, b: 1, a: 0.7607843}
-    - _OuterColor: {r: 0.23829652, g: 0.8637125, b: 0.990566, a: 0.8666667}
+    - _EmissiveColor: {r: 0.49056602, g: 0, b: 0, a: 1}
+    - _InnerColor: {r: 0.9607843, g: 0.7332467, b: 0.5411765, a: 0.74509805}
+    - _OuterColor: {r: 0.98039216, g: 0.6452371, b: 0.37647066, a: 0.62352943}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Specular_Color: {r: 0.128, g: 0.128, b: 0.128, a: 0.09803922}

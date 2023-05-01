@@ -11,6 +11,11 @@ public class ConductorManager : MonoBehaviour
         allConnectedGroups = new List<ConductorList>();
     }
 
+    public void ClearConductorList()
+    {
+        allConnectedGroups.Clear();
+    }
+
     public bool CheckConnectionGroupsForConductor(Conductor _conductorToCheck, out ConductorList _foundInList)
     {
         foreach (var item in allConnectedGroups)
@@ -57,13 +62,13 @@ public class ConductorManager : MonoBehaviour
         }
         else if (_foundPartnerInAnyGroup && _foundReporterInAnyGroup) // Wenn beide bereits in einer Gruppe existieren, check ob sie in der selben gruppe existieren --- uff case!!!
         {
-            if (_partnersList != _reporterList) // Wenn es nicht die selbe Liste ist, hau alle Conductoren der einen liste A in Liste B und lösche dann Liste A
+            if (_partnersList != _reporterList) // Wenn es nicht die selbe Liste ist, hau alle Conductoren der einen liste A in Liste B und lï¿½sche dann Liste A
             {
                 foreach (var item in _reporterList.allCunductors)
                 {
                     _partnersList.allCunductors.Add(item);
                 }
-                // Reporterliste löschen
+                // Reporterliste lï¿½schen
                 allConnectedGroups.Remove(_reporterList);
             }
             // Wenn beide schon in der selben Liste sind ist alles schickie!
@@ -127,7 +132,7 @@ public class ConductorManager : MonoBehaviour
 
         // DAnn Listen mit connectorVerbindungen erstellen
         _connectedGroupOfReporter = _disconnectorReporter.GetAllContactPartnerConnectionsFromConductor();
-        _connectedGroupOfPartner = _disconnectorPartner.GetAllContactPartnerConnectionsFromConductor(); // Der Contact Partner hat möglicherweise noch nicht selbst disconnected deshalöb ist dioese Liste mit Vorsicht zu genießen ^^
+        _connectedGroupOfPartner = _disconnectorPartner.GetAllContactPartnerConnectionsFromConductor(); // Der Contact Partner hat mï¿½glicherweise noch nicht selbst disconnected deshalï¿½b ist dioese Liste mit Vorsicht zu genieï¿½en ^^
 
         // Dann checken ob listen gleiche items drin haben
         if (CompareTwoLists(_connectedGroupOfReporter, _connectedGroupOfPartner)) // Wenn beide Listen gleiche Namen enthalten
@@ -145,7 +150,7 @@ public class ConductorManager : MonoBehaviour
             {
                 if (item1 == item2)
                 {
-                    // In beiden Gruppen taucht der selbe name auf! Heißt es ist dieselbe gruppe
+                    // In beiden Gruppen taucht der selbe name auf! Heiï¿½t es ist dieselbe gruppe
                     return true;
                 }
             }

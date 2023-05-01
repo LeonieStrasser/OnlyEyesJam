@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class LevelManager : MonoBehaviour
     ConductorManager myConductorManager;
 
     [SerializeField] GameObject winObject;
+    [SerializeField] Animator sceneTransitionAnim;
 
     [SerializeField] bool debug;
 
@@ -25,13 +27,26 @@ public class LevelManager : MonoBehaviour
 
     levelState currentLevelState;
 
+    ObjectSpawner spawner;
+
     CubeGroupFeedback myWinFeedback;
 
-    private void Awake()
+    void Awake()
     {
         instance = this;
         allWinZones = new List<WinZone>();
         myConductorManager = FindObjectOfType<ConductorManager>();
+    }
+
+    void Start()
+    {
+        currentLevelState = levelState.play;
+        myWinFeedback = FindObjectOfType<CubeGroupFeedback>();
+        spawner = GetComponent<ObjectSpawner>();
+    }
+
+    public void RegisterWinZones()
+    {
         WinZone[] sceneWinZones = FindObjectsOfType<WinZone>();
         foreach (var item in sceneWinZones)
         {
@@ -39,22 +54,11 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        currentLevelState = levelState.play;
-        myWinFeedback = FindObjectOfType<CubeGroupFeedback>();
-
-    }
-
     public void LevelWon()
     {
         currentLevelState = levelState.won;
-        winObject.SetActive(true);
-
-
-
-
-
+        //winObject.SetActive(true);
+        
         //Cube Gruppe Feedback
 
         // Setze den World Border Effeki in Gang
@@ -66,15 +70,15 @@ public class LevelManager : MonoBehaviour
         {
             ConductorList _winGroup;
             Conductor _wingroupConductor = item.WinObject.GetComponent<Conductor>(); // Finde heraus welcher Cube in der Winzone liegt
-            myConductorManager.CheckConnectionGroupsForConductor(_wingroupConductor, out _winGroup); // Finde raus zu welchjer ConductorGruppe er gehört
-            if (_winGroup == null) // Wenn er zu keiner gehört also allein ist, kreiere eine neue Liste in der nur er ist
+            myConductorManager.CheckConnectionGroupsForConductor(_wingroupConductor, out _winGroup); // Finde raus zu welchjer ConductorGruppe er gehï¿½rt
+            if (_winGroup == null) // Wenn er zu keiner gehï¿½rt also allein ist, kreiere eine neue Liste in der nur er ist
             {
                 ConductorList _newList = new ConductorList();
                 _newList.Initialize();
                 _newList.allCunductors.Add(_wingroupConductor);
                 _allWingroups.Add(_newList);
             }
-            else if (!_allWingroups.Contains(_winGroup)) // Wenn er in einer Gruppe liegt und diese noch nicht in der Winning groups liste ist, füge die gruppe hinzu
+            else if (!_allWingroups.Contains(_winGroup)) // Wenn er in einer Gruppe liegt und diese noch nicht in der Winning groups liste ist, fï¿½ge die gruppe hinzu
             {
                 _allWingroups.Add(_winGroup);
             }
@@ -99,7 +103,8 @@ public class LevelManager : MonoBehaviour
 
         if (debug)
             Debug.Log("WON!!!!");
-
+        
+        StartSceneTransition();
     }
 
     public void RelodeScene()
@@ -107,8 +112,55 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    void StartSceneTransition()
+    {
+        if(debug)
+            Debug.Log("SceneTransitionStarted");
+        
+        StartCoroutine(SceneTransition());
+    }
+
+    IEnumerator SceneTransition()
+    {
+        yield return new WaitForSeconds(1f);
+        
+        // Fade-In
+        sceneTransitionAnim.SetTrigger(Animator.StringToHash("fadeIn"));
+
+        yield return new WaitForSeconds(1.5f);
+        
+        myConductorManager.ClearConductorList();
+        spawner.ClearAllObjects();
+        ClearWinZones();
+        succededWinzones = 0;
+        
+        // FARBEN Ã„NDERN
+        
+        // Fade-Out
+        sceneTransitionAnim.SetTrigger(Animator.StringToHash("fadeOut"));
+        
+        yield return new WaitForSeconds(0.75f);
+        
+        spawner.StartSpawning();
+        
+        yield return new WaitForSeconds(3f);
+        
+        spawner.PlaceWinZones();
+    }
+    
+    void ClearWinZones()
+    {
+        for (int i = allWinZones.Count - 1; i >= 0; i--)
+        {
+            Destroy(allWinZones[i].gameObject);
+        }
+        
+        allWinZones.Clear();
+    }
+
     public void QuitGame()
     {
+        
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
