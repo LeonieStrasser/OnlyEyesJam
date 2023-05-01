@@ -257,7 +257,6 @@ MonoBehaviour:
   OnKlickEvents:
     m_PersistentCalls:
       m_Calls: []
-  useShader: 1
 --- !u!1 &5598034614503952491
 GameObject:
   m_ObjectHideFlags: 0
