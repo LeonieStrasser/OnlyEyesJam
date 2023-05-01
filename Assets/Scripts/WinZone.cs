@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using NaughtyAttributes;
 
@@ -17,19 +19,32 @@ public class WinZone : MonoBehaviour
 
     LevelManager myManager;
 
+    Material mat;
+
     // FEEDBACK
     [SerializeField] MeshRenderer meshRen;
-    [BoxGroup("Feedback")] [SerializeField] Color colorOnDetach;
+    [BoxGroup("Feedback")] [SerializeField] Color idleColor;
+    [BoxGroup("Feedback")] [SerializeField] float idleDeformStrength;
+    [BoxGroup("Feedback")] [SerializeField] float idleDeformSpeed;
+    
     [BoxGroup("Feedback")] [SerializeField] Color colorOnEnter;
     [BoxGroup("Feedback")] [SerializeField] Color colorOnAttachTrigger;
+    
     [BoxGroup("Feedback")] [SerializeField] Color colorOnWin;
+    [BoxGroup("Feedback")] [SerializeField] float winningDeformStrength;
+    [BoxGroup("Feedback")] [SerializeField] float winningDeformSpeed;
     [BoxGroup("Feedback")] [SerializeField] ParticleSystem winVFX;
 
     void Start()
     {
         myManager = FindObjectOfType<LevelManager>();
+
+        mat = meshRen.material;
+        
         winTimer = stayTimeToWin;
         timerRun = false;
+        
+        DetachFeedback();
     }
 
     void Update()
@@ -39,50 +54,49 @@ public class WinZone : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (!(other.CompareTag("MoveableObject")) && !(other.CompareTag("Attached"))) // Wenn es kein Hühnergott ist, dann ists eh egal!
+        if (!other.CompareTag("MoveableObject") && !other.CompareTag("Attached")) // Wenn es kein Hühnergott ist, dann ists eh egal!
             return;
-        else if (other.CompareTag("Attached") && !attachTriggered) // Wenn es Hühnergott ist der vom Player grad bewegt wird - Triggerfeedback
+        
+        if (other.CompareTag("Attached") && !attachTriggered) // Wenn es Hühnergott ist der vom Player grad bewegt wird - Triggerfeedback
         {
             AttachTriggerFeedback();
             attachTriggered = true;
         }
-
-
-        if (winObject == null && other.tag != "Attached") // Wenn ein Objekt mit !Attached.tag in der Zone erscheint - Starte den Win-Timer-Stuff
+        
+        if (winObject == null && !other.CompareTag("Attached")) // Wenn ein Objekt mit !Attached.tag in der Zone erscheint - Starte den Win-Timer-Stuff
         {
             attachTriggered = false;
             AttachWinObject(other.gameObject);
         }
-        else if (winObject != null && other.tag == "Attached") // Wenn das Eingeloggte Win Objekt attached wird aber noch in der TriggerZone chillt
+        
+        else if (winObject != null && other.CompareTag("Attached")) // Wenn das Eingeloggte Win Objekt attached wird aber noch in der TriggerZone chillt
         {
             DetachWinObject();
             AttachTriggerFeedback();
             attachTriggered = true;
+            
             if (debug)
             {
                 Debug.Log("Win object was Attached by player!");
                 Debug.Log("Win Timer wurde resettet!");
             }
         }
-
     }
 
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("MoveableObject") || (other.CompareTag("Attached")))
+        if (other.CompareTag("MoveableObject") || other.CompareTag("Attached"))
         {
-
             attachTriggered = false;
 
-            if (winObject == null) // Wenn kein WInobjekt eingeloggt ist verlässt ein attchter Block die Winzone
+            if (winObject == null) // Wenn kein Winobjekt eingeloggt ist verlässt ein attatchter Block die Winzone
             {
                 DetachFeedback();
-                return;
             }
-            else if (other.gameObject == winObject) // Wenn das eingeloggte WIn Objekt die Win Zone verl�sst, logg es aus und setze den Timer zur�ck!
+            
+            else if (other.gameObject == winObject) // Wenn das eingeloggte Win Objekt die Win Zone verl�sst, logg es aus und setze den Timer zur�ck!
             {
-
                 DetachWinObject();
 
                 if (debug)
@@ -99,7 +113,7 @@ public class WinZone : MonoBehaviour
         if (timerRun)
         {
             winTimer -= Time.deltaTime;
-            winningProgress = winTimer / stayTimeToWin;
+            winningProgress = 1 - Mathf.Clamp(winTimer / stayTimeToWin, 0, 1);
 
             AttatchedProgressFeedback();
 
@@ -159,24 +173,29 @@ public class WinZone : MonoBehaviour
     #region feedback
     void AttachTriggerFeedback()
     {
-        meshRen.material.SetColor(Shader.PropertyToID("_Color"), colorOnAttachTrigger);
+        mat.SetColor(Shader.PropertyToID("_Color"), colorOnAttachTrigger);
     }
 
     void EnterFeedback()
     {
-        meshRen.material.SetColor(Shader.PropertyToID("_Color"), colorOnEnter);
+        mat.SetColor(Shader.PropertyToID("_Color"), colorOnEnter);
         Debug.Log("Enter Feedback!");
     }
 
     void DetachFeedback()
     {
-        meshRen.material.SetColor(Shader.PropertyToID("_Color"), colorOnDetach);
+        mat.SetColor(Shader.PropertyToID("_Color"), idleColor);
+        
+        mat.SetFloat(Shader.PropertyToID("_DeformStrength"), idleDeformStrength);
+        mat.SetFloat(Shader.PropertyToID("_DeformSpeed"), idleDeformSpeed);
     }
 
     void AttatchedProgressFeedback() // W�hrend der Win timer hochz�hlt
     {
-        Color lerpedColor = Color.Lerp(colorOnWin, colorOnEnter, winningProgress);
-        meshRen.material.SetColor(Shader.PropertyToID("_Color"), lerpedColor);
+        Color lerpedColor = Color.Lerp(colorOnEnter, colorOnWin, winningProgress);
+        mat.SetColor(Shader.PropertyToID("_Color"), lerpedColor);
+        
+        mat.SetFloat(Shader.PropertyToID("_DeformStrength"), Mathf.Lerp(idleDeformStrength, winningDeformStrength, winningProgress));
     }
 
     void WinFeedback()

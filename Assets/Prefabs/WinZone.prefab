@@ -5003,10 +5003,14 @@ MonoBehaviour:
   stayTimeToWin: 5
   debug: 0
   meshRen: {fileID: 8432198144204429360}
-  colorOnDetach: {r: 1, g: 0.24056602, b: 0.83978045, a: 0.5176471}
-  colorOnEnter: {r: 0.0828116, g: 0, b: 0.90588236, a: 0.50980395}
-  colorOnAttachTrigger: {r: 1, g: 0.9171872, b: 0.18396229, a: 0.5019608}
+  idleColor: {r: 1, g: 0.5372549, b: 0.4745098, a: 0.57254905}
+  idleDeformStrength: 0.1
+  idleDeformSpeed: 0.02
+  colorOnEnter: {r: 1, g: 0.3552284, b: 0.26999998, a: 0.5803922}
+  colorOnAttachTrigger: {r: 1, g: 0.6781046, b: 0.22745097, a: 0.5882353}
   colorOnWin: {r: 0.23921567, g: 1, b: 0.46788263, a: 0.5176471}
+  winningDeformStrength: 0.2
+  winningDeformSpeed: 0.04
   winVFX: {fileID: 8211825008766146855}
 --- !u!135 &281700677575397912
 SphereCollider:
