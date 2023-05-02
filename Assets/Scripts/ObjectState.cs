@@ -326,5 +326,3 @@ public class ObjectState : MonoBehaviour
         }
     }
 }
-ObjectState.cs
-11 KB

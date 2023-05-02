@@ -319,7 +319,3 @@ public class GazeManager : MonoBehaviour
         Detach();
     }
 }
-
-
-GazeManager.cs
-10 KB

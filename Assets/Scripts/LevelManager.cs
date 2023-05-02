@@ -144,5 +144,3 @@ public class LevelManager : MonoBehaviour
         succededWinzones--;
     }
 }
-LevelManager.cs
-5 KB
