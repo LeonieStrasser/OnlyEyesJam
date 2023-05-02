@@ -10,43 +10,48 @@ public class WinZone : MonoBehaviour
 {
     [SerializeField] float stayTimeToWin = 5;
     [SerializeField] bool debug;
+    
+    // FEEDBACK
+    [SerializeField] MeshRenderer meshRen;
+
+    [BoxGroup("Feedback")] [SerializeField] float idleDeformStrength;
+    [BoxGroup("Feedback")] [SerializeField] float winningDeformStrength;
+    
+    [BoxGroup("Feedback")] [SerializeField] ParticleSystem winVFX;
+    
+    [BoxGroup("Feedback")] [SerializeField] AnimationCurve wobbleCurve;
+    [BoxGroup("Feedback")] [SerializeField] float wobbleStrength;
+    [BoxGroup("Feedback")] [SerializeField] float wobbleDuration;
+    
+    LevelManager myManager;
+
+    Material mat;
+    
     GameObject winObject;
     public GameObject WinObject { get { return winObject; } }
+    
     bool attachTriggered;
     bool winzoneSucceeded;
     float winTimer;
     float winningProgress; // timeProgress zwischen 0 und 1
     bool timerRun;
 
-    Animator anim;
-
-    LevelManager myManager;
-
-    Material mat;
-
-    // FEEDBACK
-    [SerializeField] MeshRenderer meshRen;
-    [BoxGroup("Feedback")] [SerializeField] Color idleColor;
-    [BoxGroup("Feedback")] [SerializeField] float idleDeformStrength;
-
-    [BoxGroup("Feedback")] [SerializeField] Color colorOnEnter;
-    [BoxGroup("Feedback")] [SerializeField] Color colorOnAttachTrigger;
-
-    [BoxGroup("Feedback")] [SerializeField] Color colorOnWin;
-    [BoxGroup("Feedback")] [SerializeField] float winningDeformStrength;
-    [BoxGroup("Feedback")] [SerializeField] ParticleSystem winVFX;
+    Color idleColor, winColor;
+    bool wobbleAnimationRunning, idleTransitionRunning;
 
     void Start()
     {
         myManager = FindObjectOfType<LevelManager>();
-        anim = GetComponent<Animator>();
 
         mat = meshRen.material;
+
+        idleColor = mat.GetColor(Shader.PropertyToID("_IdleColor"));
+        winColor = mat.GetColor(Shader.PropertyToID("_WinColor"));
         
         winTimer = stayTimeToWin;
         timerRun = false;
-        
-        DetachFeedback();
+
+        mat.SetColor(Shader.PropertyToID("_CurrentColor"), idleColor);
     }
 
     void Update()
@@ -167,7 +172,7 @@ public class WinZone : MonoBehaviour
 
     public void SetWin()
     {
-        //winObject.GetComponent<ObjectState>().ChangePhysicalState(ObjectState.physicalStates.Grounded);
+        winObject.GetComponent<ObjectState>().ChangePhysicalState(ObjectState.physicalStates.Grounded);
 
         WinFeedback();
     }
@@ -175,31 +180,75 @@ public class WinZone : MonoBehaviour
     #region feedback
     void AttachTriggerFeedback()
     {
-        mat.SetColor(Shader.PropertyToID("_Color"), colorOnAttachTrigger);
-
-        anim.SetTrigger(Animator.StringToHash("contactWobble"));
+        if(!wobbleAnimationRunning)
+            StartCoroutine(WobbleAnimation());
     }
 
     void EnterFeedback()
     {
-        mat.SetColor(Shader.PropertyToID("_Color"), colorOnEnter);
-        anim.SetTrigger(Animator.StringToHash("contactWobble"));
-        Debug.Log("Enter Feedback!");
+        if(!wobbleAnimationRunning)
+            StartCoroutine(WobbleAnimation());
     }
 
     void DetachFeedback()
     {
-        mat.SetColor(Shader.PropertyToID("_Color"), idleColor);
-        
-        mat.SetFloat(Shader.PropertyToID("_DeformStrength"), idleDeformStrength);
+        StartCoroutine(IdleTransition());
     }
 
     void AttatchedProgressFeedback() // W�hrend der Win timer hochz�hlt
     {
-        Color lerpedColor = Color.Lerp(colorOnEnter, colorOnWin, winningProgress);
-        mat.SetColor(Shader.PropertyToID("_Color"), lerpedColor);
+        Color lerpedColor = Color.Lerp(idleColor, winColor, winningProgress);
         
-        mat.SetFloat(Shader.PropertyToID("_DeformStrength"), Mathf.Lerp(idleDeformStrength, winningDeformStrength, winningProgress));
+        mat.SetColor(Shader.PropertyToID("_CurrentColor"), lerpedColor);
+        
+        mat.SetFloat(Shader.PropertyToID("_DeformStrength"), Mathf.Lerp(idleDeformStrength, winningDeformStrength, Mathf.Clamp(winningProgress * 2f, 0, 1)));
+    }
+
+    IEnumerator WobbleAnimation()
+    {
+        wobbleAnimationRunning = true;
+
+        float animationTime = 0;
+
+        while (animationTime < wobbleDuration)
+        {
+            float deformStrength = Mathf.Lerp(idleDeformStrength, wobbleStrength,
+                wobbleCurve.Evaluate(animationTime / wobbleDuration));
+            
+            mat.SetFloat(Shader.PropertyToID("_DeformStrength"), deformStrength);
+            
+            animationTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        wobbleAnimationRunning = false;
+    }
+
+    IEnumerator IdleTransition()
+    {
+        idleTransitionRunning = true;
+        
+        float animationTime = 0;
+        float maxDuration = 1f;
+        float currentWobbleStrength = mat.GetFloat(Shader.PropertyToID("_DeformStrength"));
+        Color currentColor = mat.GetColor(Shader.PropertyToID("_CurrentColor"));
+
+        while (animationTime < maxDuration)
+        {
+            float lerpT = animationTime / maxDuration;
+            
+            float deformStrength = Mathf.Lerp(currentWobbleStrength, idleDeformStrength, lerpT);
+            mat.SetFloat(Shader.PropertyToID("_DeformStrength"), deformStrength);
+            
+            mat.SetColor(Shader.PropertyToID("_CurrentColor"), Color.Lerp(currentColor, idleColor, lerpT));
+            
+            animationTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        idleTransitionRunning = false;
     }
 
     void WinFeedback()

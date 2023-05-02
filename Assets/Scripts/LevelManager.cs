@@ -122,7 +122,7 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator SceneTransition()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(4f);
         
         // Fade-In
         sceneTransitionAnim.SetTrigger(Animator.StringToHash("fadeIn"));

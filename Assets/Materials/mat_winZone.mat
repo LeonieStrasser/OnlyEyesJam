@@ -141,13 +141,16 @@ Material:
     - _Color: {r: 1, g: 0.5372549, b: 0.47450978, a: 0.57254905}
     - _Color1: {r: 1, g: 0, b: 0, a: 0.3254902}
     - _Color2: {r: 1, g: 0.79322517, b: 0, a: 0.54509807}
+    - _CurrentColor: {r: 1, g: 0.5372549, b: 0.47450984, a: 0.5882353}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColor: {r: 0.49056602, g: 0, b: 0, a: 1}
+    - _IdleColor: {r: 1, g: 0.5372549, b: 0.4745098, a: 0.5686275}
     - _InnerColor: {r: 0.9607843, g: 0.7332467, b: 0.5411765, a: 0.74509805}
     - _OuterColor: {r: 0.98039216, g: 0.6452371, b: 0.37647066, a: 0.62352943}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Specular_Color: {r: 0.128, g: 0.128, b: 0.128, a: 0.09803922}
+    - _WinColor: {r: 1, g: 0.8117647, b: 0.23921569, a: 0.6509804}
   m_BuildTextureStacks: []
 --- !u!114 &7042610435426930790
 MonoBehaviour:
