@@ -100,6 +100,11 @@ Material:
     - _DeformStrength: 0.02
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
+    - _DissolveEdgeWidth: 0
+    - _DissolveFillAmount: 1
+    - _DissolveHeight: 0.31
+    - _DissolveNoiseScale: 20
+    - _DissolveNoiseStrength: 0.15
     - _DistortionBlend: 0.5
     - _DistortionEnabled: 0
     - _DistortionOffset: 0.669
@@ -142,6 +147,7 @@ Material:
     - _Color1: {r: 1, g: 0, b: 0, a: 0.3254902}
     - _Color2: {r: 1, g: 0.79322517, b: 0, a: 0.54509807}
     - _CurrentColor: {r: 1, g: 0.5372549, b: 0.47450984, a: 0.5882353}
+    - _DissolveEdgeColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColor: {r: 0.49056602, g: 0, b: 0, a: 1}
     - _IdleColor: {r: 1, g: 0.5372549, b: 0.4745098, a: 0.5686275}

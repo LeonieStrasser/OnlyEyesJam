@@ -251,10 +251,28 @@ public class WinZone : MonoBehaviour
         idleTransitionRunning = false;
     }
 
+    IEnumerator Dissolve()
+    {
+        yield return new WaitForSeconds(0.5f);
+        
+        float timer = 0;
+        float duration = 2.7f;
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            
+            mat.SetFloat(Shader.PropertyToID("_DissolveFillAmount"), Mathf.Clamp(1 - timer / duration, 0, 1));
+            
+            yield return null;
+        }
+    }
+
     void WinFeedback()
     {
-        //winVFX.transform.SetParent(null);
         winVFX.Play();
+
+        StartCoroutine(Dissolve());
     }
 
     #endregion
