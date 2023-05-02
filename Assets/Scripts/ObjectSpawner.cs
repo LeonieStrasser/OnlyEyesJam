@@ -15,12 +15,12 @@ public class ObjectSpawner : MonoBehaviour
 
     [SerializeField] GameObject winZonePrefab;
     [SerializeField] float maxCombinedWinZoneHeight = 3;
-    
+
     [SerializeField] int maxPositionFindAttempts = 500;
 
     [MinMaxSlider(1, 5)] [SerializeField] Vector2Int winZoneAmount = Vector2Int.one;
     List<GameObject> spawnedObjects = new List<GameObject>();
-    
+
     void Start()
     {
         StartCoroutine(FirstSpawning());
@@ -36,14 +36,14 @@ public class ObjectSpawner : MonoBehaviour
         StartSpawning();
 
         yield return new WaitForSeconds(4f);
-        
+
         PlaceWinZones();
     }
 
     public void PlaceWinZones()
     {
         float addedHeight = 0;
-        
+
         for (int i = 0; i < Random.Range(winZoneAmount.x, winZoneAmount.y + 1); i++)
         {
             Vector3 winZonePosition = RandomPointInZone(winSpawnZone.bounds, 2.5f);
@@ -52,18 +52,18 @@ public class ObjectSpawner : MonoBehaviour
             {
                 winZonePosition.y = Random.Range(0, maxCombinedWinZoneHeight - addedHeight);
             }
-            
+
             addedHeight += winZonePosition.y;
-            
+
             GameObject newWinZone = Instantiate(winZonePrefab, winZonePosition, Quaternion.identity);
             newWinZone.transform.localScale = Vector3.zero;
             newWinZone.transform.DOScale(Vector3.one, 1f);
         }
-        
+
         LevelManager.instance.RegisterWinZones();
     }
 
-    Vector3 RandomPointInZone( Bounds _bounds, float radius = 1.5f)
+    Vector3 RandomPointInZone(Bounds _bounds, float radius = 1.5f)
     {
         var bounds = objectSpawnZone.bounds;
 
@@ -74,14 +74,14 @@ public class ObjectSpawner : MonoBehaviour
         while (attempts < maxPositionFindAttempts)
         {
             Collider[] colliders = Physics.OverlapSphere(spawnPoint, radius, LayerMask.NameToLayer("SpawnZone"));
-            
+
             if (colliders.Length == 0)
             {
                 return spawnPoint;
             }
 
             spawnPoint = RandomSpawnPoint(_bounds);
-            
+
             attempts++;
         }
 
@@ -113,7 +113,7 @@ public class ObjectSpawner : MonoBehaviour
             }
         }
     }
-    
+
     public void ClearAllObjects()
     {
         for (int i = spawnedObjects.Count - 1; i >= 0; i--)

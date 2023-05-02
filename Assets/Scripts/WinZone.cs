@@ -10,26 +10,26 @@ public class WinZone : MonoBehaviour
 {
     [SerializeField] float stayTimeToWin = 5;
     [SerializeField] bool debug;
-    
+
     // FEEDBACK
     [SerializeField] MeshRenderer meshRen;
 
     [BoxGroup("Feedback")] [SerializeField] float idleDeformStrength;
     [BoxGroup("Feedback")] [SerializeField] float winningDeformStrength;
-    
+
     [BoxGroup("Feedback")] [SerializeField] ParticleSystem winVFX;
-    
+
     [BoxGroup("Feedback")] [SerializeField] AnimationCurve wobbleCurve;
     [BoxGroup("Feedback")] [SerializeField] float wobbleStrength;
     [BoxGroup("Feedback")] [SerializeField] float wobbleDuration;
-    
+
     LevelManager myManager;
 
     Material mat;
-    
+
     GameObject winObject;
     public GameObject WinObject { get { return winObject; } }
-    
+
     bool attachTriggered;
     bool winzoneSucceeded;
     float winTimer;
@@ -47,7 +47,7 @@ public class WinZone : MonoBehaviour
 
         idleColor = mat.GetColor(Shader.PropertyToID("_IdleColor"));
         winColor = mat.GetColor(Shader.PropertyToID("_WinColor"));
-        
+
         winTimer = stayTimeToWin;
         timerRun = false;
 
@@ -63,25 +63,25 @@ public class WinZone : MonoBehaviour
     {
         if (!other.CompareTag("MoveableObject") && !other.CompareTag("Attached")) // Wenn es kein Hühnergott ist, dann ists eh egal!
             return;
-        
+
         if (other.CompareTag("Attached") && !attachTriggered) // Wenn es Hühnergott ist der vom Player grad bewegt wird - Triggerfeedback
         {
             AttachTriggerFeedback();
             attachTriggered = true;
         }
-        
+
         if (winObject == null && !other.CompareTag("Attached")) // Wenn ein Objekt mit !Attached.tag in der Zone erscheint - Starte den Win-Timer-Stuff
         {
             attachTriggered = false;
             AttachWinObject(other.gameObject);
         }
-        
+
         else if (winObject != null && other.CompareTag("Attached")) // Wenn das Eingeloggte Win Objekt attached wird aber noch in der TriggerZone chillt
         {
             DetachWinObject();
             AttachTriggerFeedback();
             attachTriggered = true;
-            
+
             if (debug)
             {
                 Debug.Log("Win object was Attached by player!");
@@ -101,7 +101,7 @@ public class WinZone : MonoBehaviour
             {
                 DetachFeedback();
             }
-            
+
             else if (other.gameObject == winObject) // Wenn das eingeloggte Win Objekt die Win Zone verl�sst, logg es aus und setze den Timer zur�ck!
             {
                 DetachWinObject();
@@ -160,7 +160,7 @@ public class WinZone : MonoBehaviour
             winzoneSucceeded = false;
             LevelManager.instance.ReportLostWinZone();
         }
-        
+
         DetachFeedback();
     }
 
@@ -176,31 +176,37 @@ public class WinZone : MonoBehaviour
 
         WinFeedback();
     }
-    
+
     #region feedback
     void AttachTriggerFeedback()
     {
-        if(!wobbleAnimationRunning)
+        if (!wobbleAnimationRunning)
             StartCoroutine(WobbleAnimation());
     }
 
     void EnterFeedback()
     {
-        if(!wobbleAnimationRunning)
+        if (!wobbleAnimationRunning)
             StartCoroutine(WobbleAnimation());
+
+        if (LevelManager.instance.attachedWinzones <= 1)
+            AudioManager.instance.Play("Win Static");
     }
 
     void DetachFeedback()
     {
         StartCoroutine(IdleTransition());
+
+        if (LevelManager.instance.attachedWinzones < 1)
+            AudioManager.instance.Stop("Win Static");
     }
 
     void AttatchedProgressFeedback() // W�hrend der Win timer hochz�hlt
     {
         Color lerpedColor = Color.Lerp(idleColor, winColor, winningProgress);
-        
+
         mat.SetColor(Shader.PropertyToID("_CurrentColor"), lerpedColor);
-        
+
         mat.SetFloat(Shader.PropertyToID("_DeformStrength"), Mathf.Lerp(idleDeformStrength, winningDeformStrength, Mathf.Clamp(winningProgress * 2f, 0, 1)));
     }
 
@@ -214,9 +220,9 @@ public class WinZone : MonoBehaviour
         {
             float deformStrength = Mathf.Lerp(idleDeformStrength, wobbleStrength,
                 wobbleCurve.Evaluate(animationTime / wobbleDuration));
-            
+
             mat.SetFloat(Shader.PropertyToID("_DeformStrength"), deformStrength);
-            
+
             animationTime += Time.deltaTime;
 
             yield return null;
@@ -228,7 +234,7 @@ public class WinZone : MonoBehaviour
     IEnumerator IdleTransition()
     {
         idleTransitionRunning = true;
-        
+
         float animationTime = 0;
         float maxDuration = 1f;
         float currentWobbleStrength = mat.GetFloat(Shader.PropertyToID("_DeformStrength"));
@@ -237,12 +243,12 @@ public class WinZone : MonoBehaviour
         while (animationTime < maxDuration)
         {
             float lerpT = animationTime / maxDuration;
-            
+
             float deformStrength = Mathf.Lerp(currentWobbleStrength, idleDeformStrength, lerpT);
             mat.SetFloat(Shader.PropertyToID("_DeformStrength"), deformStrength);
-            
+
             mat.SetColor(Shader.PropertyToID("_CurrentColor"), Color.Lerp(currentColor, idleColor, lerpT));
-            
+
             animationTime += Time.deltaTime;
 
             yield return null;
@@ -254,7 +260,7 @@ public class WinZone : MonoBehaviour
     IEnumerator Dissolve()
     {
         yield return new WaitForSeconds(0.5f);
-        
+
         float timer = 0;
         float duration = 2.7f;
 
@@ -273,6 +279,9 @@ public class WinZone : MonoBehaviour
         winVFX.Play();
 
         StartCoroutine(Dissolve());
+
+        AudioManager.instance.Play("Win Jingle");
+        AudioManager.instance.Stop("Win Static");
     }
 
     #endregion

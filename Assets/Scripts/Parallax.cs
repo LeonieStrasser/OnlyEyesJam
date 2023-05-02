@@ -25,8 +25,12 @@ public class Parallax : MonoBehaviour
 
     public void Update()
     {
-        Vector2 newPos = transform.position = startPosition + travel * paraStrength * parallaxFactor;   
-        transform.position = new Vector3(newPos.x, newPos.y, startZ);
+        if(cam != null && subject != null)
+        {
+            Vector2 newPos = transform.position = startPosition + travel * paraStrength * parallaxFactor;
+            transform.position = new Vector3(newPos.x, newPos.y, startZ);
+        }
+        
     }
 
 
