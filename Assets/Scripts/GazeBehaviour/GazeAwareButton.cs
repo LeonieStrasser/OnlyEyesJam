@@ -87,21 +87,22 @@ public class GazeAwareButton : GazeAwareBehaviour
 
     void ActivateKlick()
     {
+        OnKlick();
         OnKlickEvents.Invoke();
 
-        OnKlick();
+        
     }
 
     protected virtual void OnKlick()
     {
-
+        AudioManager.instance.Play("UI Select");
     }
     protected virtual void OnHover()
     {
-
+        AudioManager.instance.Play("UI Static");
     }
     protected virtual void OnHoverEnd()
     {
-
+        AudioManager.instance.Stop("UI Static");
     }
 }
