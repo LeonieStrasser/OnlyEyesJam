@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] bool debug;
 
     [SerializeField] List<WinZone> allWinZones;
+    [HideInInspector] public int attachedWinzones;
     int succededWinzones;
 
     enum levelState
