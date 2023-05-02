@@ -1911,9 +1911,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 603400606}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -8.780001, z: -0.10000014}
-  m_LocalScale: {x: 17.396473, y: 8.686944, z: 13.113387}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: -3.71, z: -0.10000014}
+  m_LocalScale: {x: 1.62, y: 1.33937, z: 1.4286615}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 277778425}
   m_RootOrder: 4
@@ -1938,7 +1938,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6f64616b827ecaa49a6afc0d7ff2a097, type: 2}
+  - {fileID: 2100000, guid: aaec011a86e687144a147e8cdae7baa6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1967,7 +1967,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 603400606}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 1810106595156137446, guid: 961b9045e671f694ab21cc6544618011, type: 3}
 --- !u!114 &603400611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1993,8 +1993,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Size: {x: 13.444962, y: 2.7580009, z: 14.589235}
+  m_Center: {x: -0.5529926, y: 1.3821449, z: -0.0026442409}
 --- !u!1 &654733300
 GameObject:
   m_ObjectHideFlags: 0
@@ -3706,7 +3706,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1210587503
 SpriteRenderer:
   m_ObjectHideFlags: 0

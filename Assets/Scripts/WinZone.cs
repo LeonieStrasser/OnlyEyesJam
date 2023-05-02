@@ -141,7 +141,7 @@ public class WinZone : MonoBehaviour
         timerRun = true;
         winObject = _newWinObject;
 
-        winObject.GetComponent<ObjectState>().ChangePhysicalState(ObjectState.physicalStates.Immovable);
+        //winObject.GetComponent<ObjectState>().ChangePhysicalState(ObjectState.physicalStates.Immovable);
 
         EnterFeedback();
 
