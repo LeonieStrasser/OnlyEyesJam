@@ -7,26 +7,26 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MAT_Water_Fusion
-  m_Shader: {fileID: -6465566751694194690, guid: 0cd9088f7120b9f41ba69fac37f0fab5,
+  m_Name: BG_Material_ColdBlue
+  m_Shader: {fileID: -6465566751694194690, guid: 6a8eda03b99aeff4eaffb77037c72e9a,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 30
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _MainNormal:
-        m_Texture: {fileID: 2800000, guid: 2f4e7cd649652f144b0d0e4590298313, type: 3}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 8a1b5b5a4fdcb0640977ab9451730ce0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SecondNormal:
-        m_Texture: {fileID: 2800000, guid: 9cbef6f7316e7c44180d5d993cc582c0, type: 3}
+    - _SampleTexture2D_c555658a483f43b3ae2dc44a289f693b_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 8514e952ec35585419fa25c94969e614, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -43,33 +43,25 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaTransmission: 1
-    - _AmbientOcclusion: 1
-    - _Depth: 4.97
-    - _Displacement: 0.045
-    - _DistortionScale: 1.26
-    - _Metallic: 0.572
-    - _NormalStrength: 1.28
-    - _NormalStrength_1: 0.74
+    - _Distance_Float: 1
+    - _Normal_Strength: 0.02
     - _QueueControl: 1
     - _QueueOffset: 0
-    - _ShoreBlend: 1.59
-    - _ShoreOffset: -0.44
-    - _Smoothness: 0.257
-    - _Speed: 0.05
-    - _Strength: 0.16
-    - _TestFloat: 1
-    - _UseShaderAlpha: 1
-    - _WaterClarity: 0.407
-    - _WaveStrength: 0.02
+    - _Smoothness: 0
+    - _Value_A: 0
+    - _Value_B: 0.3
+    - _Value_C: 0.6
+    - _Value_D: 1
     m_Colors:
-    - _Deep_Water_Color: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 0.9647059}
-    - _Shallow_Water_Color: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 0.72156864}
-    - _Specular: {r: 0.50980395, g: 0.34117648, b: 0.06666667, a: 0}
-    - _Speeds: {r: 0.2, g: -0.2, b: 0.2, a: -0.4}
-    - _Tiling: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _Blueing_Color: {r: 0.45523316, g: 0.49828106, b: 0.62264144, a: 0}
+    - _Color_A: {r: 0.93044674, g: 0.946489, b: 0.9716981, a: 1}
+    - _Color_B: {r: 0.9215687, g: 0.8627452, b: 0.7686275, a: 1}
+    - _Color_C: {r: 0.9176471, g: 0.8509805, b: 0.7568628, a: 1}
+    - _Color_D: {r: 1, g: 1, b: 1, a: 1}
+    - _Color_Main: {r: 0.25360447, g: 0.38679245, b: 0.25360447, a: 0}
+    - _Color_Main_Bright: {r: 0.9254903, g: 0.8784314, b: 0.7725491, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &3415081616588165083
+--- !u!114 &3070576268007538642
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
