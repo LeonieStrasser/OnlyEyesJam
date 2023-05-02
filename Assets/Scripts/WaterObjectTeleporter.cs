@@ -11,5 +11,11 @@ public class WaterObjectTeleporter : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         spawner.RespawnSpecificObject(other.gameObject);
+
+        ObjectState objectState = other.gameObject.GetComponent<ObjectState>();
+        if (objectState != null)
+            AudioManager.instance.Play("Stone in Water");
+
+
     }
 }
