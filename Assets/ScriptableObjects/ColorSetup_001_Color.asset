@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec76c782f28d2e245932e3474cd7054f, type: 3}
-  m_Name: ColorSetup_Test
+  m_Name: ColorSetup_001_Color
   m_EditorClassIdentifier: 
   allColorValueSets:
   - materialName: "Color f\xFCr Steine"
@@ -38,41 +38,41 @@ MonoBehaviour:
   - materialName: "Color f\xFCr BackgroundMat 1"
     allColorValues:
     - valueName: _Color_A
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 0.78431374, g: 0.6117647, b: 0.61960787, a: 0}
     - valueName: _Color_B
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 0.9215687, g: 0.86274517, b: 0.7686275, a: 0}
     - valueName: _Color_C
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 0.9176471, g: 0.85098046, b: 0.7568628, a: 0}
     - valueName: _Color_D
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 1, g: 1, b: 1, a: 0}
   - materialName: "Color f\xFCr BackgroundMat 2"
     allColorValues:
     - valueName: _Color_A
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 0.6392157, g: 0.7490196, b: 0.7411765, a: 0}
     - valueName: _Color_B
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 0.9215687, g: 0.86274517, b: 0.7686275, a: 0}
     - valueName: _Color_C
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 0.9176471, g: 0.85098046, b: 0.7568628, a: 0}
     - valueName: _Color_D
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 1, g: 1, b: 1, a: 0}
   - materialName: "Color f\xFCr GroundPlatte"
     allColorValues:
     - valueName: _Color_A
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 0.79215693, g: 0.8117648, b: 0.9058824, a: 0}
     - valueName: _Color_B
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 1, g: 1, b: 1, a: 0}
     - valueName: _Color_C
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 1, g: 1, b: 1, a: 0}
     - valueName: _Color_D
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 0.79215693, g: 0.8117648, b: 0.9058824, a: 0}
   - materialName: "Color f\xFCr Wasser"
     allColorValues:
     - valueName: _Deep_Water_Color
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 0}
     - valueName: _Shallow_Water_Color
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 0}
     - valueName: _Specular
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 0.50980395, g: 0.34117648, b: 0.06666667, a: 0}
   - materialName: "Color f\xFCr Ziel"
     allColorValues:
     - valueName: _IdleColor
@@ -82,34 +82,34 @@ MonoBehaviour:
   - materialName: "Color f\xFCr MenuButtons"
     allColorValues:
     - valueName: _Color_A
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 1, g: 1, b: 1, a: 0}
     - valueName: _Color_B
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 1, g: 1, b: 1, a: 0}
     - valueName: _Color_C
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 1, g: 1, b: 1, a: 1}
     - valueName: _Color_D
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 0.92156863, g: 0.8627451, b: 0.76862746, a: 1}
   - materialName: "Color f\xFCr MenuIcons"
     allColorValues:
     - valueName: _Color_A
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 1, g: 1, b: 1, a: 0}
     - valueName: _Color_B
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 1, g: 1, b: 1, a: 0}
     - valueName: _Color_C
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 1, g: 1, b: 1, a: 0}
     - valueName: _Color_D
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 1, g: 1, b: 1, a: 0}
   - materialName: "Color f\xFCr MenuHintergrund"
     allColorValues:
     - valueName: _Color_A
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 1, g: 1, b: 1, a: 0.1764706}
     - valueName: _Color_B
       color: {r: 0, g: 0, b: 0, a: 0}
     - valueName: _Color_C
       color: {r: 0, g: 0, b: 0, a: 0}
     - valueName: _Color_D
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 0.44313726, g: 0.44313726, b: 0.44313726, a: 1}
   - materialName: "Color f\xFCr Background Sky"
     allColorValues:
     - valueName: _BaseColor
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 0.9764706, g: 0.9764706, b: 1, a: 1}
