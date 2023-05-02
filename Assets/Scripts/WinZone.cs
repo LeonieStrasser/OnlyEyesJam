@@ -1,93 +1,109 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using NaughtyAttributes;
+using Random = System.Random;
 
 public class WinZone : MonoBehaviour
 {
     [SerializeField] float stayTimeToWin = 5;
     [SerializeField] bool debug;
+    
+    // FEEDBACK
+    [SerializeField] MeshRenderer meshRen;
+
+    [BoxGroup("Feedback")] [SerializeField] float idleDeformStrength;
+    [BoxGroup("Feedback")] [SerializeField] float winningDeformStrength;
+    
+    [BoxGroup("Feedback")] [SerializeField] ParticleSystem winVFX;
+    
+    [BoxGroup("Feedback")] [SerializeField] AnimationCurve wobbleCurve;
+    [BoxGroup("Feedback")] [SerializeField] float wobbleStrength;
+    [BoxGroup("Feedback")] [SerializeField] float wobbleDuration;
+    
+    LevelManager myManager;
+
+    Material mat;
+    
     GameObject winObject;
     public GameObject WinObject { get { return winObject; } }
+    
     bool attachTriggered;
     bool winzoneSucceeded;
     float winTimer;
     float winningProgress; // timeProgress zwischen 0 und 1
     bool timerRun;
 
-
-    LevelManager myManager;
-
-    // FEEDBACK
-    MeshRenderer myRenderer;
-    [BoxGroup("Feedback")] [SerializeField] Color colorOnDetach;
-    [BoxGroup("Feedback")] [SerializeField] Color colorOnEnter;
-    [BoxGroup("Feedback")] [SerializeField] Color colorOnAttachTrigger;
-    [BoxGroup("Feedback")] [SerializeField] Color colorOnWin;
-    [BoxGroup("Feedback")] [SerializeField] ParticleSystem winVFX;
+    Color idleColor, winColor;
+    bool wobbleAnimationRunning, idleTransitionRunning;
 
     void Start()
     {
         myManager = FindObjectOfType<LevelManager>();
+
+        mat = meshRen.material;
+
+        idleColor = mat.GetColor(Shader.PropertyToID("_IdleColor"));
+        winColor = mat.GetColor(Shader.PropertyToID("_WinColor"));
+        
         winTimer = stayTimeToWin;
         timerRun = false;
 
-        myRenderer = GetComponent<MeshRenderer>();
+        mat.SetColor(Shader.PropertyToID("_CurrentColor"), idleColor);
     }
 
     void Update()
     {
         WintimerProgress();
-
-
     }
 
     void OnTriggerStay(Collider other)
     {
-        if (!(other.CompareTag("MoveableObject")) && !(other.CompareTag("Attached"))) // Wenn es kein Hühnergott ist, dann ists eh egal!
+        if (!other.CompareTag("MoveableObject") && !other.CompareTag("Attached")) // Wenn es kein Hühnergott ist, dann ists eh egal!
             return;
-        else if (other.CompareTag("Attached") && !attachTriggered) // Wenn es Hühnergott ist der vom Player grad bewegt wird - Triggerfeedback
+        
+        if (other.CompareTag("Attached") && !attachTriggered) // Wenn es Hühnergott ist der vom Player grad bewegt wird - Triggerfeedback
         {
             AttachTriggerFeedback();
             attachTriggered = true;
         }
-
-
-        if (winObject == null && other.tag != "Attached") // Wenn ein Objekt mit !Attached.tag in der Zone erscheint - Starte den Win-Timer-Stuff
+        
+        if (winObject == null && !other.CompareTag("Attached")) // Wenn ein Objekt mit !Attached.tag in der Zone erscheint - Starte den Win-Timer-Stuff
         {
             attachTriggered = false;
             AttachWinObject(other.gameObject);
         }
-        else if (winObject != null && other.tag == "Attached") // Wenn das Eingeloggte Win Objekt attached wird aber noch in der TriggerZone chillt
+        
+        else if (winObject != null && other.CompareTag("Attached")) // Wenn das Eingeloggte Win Objekt attached wird aber noch in der TriggerZone chillt
         {
             DetachWinObject();
             AttachTriggerFeedback();
             attachTriggered = true;
+            
             if (debug)
             {
                 Debug.Log("Win object was Attached by player!");
                 Debug.Log("Win Timer wurde resettet!");
             }
         }
-
     }
 
 
-    private void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("MoveableObject") || (other.CompareTag("Attached")))
+        if (other.CompareTag("MoveableObject") || other.CompareTag("Attached"))
         {
-
             attachTriggered = false;
 
-            if (winObject == null) // Wenn kein WInobjekt eingeloggt ist verlässt ein attchter Block die Winzone
+            if (winObject == null) // Wenn kein Winobjekt eingeloggt ist verlässt ein attatchter Block die Winzone
             {
                 DetachFeedback();
-                return;
             }
-            else if (other.gameObject == winObject) // Wenn das eingeloggte WIn Objekt die Win Zone verl�sst, logg es aus und setze den Timer zur�ck!
+            
+            else if (other.gameObject == winObject) // Wenn das eingeloggte Win Objekt die Win Zone verl�sst, logg es aus und setze den Timer zur�ck!
             {
-
                 DetachWinObject();
 
                 if (debug)
@@ -97,8 +113,6 @@ public class WinZone : MonoBehaviour
                 }
             }
         }
-
-
     }
 
     void WintimerProgress()
@@ -106,7 +120,7 @@ public class WinZone : MonoBehaviour
         if (timerRun)
         {
             winTimer -= Time.deltaTime;
-            winningProgress = winTimer / stayTimeToWin;
+            winningProgress = 1 - Mathf.Clamp(winTimer / stayTimeToWin, 0, 1);
 
             AttatchedProgressFeedback();
 
@@ -146,8 +160,7 @@ public class WinZone : MonoBehaviour
             winzoneSucceeded = false;
             LevelManager.instance.ReportLostWinZone();
         }
-
-
+        
         DetachFeedback();
     }
 
@@ -155,45 +168,92 @@ public class WinZone : MonoBehaviour
     {
         winzoneSucceeded = true;
         LevelManager.instance.ReportSuccededWinZone();
-
     }
 
     public void SetWin()
     {
-        //winObject.GetComponent<ObjectState>().ChangePhysicalState(ObjectState.physicalStates.Grounded);
+        winObject.GetComponent<ObjectState>().ChangePhysicalState(ObjectState.physicalStates.Grounded);
 
-     
         WinFeedback();
-
-        this.gameObject.SetActive(false);
     }
-
-
+    
     #region feedback
     void AttachTriggerFeedback()
     {
-        myRenderer.material.color = colorOnAttachTrigger;
+        if(!wobbleAnimationRunning)
+            StartCoroutine(WobbleAnimation());
     }
 
     void EnterFeedback()
     {
-        myRenderer.material.color = colorOnEnter;
+        if(!wobbleAnimationRunning)
+            StartCoroutine(WobbleAnimation());
     }
 
     void DetachFeedback()
     {
-        myRenderer.material.color = colorOnDetach;
+        StartCoroutine(IdleTransition());
     }
 
     void AttatchedProgressFeedback() // W�hrend der Win timer hochz�hlt
     {
-        Color lerpedColor = Color.Lerp(colorOnWin, colorOnEnter, winningProgress);
-        myRenderer.material.color = lerpedColor;
+        Color lerpedColor = Color.Lerp(idleColor, winColor, winningProgress);
+        
+        mat.SetColor(Shader.PropertyToID("_CurrentColor"), lerpedColor);
+        
+        mat.SetFloat(Shader.PropertyToID("_DeformStrength"), Mathf.Lerp(idleDeformStrength, winningDeformStrength, Mathf.Clamp(winningProgress * 2f, 0, 1)));
+    }
+
+    IEnumerator WobbleAnimation()
+    {
+        wobbleAnimationRunning = true;
+
+        float animationTime = 0;
+
+        while (animationTime < wobbleDuration)
+        {
+            float deformStrength = Mathf.Lerp(idleDeformStrength, wobbleStrength,
+                wobbleCurve.Evaluate(animationTime / wobbleDuration));
+            
+            mat.SetFloat(Shader.PropertyToID("_DeformStrength"), deformStrength);
+            
+            animationTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        wobbleAnimationRunning = false;
+    }
+
+    IEnumerator IdleTransition()
+    {
+        idleTransitionRunning = true;
+        
+        float animationTime = 0;
+        float maxDuration = 1f;
+        float currentWobbleStrength = mat.GetFloat(Shader.PropertyToID("_DeformStrength"));
+        Color currentColor = mat.GetColor(Shader.PropertyToID("_CurrentColor"));
+
+        while (animationTime < maxDuration)
+        {
+            float lerpT = animationTime / maxDuration;
+            
+            float deformStrength = Mathf.Lerp(currentWobbleStrength, idleDeformStrength, lerpT);
+            mat.SetFloat(Shader.PropertyToID("_DeformStrength"), deformStrength);
+            
+            mat.SetColor(Shader.PropertyToID("_CurrentColor"), Color.Lerp(currentColor, idleColor, lerpT));
+            
+            animationTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        idleTransitionRunning = false;
     }
 
     void WinFeedback()
     {
-        winVFX.transform.SetParent(null);
+        //winVFX.transform.SetParent(null);
         winVFX.Play();
     }
 
