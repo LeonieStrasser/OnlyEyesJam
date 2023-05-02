@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: ColorSetup_Test
   m_EditorClassIdentifier: 
   allColorValueSets:
-  - materialName: "Color f\xFCr STeine"
+  - materialName: "Color f\xFCr Steine"
     allColorValues:
     - valueName: _Color01
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 0, g: 0.16926694, b: 1, a: 0}
     - valueName: _Color02
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 0.514151, g: 0.55231524, b: 1, a: 0}
     - valueName: _H_hnerLinienColor
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 0.06132078, g: 1, b: 0.103045784, a: 0}
     - valueName: _EmissionColor
       color: {r: 0, g: 0, b: 0, a: 0}
     - valueName: _PinlightLayerColor
@@ -34,4 +34,78 @@ MonoBehaviour:
     - valueName: _AnimHighlightColor
       color: {r: 0, g: 0, b: 0, a: 0}
     - valueName: _OverlayColor
+      color: {r: 0, g: 0, b: 0, a: 0}
+  - materialName: "Color f\xFCr BackgroundMat 1"
+    allColorValues:
+    - valueName: _Color_A
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_B
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_C
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_D
+      color: {r: 0, g: 0, b: 0, a: 0}
+  - materialName: "Color f\xFCr BackgroundMat 2"
+    allColorValues:
+    - valueName: _Color_A
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_B
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_C
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_D
+      color: {r: 0, g: 0, b: 0, a: 0}
+  - materialName: "Color f\xFCr GroundPlatte"
+    allColorValues:
+    - valueName: _Color_A
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_B
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_C
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_D
+      color: {r: 0, g: 0, b: 0, a: 0}
+  - materialName: "Color f\xFCr Wasser"
+    allColorValues:
+    - valueName: _Deep_Water_Color
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Shallow_Water_Color
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Specular
+      color: {r: 0, g: 0, b: 0, a: 0}
+  - materialName: "Color f\xFCr Ziel"
+    allColorValues:
+    - valueName: _IdleColor
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _WinColor
+      color: {r: 0, g: 0, b: 0, a: 0}
+  - materialName: "Color f\xFCr MenuButtons"
+    allColorValues:
+    - valueName: _Color_A
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_B
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_C
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_D
+      color: {r: 0, g: 0, b: 0, a: 0}
+  - materialName: "Color f\xFCr MenuIcons"
+    allColorValues:
+    - valueName: _Color_A
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_B
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_C
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_D
+      color: {r: 0, g: 0, b: 0, a: 0}
+  - materialName: "Color f\xFCr MenuHintergrund"
+    allColorValues:
+    - valueName: _Color_A
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_B
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_C
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_D
       color: {r: 0, g: 0, b: 0, a: 0}

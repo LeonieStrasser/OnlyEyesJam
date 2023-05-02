@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6310660023562023644}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -47,13 +47,13 @@ MonoBehaviour:
   allColorSetups:
   - {fileID: 11400000, guid: 19e6f083752aacc4d995cf3b5e526062, type: 2}
   currentSetup: {fileID: 11400000, guid: 19e6f083752aacc4d995cf3b5e526062, type: 2}
-  stoneColorChangeMats:
-    materialType: SteinMaterials
+  ColorChangeMatsOfType:
+  - materialType: Stone Materials
     materials:
-    - {fileID: 2100000, guid: 5a469088ca9592f45a78a951713a931a, type: 2}
     - {fileID: 2100000, guid: 64b396dceb036be47b453a7fd100101b, type: 2}
     - {fileID: 2100000, guid: d8ce03da7d83a11469244aa4fafb0e96, type: 2}
     - {fileID: 2100000, guid: bab3dc0434607de4089675557828a8e5, type: 2}
+    - {fileID: 2100000, guid: 5a469088ca9592f45a78a951713a931a, type: 2}
     colorValues:
     - valueName: _Color01
       color: {r: 0, g: 0, b: 0, a: 0}
@@ -74,4 +74,102 @@ MonoBehaviour:
     - valueName: _AnimHighlightColor
       color: {r: 0, g: 0, b: 0, a: 0}
     - valueName: _OverlayColor
+      color: {r: 0, g: 0, b: 0, a: 0}
+  - materialType: Background1 Materials
+    materials:
+    - {fileID: 0}
+    colorValues:
+    - valueName: _Color_A
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_B
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_C
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_D
+      color: {r: 0, g: 0, b: 0, a: 0}
+  - materialType: Background2 Materials
+    materials:
+    - {fileID: 0}
+    colorValues:
+    - valueName: _Color_A
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_B
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_C
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_D
+      color: {r: 0, g: 0, b: 0, a: 0}
+  - materialType: Ground Materials
+    materials:
+    - {fileID: 0}
+    colorValues:
+    - valueName: _Color_A
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_B
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_C
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_D
+      color: {r: 0, g: 0, b: 0, a: 0}
+  - materialType: Water Materials
+    materials:
+    - {fileID: 0}
+    colorValues:
+    - valueName: _Deep_Water_Color
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Shallow_Water_Color
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Specular
+      color: {r: 0, g: 0, b: 0, a: 0}
+  - materialType: Ziel Materials
+    materials:
+    - {fileID: 0}
+    colorValues:
+    - valueName: _IdleColor
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _WinColor
+      color: {r: 0, g: 0, b: 0, a: 0}
+  - materialType: Ziel Materials
+    materials:
+    - {fileID: 0}
+    colorValues:
+    - valueName: _IdleColor
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _WinColor
+      color: {r: 0, g: 0, b: 0, a: 0}
+  - materialType: MenuButtons Materials
+    materials:
+    - {fileID: 0}
+    colorValues:
+    - valueName: _Color_A
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_B
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_C
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_D
+      color: {r: 0, g: 0, b: 0, a: 0}
+  - materialType: MenuIcons Materials
+    materials:
+    - {fileID: 0}
+    colorValues:
+    - valueName: _Color_A
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_B
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_C
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_D
+      color: {r: 0, g: 0, b: 0, a: 0}
+  - materialType: MenuHintergrund Materials
+    materials:
+    - {fileID: 0}
+    colorValues:
+    - valueName: _Color_A
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_B
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_C
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_D
       color: {r: 0, g: 0, b: 0, a: 0}
