@@ -6,5 +6,6 @@ using UnityEngine;
 public class ColorValueSetForOneMaterial
 {
     public string materialName;
+    public int index;
     public ColorValue[] allColorValues;
 }
