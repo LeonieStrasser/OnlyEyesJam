@@ -10,27 +10,29 @@ public class CustomizableMaterial
     public Material[] materials;
     public ColorValue[] colorValues;
 
-    private List<MeshRenderer> meshRendererInstancesInScene;
-    public List<MeshRenderer> MeshRendererInstancesInScene
+    private List<RendererID> rendererInstancesInScene;
+    public List<RendererID> RendererInstancesInScene
     {
         get
         {
-            if (meshRendererInstancesInScene == null)
+            if (rendererInstancesInScene == null)
             {
-                meshRendererInstancesInScene = new List<MeshRenderer>();
+                rendererInstancesInScene = new List<RendererID>();
             }
-            return meshRendererInstancesInScene;
+            return rendererInstancesInScene;
         }
 
         set
         {
-            if (meshRendererInstancesInScene == null)
+            if (rendererInstancesInScene == null)
             {
-                meshRendererInstancesInScene = new List<MeshRenderer>();
+                rendererInstancesInScene = new List<RendererID>();
             }
-            meshRendererInstancesInScene = value;
+            rendererInstancesInScene = value;
         }
     }
+
+    
 
 
 }

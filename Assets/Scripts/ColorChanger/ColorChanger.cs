@@ -44,7 +44,7 @@ public class ColorChanger : MonoBehaviour
             int typeIndex = matType.index;
 
             // für jedes Material das ColorValueSetForOneMaterial x hat do folgendes -- Denn jedes Material braucht das selebe Color Update
-            foreach (var matInstance in matType.MeshRendererInstancesInScene)
+            foreach (var renderInstance in matType.RendererInstancesInScene)
             {
                 //Check jeden Value der Colorvalue Liste im ColorValueSetForOneMaterial
                 foreach (var myColorVal in matType.colorValues)
@@ -62,8 +62,33 @@ public class ColorChanger : MonoBehaviour
                             {
                                 if ((colorVal.valueName == _nameToCompare))
                                 {
-                                    myColorVal.color = colorVal.color;
-                                    SetNewColor(matInstance.sharedMaterial, _nameToCompare, myColorVal.color);
+                                    //schau ob die renderinstance ein mesh oder spriterenderer ist
+                                    if(!renderInstance.spriteRenderer)
+                                    {
+                                        //Wenn es ein Meshrenderer ist
+                                        MeshRenderer _meshRenderer = renderInstance.transform.GetComponentInChildren<MeshRenderer>();
+                                        if(_meshRenderer == null)
+                                        {
+                                            Debug.LogError("Hier ist ein RenderID script das nicht den richtigen rendererTyp eingestellt hat: " + renderInstance.gameObject.name);
+                                        }
+
+                                        myColorVal.color = colorVal.color;
+                                        SetNewColor(_meshRenderer.material, _nameToCompare, myColorVal.color);
+                                    }
+                                    else
+                                    {
+                                        //wenn es ein Spriterenderer ist
+                                        SpriteRenderer _spriteRenderer = renderInstance.transform.GetComponentInChildren<SpriteRenderer>();
+                                        if (_spriteRenderer == null)
+                                        {
+                                            Debug.LogError("Hier ist ein RenderID script das nicht den richtigen rendererTyp eingestellt hat: " + renderInstance.gameObject.name);
+                                        }
+
+                                        myColorVal.color = colorVal.color;
+                                        SetNewColor(_spriteRenderer.material, _nameToCompare, myColorVal.color);
+                                    }
+
+                                    
                                 }
                             }
                         }
@@ -73,6 +98,11 @@ public class ColorChanger : MonoBehaviour
         }
     }
 
+    void ApplyPaletteColorsToMaterials(CustomizableMaterial matType, ColorPaletteSetup _currentPalette, int typeIndex, Material _material)
+    {
+
+    }
+
     void SetNewColor(Material _material, string _changeColorName, Color _newColor)
     {
         _material.SetColor(Shader.PropertyToID(_changeColorName), _newColor);
@@ -80,45 +110,34 @@ public class ColorChanger : MonoBehaviour
 
     void SetAllMaterialInstances()
     {
-        MeshRenderer[] allRenderers = FindObjectsOfType<MeshRenderer>();
+        RendererID[] allRenderers = FindObjectsOfType<RendererID>();
         foreach (var type in ColorChangeMatsOfType)
         {
-            foreach (var mat in type.materials)
+
+
+            // Find all instances of the material in the scene
+            foreach (var renderer in allRenderers)
             {
-                bool foundInstance = false;
-
-                // Find all instances of the material in the scene
-                foreach (var renderer in allRenderers)
+                if (renderer.RenderID == type.index)
                 {
-                    if (renderer.sharedMaterial == mat)
-                    {
-                        type.MeshRendererInstancesInScene.Add(renderer);
-                        foundInstance = true;
-                    }
-                }
-
-                if (!foundInstance)
-                {
-                    Debug.LogWarning("No instances of material " + mat.name + " were found in the scene.");
+                    type.RendererInstancesInScene.Add(renderer);
                 }
             }
-            Debug.Log("Material type " + type.materialType + " has found " + type.MeshRendererInstancesInScene.Count + " instance materials in the scene!");
         }
+
+
+
     }
 
     void ClearAllInstanceMaterialLists()
     {
         foreach (var type in ColorChangeMatsOfType)
         {
-            type.MeshRendererInstancesInScene.Clear();
+            type.RendererInstancesInScene.Clear();
         }
     }
 
-    [Button]
-    void DEBUG()
-    {
-        Debug.Log("Steinmaterialzahl ist " + ColorChangeMatsOfType[0].MeshRendererInstancesInScene.Count);
-    }
+
 }
 
 

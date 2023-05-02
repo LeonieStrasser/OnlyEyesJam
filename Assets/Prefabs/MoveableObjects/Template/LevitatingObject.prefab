@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1802820073855958441}
   - component: {fileID: 7081918321756029838}
   - component: {fileID: 1681446294454754026}
+  - component: {fileID: 6255250069012101704}
   m_Layer: 0
   m_Name: LevitatingObject
   m_TagString: MoveableObject
@@ -92,6 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fca8d8affce4284e86c175608844bda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasSomethingUnderneath: 0
   meshRenderer: {fileID: 0}
   objectCollisionEffect: {fileID: 6995686729726344978, guid: 083e2012ea61c624e9b224fb3e2ef450,
     type: 3}
@@ -196,6 +198,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contactedConductors: []
+--- !u!114 &6255250069012101704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3669537452450156015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717add88254cdb24a996d52be896fae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderID: 0
+  spriteRenderer: 0
 --- !u!1001 &4041431042416272468
 PrefabInstance:
   m_ObjectHideFlags: 0
