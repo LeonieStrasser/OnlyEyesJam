@@ -150,21 +150,32 @@ public class ObjectState : MonoBehaviour
     {
         if(!(other.gameObject.CompareTag("MoveableObject") || other.gameObject.CompareTag("Ground")))
             return;
-        
+
+        ObjectState objectState = other.gameObject.GetComponent<ObjectState>();
+        if (objectState != null)
+            AudioManager.instance.Play("Stone on Stone");
+
+        GroundFeedback groundFeedback = other.gameObject.GetComponent<GroundFeedback>();
+        if (groundFeedback != null)
+            AudioManager.instance.Play("Stone on Gravel");
+
         if (physicalState != physicalStates.Attached)
         {
             ChangePhysicalState(physicalStates.Grounded);
             Instantiate(objectCollisionEffect, other.GetContact(0).point, quaternion.identity);
         }
     }
-
+    Coroutine lastRoutine;
     void SetChangeFeedback()
     {
+        lastRoutine = StartCoroutine(TelekinesisSound(feedbackFadeInDuration));
         feedbackCoroutine = StartCoroutine(LerpMaterialFloat("_AnimatedBaseTextureOpacity", 1, feedbackFadeInDuration, (visualState == visualStates.LookedAt || visualState == visualStates.CloseToAttach || visualState == visualStates.Attached)));
     }
 
     void SetAttachFeedback()
     {
+        AudioManager.instance.Play("TKinese Static 2");
+
         glowingOrb.SetActive(true);
 
         if (edgeFadeoutFeedbackCoroutine != null)
@@ -230,6 +241,53 @@ public class ObjectState : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    IEnumerator TelekinesisSound(float _duration)
+    {
+        bool upPlaying = false;
+
+        AudioManager.instance.Play("TKinese Static 1");
+
+        float timer = 0;
+        while (timer < (_duration - AudioManager.instance.timeBetweenWindupSoundAndTelekinesis + AudioManager.instance.GetLength("TKinese State Change Up")))
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= _duration - AudioManager.instance.timeBetweenWindupSoundAndTelekinesis)
+            {
+                if (!upPlaying)
+                {
+                    AudioManager.instance.Play("TKinese State Change Up");
+                    upPlaying = true;
+                }
+            }
+
+            yield return null;
+
+        }
+
+        if (upPlaying)
+        {
+            AudioManager.instance.Stop("TKinese State Change Up");
+        }
+
+    }
+    public void TelekinesisSoundStop()
+    {
+        StopCoroutine(lastRoutine);
+        AudioManager.instance.Stop("TKinese Static 1");
+        AudioManager.instance.Stop("TKinese Static 2");
+        AudioManager.instance.Stop("TKinese State Change Up");
+    }
+    public IEnumerator TelekinesisSoundChangeDown()
+    {
+        AudioManager.instance.Play("TKinese State Change Down");
+
+        yield return new WaitForSeconds(AudioManager.instance.GetLength("TKinese State Change Down"));
+
+        AudioManager.instance.Stop("TKinese State Change Down");
+
     }
 
     IEnumerator AnimateMaterialFloat(string _valueName, float _endValue, float _duration, bool _condition, AnimationCurve _curve)
