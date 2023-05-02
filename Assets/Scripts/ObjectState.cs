@@ -98,6 +98,8 @@ public class ObjectState : MonoBehaviour
 
     public void ChangeVisualState(visualStates _newState)
     {
+        visualStates _oldState = visualState;
+
         if (_newState == visualState)
             return;
 
@@ -112,6 +114,8 @@ public class ObjectState : MonoBehaviour
                 SetCloseToAttachFeedback();
                 break;
             case visualStates.Attached:
+                if (_oldState == visualStates.Attached)
+                    StartCoroutine(TelekinesisSoundChangeDown());
                 SetAttachFeedback();
                 break;
             case visualStates.Neutral:
@@ -190,7 +194,9 @@ public class ObjectState : MonoBehaviour
     void SetNeutralFeedbackState()
     {
         //meshRenderer.material.SetFloat("_AnimatedBaseTextureOpacity", 0);
-        
+
+        TelekinesisSoundStop();
+
         glowingOrb.SetActive(false);
 
         if (feedbackCoroutine != null)
