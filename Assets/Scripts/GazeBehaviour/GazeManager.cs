@@ -5,9 +5,9 @@ using UnityEngine;
 public class GazeManager : MonoBehaviour
 {
     public static GazeManager Instance;
-    
+
     [HideInInspector] public Vector3 gazePosition;
-    
+
     [Header("References")]
     [SerializeField] RectTransform gazeIndicator;
 
@@ -16,21 +16,24 @@ public class GazeManager : MonoBehaviour
     [SerializeField] bool enableGazeIndicator;
     [SerializeField] bool enableGazeSmoothing = true;
     [SerializeField] bool debug;
-    
+
     [Header("Telekinesis Settings")]
     [SerializeField] public float telekinesisMaxDuration = 5;
     [SerializeField] public float timeTillTelekinesis = 3;
     [SerializeField] float blinkThreshold = 0.6f;
+    [SerializeField] public float reAttachDelay = 0.6f;
 
     [SerializeField] bool limitTelekinesisRadius = false;
     [ShowIf("limitTelekinesisRadius")]
     [SerializeField] float impactDistanceMax = 800;
     [SerializeField] float objectPutDownDistance = 1.5f;
 
-    [MinMaxSlider(0f, 50f)] [SerializeField]
+    [MinMaxSlider(0f, 50f)]
+    [SerializeField]
     Vector2 followSpeed;
     [SerializeField] float forcePower;
-    [MinMaxSlider(0f, 5f)] [SerializeField]
+    [MinMaxSlider(0f, 5f)]
+    [SerializeField]
     Vector2 minMaxDrag;
     [SerializeField] float throwVelocity = 5.5f;
 
@@ -49,7 +52,7 @@ public class GazeManager : MonoBehaviour
     float currentTelekinesisDuration;
     float currentImpactDistance;
     float distanceToGaze;
-    
+
     void Awake()
     {
         Instance = this;
@@ -60,7 +63,7 @@ public class GazeManager : MonoBehaviour
         TobiiAPI.Start(new TobiiSettings());
 
         useMouseAsGaze = !TobiiAPI.IsConnected;
-        
+
         gazeIndicator.gameObject.SetActive(enableGazeIndicator);
 
         mainCam = Camera.main;
@@ -75,13 +78,13 @@ public class GazeManager : MonoBehaviour
         DetectObjectSwitch();
 
         BlinkDetection();
-        
+
         if (currentAttachedObject) // ugly, aber falls das Objekt irgendwo detached wird muss das leider sein
             UpdateTelekinesisUI();
-        
+
         if (currentAttachedObject)
             ObjectMovement();
-        
+
         if (currentAttachedObject)
             CheckForObjectPutDown();
     }
@@ -89,7 +92,7 @@ public class GazeManager : MonoBehaviour
     void UpdateGazePosition()
     {
         Vector3 rawGazePos = useMouseAsGaze ? Input.mousePosition : TobiiAPI.GetGazePoint().Screen;
-        
+
         if (enableGazeSmoothing)
             gazePosition = Vector3.Lerp(gazePosition, rawGazePos, Time.deltaTime * 35);
 
@@ -105,7 +108,7 @@ public class GazeManager : MonoBehaviour
 
         if (!limitTelekinesisRadius)
             return;
-        
+
         currentImpactDistance = Mathf.Lerp(impactDistanceMax, 0, currentTelekinesisDuration / telekinesisMaxDuration);
     }
 
@@ -124,9 +127,9 @@ public class GazeManager : MonoBehaviour
                 currentLookingAt = focusedObject;
                 currentGazeDuration = 0;
 
-                if(currentFocusedObjectState)
+                if (currentFocusedObjectState)
                     currentFocusedObjectState?.ChangeVisualState(ObjectState.visualStates.Neutral);
-                
+
                 currentFocusedObjectState = currentLookingAt.GetComponent<ObjectState>();
                 currentFocusedObjectState?.ChangeVisualState(ObjectState.visualStates.LookedAt);
             }
@@ -157,11 +160,11 @@ public class GazeManager : MonoBehaviour
             currentLookingAt = null;
             currentGazeDuration = 0;
 
-            if(currentFocusedObjectState)
+            if (currentFocusedObjectState)
                 currentFocusedObjectState?.ChangeVisualState(ObjectState.visualStates.Neutral);
-            
+
             currentFocusedObjectState = null;
-            
+
             GazeIndicator.Instance.EndFocusAnim();
         }
     }
@@ -188,11 +191,10 @@ public class GazeManager : MonoBehaviour
     {
         if (currentTelekinesisDuration >= telekinesisMaxDuration)
         {
-            currentFocusedObjectState?.ChangePhysicalState(ObjectState.physicalStates.Falling);
-            Detach();
+            LetFallAndDetach();
             return;
         }
-        
+
         CalculateGazeData();
 
         //--------------DEBUGGING
@@ -208,15 +210,14 @@ public class GazeManager : MonoBehaviour
         else
         {
             //currentFocusedObjectState.ChangePhysicalState(ObjectState.physicalStates.Catchable);
-            currentFocusedObjectState.ChangePhysicalState(ObjectState.physicalStates.Falling);
-            Detach();
+            LetFallAndDetach();
         }
     }
 
     void CheckForObjectPutDown()
     {
         Debug.DrawLine(objectPosOnScreen, new Vector3(objectPosOnScreen.x, objectPosOnScreen.y - objectPutDownDistance));
-        
+
         if (currentFocusedObjectState.hasSomethingUnderneath &&
             gazePosition.y < objectPosOnScreen.y - objectPutDownDistance)
         {
@@ -229,6 +230,7 @@ public class GazeManager : MonoBehaviour
 
     void Attach(GameObject _objToAttach)
     {
+
         if (debug)
             Debug.Log("Attach!");
 
@@ -239,7 +241,7 @@ public class GazeManager : MonoBehaviour
         attachedRb.drag = minMaxDrag.y;
 
         currentAttachedObject.tag = "Attached";
-        
+
         currentFocusedObjectState.ChangeVisualState(ObjectState.visualStates.Attached);
         currentFocusedObjectState.ChangePhysicalState(ObjectState.physicalStates.Attached);
 
@@ -249,9 +251,10 @@ public class GazeManager : MonoBehaviour
 
     void Detach()
     {
+
         if (debug)
             Debug.Log("Detach!");
-        
+
         currentAttachedObject.tag = "MoveableObject";
 
         attachedRb.useGravity = true;
@@ -266,7 +269,7 @@ public class GazeManager : MonoBehaviour
     void CalculateGazeData()
     {
         Vector3 targetPos = useMouseAsGaze ? Input.mousePosition : TobiiAPI.GetGazePoint().Screen;
-        
+
         // Gaze Direction
         objectPosOnScreen = mainCam.WorldToScreenPoint(currentAttachedObject.transform.position);
         directionToTarget = new Vector2(targetPos.x - objectPosOnScreen.x, targetPos.y - objectPosOnScreen.y)
@@ -302,14 +305,21 @@ public class GazeManager : MonoBehaviour
 
                 currentBlinkDuration = 0;
 
-                currentFocusedObjectState.ChangePhysicalState(ObjectState.physicalStates.Falling);
-                Detach();
+                LetFallAndDetach();
             }
         }
 
         else
             currentBlinkDuration = 0;
     }
+
+    void LetFallAndDetach()
+    {
+        currentFocusedObjectState.ChangePhysicalState(ObjectState.physicalStates.Falling);
+        Detach();
+    }
 }
 
 
+GazeManager.cs
+10 KB
