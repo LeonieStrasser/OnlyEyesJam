@@ -12,10 +12,6 @@ public class ColorChanger : MonoBehaviour
     [BoxGroup("Materialgroups to change Color")] [SerializeField] CustomizableMaterial[] ColorChangeMatsOfType;
 
 
-    private void Start()
-    {
-
-    }
 
 
 
@@ -98,10 +94,7 @@ public class ColorChanger : MonoBehaviour
         }
     }
 
-    void ApplyPaletteColorsToMaterials(CustomizableMaterial matType, ColorPaletteSetup _currentPalette, int typeIndex, Material _material)
-    {
-
-    }
+   
 
     void SetNewColor(Material _material, string _changeColorName, Color _newColor)
     {

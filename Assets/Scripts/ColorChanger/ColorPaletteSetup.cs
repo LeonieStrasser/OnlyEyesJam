@@ -7,5 +7,6 @@ using NaughtyAttributes;
 [System.Serializable]
 public class ColorPaletteSetup : ScriptableObject
 {
+    public bool warmColors;
     [BoxGroup("Background")] public ColorValueSetForOneMaterial[] allColorValueSets;
 }
