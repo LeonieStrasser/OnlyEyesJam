@@ -50,7 +50,7 @@ public class MenueActivator : MonoBehaviour
 
     }
 
-   
+
 
     [Button]
     public void LoginGazedObject()
