@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class SetupRandomizer : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class SetupRandomizer : MonoBehaviour
         myColorChanger = GetComponentInChildren<ColorChanger>();
     }
 
+    [Button]
     public void RandomizeSetup()
     {
         SetEnvironmentArrangement();
@@ -34,8 +36,8 @@ public class SetupRandomizer : MonoBehaviour
         }
         else
         {
-            warmColorParticles.SetActive(true);
-            coldColorParticles.SetActive(false);
+            warmColorParticles.SetActive(false);
+            coldColorParticles.SetActive(true);
         }
     }
 
@@ -49,3 +51,4 @@ public class SetupRandomizer : MonoBehaviour
         }
         allSceneSets[_randomListIndex].SetActive(true);
     }
+}
