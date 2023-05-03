@@ -13,6 +13,7 @@ public class ObjectState : MonoBehaviour
     [SerializeField] GameObject impulseSpherePrefab;
     
     [SerializeField] ParticleSystem telekinesisChannelParticles;
+    [SerializeField] ParticleSystem telekinesisReleaseParticles;
     
     [SerializeField] float feedbackFadeOutDuration = 1f;
     [SerializeField] float edgeFadeinDuration = 3f;
@@ -120,8 +121,10 @@ public class ObjectState : MonoBehaviour
                 SetAttachFeedback();
                 break;
             case visualStates.Neutral:
+                if(_oldState == visualStates.Attached)
+                    telekinesisReleaseParticles.Play();
+                
                 SetNeutralFeedbackState();
-                telekinesisChannelParticles.Stop();
                 break;
         }
     }
@@ -178,6 +181,8 @@ public class ObjectState : MonoBehaviour
     void SetAttachFeedback()
     {
         AudioManager.instance.Play("TKinese Static 2");
+        
+        telekinesisChannelParticles.Stop();
 
         glowingOrb.SetActive(true);
 
@@ -193,7 +198,9 @@ public class ObjectState : MonoBehaviour
     void SetNeutralFeedbackState()
     {
         //meshRenderer.material.SetFloat("_AnimatedBaseTextureOpacity", 0);
-
+        
+        telekinesisChannelParticles.Stop();
+        
         TelekinesisSoundStop();
 
         glowingOrb.SetActive(false);
@@ -211,8 +218,6 @@ public class ObjectState : MonoBehaviour
         }
 
         edgeFeedbackCoroutine = StartCoroutine(LerpMaterialFloat("_EmissionFillAmount", 0, edgeFadeOutDuration, true));
-
-       
     }
 
     void SetCloseToAttachFeedback()

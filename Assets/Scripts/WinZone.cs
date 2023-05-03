@@ -16,8 +16,9 @@ public class WinZone : MonoBehaviour
 
     [BoxGroup("Feedback")] [SerializeField] float idleDeformStrength;
     [BoxGroup("Feedback")] [SerializeField] float winningDeformStrength;
-
-    [BoxGroup("Feedback")] [SerializeField] ParticleSystem winVFX;
+    
+    [BoxGroup("Feedback")] [SerializeField] ParticleSystem winDissolveStart;
+    [BoxGroup("Feedback")] [SerializeField] ParticleSystem[] winVFX;
 
     [BoxGroup("Feedback")] [SerializeField] AnimationCurve wobbleCurve;
     [BoxGroup("Feedback")] [SerializeField] float wobbleStrength;
@@ -259,10 +260,17 @@ public class WinZone : MonoBehaviour
 
     IEnumerator Dissolve()
     {
-        yield return new WaitForSeconds(0.5f);
+        winDissolveStart.Play();
+        
+        yield return new WaitForSeconds(3.5f);
+        
+        foreach (var pSystem in winVFX)
+        {
+            pSystem.Play();
+        }
 
         float timer = 0;
-        float duration = 2.7f;
+        float duration = 6f;
 
         while (timer < duration)
         {
@@ -276,8 +284,6 @@ public class WinZone : MonoBehaviour
 
     void WinFeedback()
     {
-        winVFX.Play();
-
         StartCoroutine(Dissolve());
 
         AudioManager.instance.Play("Win Jingle");
