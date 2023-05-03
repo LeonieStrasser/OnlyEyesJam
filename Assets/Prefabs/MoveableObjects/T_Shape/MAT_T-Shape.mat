@@ -158,7 +158,7 @@ Material:
     - _DarkenColor2: {r: 1, g: 0.6273585, b: 0.6273585, a: 0}
     - _EmissionColor: {r: 1, g: 0.8443396, b: 0.8443396, a: 1}
     - _H_hnerLinienColor: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 0}
-    - _LochPosition: {r: -0.05, g: 0.02, b: 0, a: 0}
+    - _LochPosition: {r: -0.04, g: 0.46, b: 0, a: 0}
     - _OverlayColor: {r: 0.9811321, g: 0.9769612, b: 0.64328945, a: 0}
     - _PinlightLayerColor: {r: 1, g: 1, b: 1, a: 0}
     - _PinlightLayerColor2: {r: 1, g: 0.7311321, b: 0.7311321, a: 0}
