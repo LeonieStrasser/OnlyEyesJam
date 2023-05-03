@@ -100,7 +100,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
-    - _AnimatedBaseTextureOpacity: 1
+    - _AnimatedBaseTextureOpacity: 0
     - _Blend: 0
     - _BlendContrast: 2
     - _BorderOffset: -2

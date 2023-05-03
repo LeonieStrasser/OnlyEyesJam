@@ -494,6 +494,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db858a3c2d0f2b409c15936ce7be179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allSceneSets: []
+  warmColorParticles: {fileID: 0}
+  coldColorParticles: {fileID: 0}
 --- !u!1001 &5049973084734488337
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -568,9 +571,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
         type: 3}
+      propertyPath: allColorSetups.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
+        type: 3}
       propertyPath: allColorSetups.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 5b15a0716e77e7a4bacd437b560b8a97,
+        type: 2}
+    - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
+        type: 3}
+      propertyPath: allColorSetups.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3bb7f9f9fdff79740b691ac68e75f2e6,
+        type: 2}
+    - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
+        type: 3}
+      propertyPath: allColorSetups.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3a774b0767ae5fc4986ffcc4909ae547,
+        type: 2}
+    - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
+        type: 3}
+      propertyPath: allColorSetups.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 24be7136375f96a4bbac7edfe482f4a0,
         type: 2}
     - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
         type: 3}
