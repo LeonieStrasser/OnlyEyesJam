@@ -142,6 +142,7 @@ public class LevelManager : MonoBehaviour
         
         // Fade-Out
         sceneTransitionAnim.SetTrigger(Animator.StringToHash("fadeOut"));
+        //AudioManager.instance.Stop("Win Static");
         
         yield return new WaitForSeconds(0.75f);
         
@@ -164,7 +165,6 @@ public class LevelManager : MonoBehaviour
 
     public void QuitGame()
     {
-        
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

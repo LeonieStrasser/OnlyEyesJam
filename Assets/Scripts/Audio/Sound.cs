@@ -28,33 +28,14 @@ public class Sound
     public AudioSource mySource;
 
     [HideInInspector]
-    public Coroutine fadeInCoroutine, fadeOutCoroutine;
+    public Coroutine fadeCoroutine;
 
-    [HideInInspector] public float startVolume, endVolume, elapsedTime, fadeTime;
+    [HideInInspector] 
+    public float currentVolume;
 
-    public void CustomStart()
-    {
-        Debug.Log("custom start");
-        startVolume = endVolume = myVolume;
-        fadeTime = 1;
-    }
-    public void CustomUpdate()
-    {
-        mySource.volume = Mathf.Lerp(startVolume, endVolume, elapsedTime / fadeTime);
-        elapsedTime += Time.deltaTime;
+    [HideInInspector]
+    public bool isPlaying = false;
 
-        if (mySource.volume == 0f)
-        {
-            mySource.Stop();
-        }
-    }
 
-    public void SetFader(float _startVolume, float _endVolume, float _fadeTime)
-    {
-        startVolume = _startVolume;
-        endVolume = _endVolume;
-        fadeTime = _fadeTime;
-        elapsedTime = 0;
-    }
 }
 

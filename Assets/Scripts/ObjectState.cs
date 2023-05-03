@@ -116,13 +116,16 @@ public class ObjectState : MonoBehaviour
                 SetCloseToAttachFeedback();
                 break;
             case visualStates.Attached:
-                if (_oldState == visualStates.Attached)
-                    StartCoroutine(TelekinesisSoundChangeDown());
                 SetAttachFeedback();
                 break;
             case visualStates.Neutral:
                 if(_oldState == visualStates.Attached)
+                {
                     telekinesisReleaseParticles.Play();
+                    if (_oldState == visualStates.Attached)
+                        StartCoroutine(TelekinesisSoundChangeDown());
+                }
+                    
                 
                 SetNeutralFeedbackState();
                 break;
@@ -174,7 +177,8 @@ public class ObjectState : MonoBehaviour
     void SetChangeFeedback()
     {
         lastRoutine = StartCoroutine(TelekinesisSound(feedbackFadeInDuration));
-        StopCoroutine(feedbackCoroutine);
+        if(feedbackCoroutine != null)
+            StopCoroutine(feedbackCoroutine);
         feedbackCoroutine = StartCoroutine(LerpMaterialFloat("_AnimatedBaseTextureOpacity", 1, feedbackFadeInDuration, (visualState == visualStates.LookedAt || visualState == visualStates.CloseToAttach || visualState == visualStates.Attached)));
     }
 
