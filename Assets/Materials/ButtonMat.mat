@@ -62,7 +62,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RampTex:
-        m_Texture: {fileID: 2800000, guid: 29c52f6c2920a0242804e16813ef6516, type: 3}
+        m_Texture: {fileID: 2800000, guid: 27d81c42920fda14f90f69550f5c081d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -116,8 +116,8 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FillColor: {r: 1, g: 0.9124, b: 0.80799997, a: 0}
-    - _NeutralColor: {r: 1, g: 0.7137255, b: 0.37254903, a: 0}
+    - _FillColor: {r: 0.6132076, g: 0.4663234, b: 0.42519584, a: 0}
+    - _NeutralColor: {r: 0.6132076, g: 0.58813334, b: 0.5582503, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &5522718600509006482
