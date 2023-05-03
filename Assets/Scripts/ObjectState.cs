@@ -171,6 +171,7 @@ public class ObjectState : MonoBehaviour
     void SetChangeFeedback()
     {
         lastRoutine = StartCoroutine(TelekinesisSound(feedbackFadeInDuration));
+        StopCoroutine(feedbackCoroutine);
         feedbackCoroutine = StartCoroutine(LerpMaterialFloat("_AnimatedBaseTextureOpacity", 1, feedbackFadeInDuration, (visualState == visualStates.LookedAt || visualState == visualStates.CloseToAttach || visualState == visualStates.Attached)));
     }
 
@@ -221,6 +222,30 @@ public class ObjectState : MonoBehaviour
         edgeFeedbackCoroutine = StartCoroutine(AnimateMaterialFloat("_EmissionFillAmount", 1, edgeFadeinDuration, (visualState == visualStates.CloseToAttach || visualState == visualStates.Attached), edgeFadinCurve));
     }
 
+    IEnumerator AnimateMaterialFloat(string _valueName, float _endValue, float _duration, bool _condition, AnimationCurve _curve)
+    {
+        // Cache the ID of the material property
+        int _propertyID = Shader.PropertyToID(_valueName);
+
+        float _currentFeedbackValue = meshRenderer.material.GetFloat(_valueName);
+        float timer = 0;
+        while (timer < _duration && _condition)
+        {
+            timer += Time.deltaTime;
+
+            // Calculate the float value to set in the shader
+            float _t = timer / _duration;
+            float _curveValue = _curve.Evaluate(_t);
+            float _value = Mathf.Lerp(_currentFeedbackValue, _endValue, _curveValue);
+
+
+            _value = Mathf.Clamp01(_value);
+
+            meshRenderer.material.SetFloat(_propertyID, _value);
+
+            yield return null;
+        }
+    }
   
     
     IEnumerator LerpMaterialFloat(string _valueName, float _endValue, float _duration, bool _condition)
@@ -291,28 +316,4 @@ public class ObjectState : MonoBehaviour
 
     }
 
-    IEnumerator AnimateMaterialFloat(string _valueName, float _endValue, float _duration, bool _condition, AnimationCurve _curve)
-    {
-        // Cache the ID of the material property
-        int _propertyID = Shader.PropertyToID(_valueName);
-
-        float _currentFeedbackValue = meshRenderer.material.GetFloat(_valueName);
-        float timer = 0;
-        while (timer < _duration && _condition)
-        {
-            timer += Time.deltaTime;
-
-            // Calculate the float value to set in the shader
-            float _t = timer / _duration;
-            float _curveValue = _curve.Evaluate(_t);
-            float _value = Mathf.Lerp(_currentFeedbackValue, _endValue, _curveValue);
-
-
-            _value = Mathf.Clamp01(_value);
-
-            meshRenderer.material.SetFloat(_propertyID, _value);
-
-            yield return null;
-        }
-    }
 }
