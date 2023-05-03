@@ -100,7 +100,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
-    - _AnimatedBaseTextureOpacity: 0
+    - _AnimatedBaseTextureOpacity: 1
     - _Blend: 0
     - _BlendContrast: 2
     - _BorderOffset: -2
@@ -130,7 +130,7 @@ Material:
     - _PinLightOpacity: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RainWorldBorder: -200.81
+    - _RainWorldBorder: 0
     - _RainborderNoise: 76.45
     - _RainborderNoiseScale: 40
     - _ReceiveShadows: 1
@@ -138,7 +138,7 @@ Material:
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 0.2
+    - _Speed: 0.12
     - _SrcBlend: 1
     - _Surface: 0
     - _TilingWave1: 0.38
@@ -149,19 +149,19 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _AnimHighlightColor: {r: 0.6273585, g: 0.9578809, b: 1, a: 0}
+    - _AnimHighlightColor: {r: 0.863241, g: 0.88699996, b: 0.8157232, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color01: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 0}
-    - _Color02: {r: 0.990566, g: 0.9485137, b: 0.9485137, a: 0}
-    - _DarkenColor1: {r: 0.42693123, g: 0.7211851, b: 0.735849, a: 0}
-    - _DarkenColor2: {r: 0, g: 0, b: 0, a: 0}
-    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _H_hnerLinienColor: {r: 0.8018868, g: 0.7073247, b: 0.7073247, a: 0}
+    - _Color01: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 0}
+    - _Color02: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 0}
+    - _DarkenColor1: {r: 0.8679245, g: 0.7763439, b: 0.6673193, a: 1}
+    - _DarkenColor2: {r: 0.7075472, g: 0.6440784, b: 0.53733534, a: 1}
+    - _EmissionColor: {r: 1, g: 0.8881191, b: 0.6745283, a: 1}
+    - _H_hnerLinienColor: {r: 1, g: 1, b: 1, a: 1}
     - _LochPosition: {r: -0.05, g: 0.02, b: 0, a: 0}
-    - _OverlayColor: {r: 0.8018868, g: 0.66571736, b: 0.51063544, a: 0}
-    - _PinlightLayerColor: {r: 1, g: 0.6745283, b: 0.6745283, a: 0}
-    - _PinlightLayerColor2: {r: 0.9622641, g: 0.19517615, b: 0.19517615, a: 0}
+    - _OverlayColor: {r: 0.8547735, g: 0.8773585, b: 0.8070043, a: 1}
+    - _PinlightLayerColor: {r: 1, g: 0.9743279, b: 0.9292453, a: 1}
+    - _PinlightLayerColor2: {r: 0.6509434, g: 0.60593283, b: 0.51891243, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &957808331742204790
