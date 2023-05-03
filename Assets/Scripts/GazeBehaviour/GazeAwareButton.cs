@@ -15,6 +15,10 @@ public class GazeAwareButton : GazeAwareBehaviour
     [SerializeField] UnityEvent OnDehoverEvents;
     [SerializeField] UnityEvent OnKlickEvents;
 
+    [SerializeField] bool makeSound;
+
+    bool interactible = true;
+
     // Klicktimer
     float klickTimer;
 
@@ -22,15 +26,10 @@ public class GazeAwareButton : GazeAwareBehaviour
     {
         if(buttonMesh)
             buttonMat = buttonMesh.material;
-        
+
+        interactible = true;
         ResetKlickTimer();
     }
-
-    /*void OnEnable()
-    {
-        buttonMat = buttonMesh.material;
-        Debug.Log("GOT MAT? :" + buttonMat);
-    }*/
 
     protected override void OnFocusStart()
     {
@@ -64,14 +63,23 @@ public class GazeAwareButton : GazeAwareBehaviour
         {
             // Timer laeuft jeden Frame ab
 
-            klickTimer -= Time.deltaTime;
-            
-            if(buttonMesh)
-                buttonMat.SetFloat("_FillAmount", 1 - klickTimer / klickTime);
+
+            if (interactible)
+            {
+                klickTimer -= Time.deltaTime;
+
+
+                if (buttonMesh)
+                    buttonMat.SetFloat("_FillAmount", 1 - klickTimer / klickTime);
+            }
+                
+                
+
+
             
             if (klickTimer <= 0)
             {
-                ActivateKlick();
+                StartCoroutine(ActivateKlick());
                 ResetKlickTimer();
             }
         }
@@ -81,13 +89,16 @@ public class GazeAwareButton : GazeAwareBehaviour
     {
         klickTimer = klickTime;
         
-        if(buttonMesh)
-            buttonMat.SetFloat("_FillAmount", 0);
+        if(interactible)
+            if(buttonMesh)
+                buttonMat.SetFloat("_FillAmount", 0);
     }
 
-    void ActivateKlick()
+    private IEnumerator ActivateKlick()
     {
         OnKlick();
+        interactible = false;
+        yield return new WaitForSeconds(AudioManager.instance.GetLength("UI Select"));
         OnKlickEvents.Invoke();
 
         
@@ -95,14 +106,18 @@ public class GazeAwareButton : GazeAwareBehaviour
 
     protected virtual void OnKlick()
     {
-        AudioManager.instance.Play("UI Select");
+        if(makeSound)
+            AudioManager.instance.Play("UI Select");
     }
     protected virtual void OnHover()
     {
-        AudioManager.instance.Play("UI Static");
+        if(makeSound)
+            AudioManager.instance.Play("UI Static");
     }
     protected virtual void OnHoverEnd()
     {
-        AudioManager.instance.Stop("UI Static");
+        if(makeSound)
+            AudioManager.instance.Stop("UI Static");
     }
+
 }

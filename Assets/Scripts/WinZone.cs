@@ -142,6 +142,7 @@ public class WinZone : MonoBehaviour
     {
         timerRun = true;
         winObject = _newWinObject;
+        LevelManager.instance.attachedWinzones++;
 
         //winObject.GetComponent<ObjectState>().ChangePhysicalState(ObjectState.physicalStates.Immovable);
 
@@ -156,6 +157,7 @@ public class WinZone : MonoBehaviour
         winObject = null;
         timerRun = false;
         winTimer = stayTimeToWin;
+        LevelManager.instance.attachedWinzones--;
 
         if (winzoneSucceeded)
         {
@@ -194,7 +196,8 @@ public class WinZone : MonoBehaviour
         sparkleVFX.Play();
 
         if (LevelManager.instance.attachedWinzones <= 1)
-            AudioManager.instance.Play("Win Static");
+            if(!winzoneSucceeded)
+                AudioManager.instance.Play("Win Static");
     }
 
     void DetachFeedback()
@@ -294,7 +297,6 @@ public class WinZone : MonoBehaviour
         StartCoroutine(Dissolve());
 
         AudioManager.instance.Play("Win Jingle");
-        AudioManager.instance.Stop("Win Static");
     }
 
     #endregion
