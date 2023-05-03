@@ -14,20 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   postExposure:
-    m_OverrideState: 0
-    m_Value: 0.59
+    m_OverrideState: 1
+    m_Value: 0.15
   contrast:
     m_OverrideState: 0
-    m_Value: 3
+    m_Value: 0
   colorFilter:
     m_OverrideState: 1
-    m_Value: {r: 0.9111338, g: 0.98779637, b: 0.990566, a: 1}
+    m_Value: {r: 0.99215686, g: 0.94192225, b: 0.9098039, a: 1}
   hueShift:
     m_OverrideState: 0
     m_Value: 0
   saturation:
-    m_OverrideState: 1
-    m_Value: -2
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &-4207081411084585430
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01700fd266d6914ababb731e09af2eb, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   mode:
     m_OverrideState: 1
     m_Value: 2
@@ -130,10 +130,10 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 0.95916003, y: 1, z: 0.8739766, w: 0.08988764}
+    m_Value: {x: 0.95916003, y: 1, z: 0.8739766, w: 0.04044388}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 0.98935866, y: 1, z: 0.98812276, w: 0.35955057}
+    m_Value: {x: 0.98935866, y: 1, z: 0.98812276, w: 0.0618047}
   highlights:
     m_OverrideState: 0
     m_Value: {x: 0.9611205, y: 0.95004654, z: 1, w: -0.000000020091454}
@@ -182,9 +182,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c23e3b12dc18c42a140437e53d3951, type: 3}
   m_Name: Tonemapping
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   mode:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
 --- !u!114 &1051600073989541056
 MonoBehaviour:

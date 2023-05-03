@@ -15,10 +15,10 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: 0.32
+    m_Value: 0.17
   contrast:
     m_OverrideState: 1
-    m_Value: 25
+    m_Value: 10
   colorFilter:
     m_OverrideState: 0
     m_Value: {r: 1, g: 0.9788557, b: 0.9669811, a: 1}
@@ -71,10 +71,10 @@ MonoBehaviour:
   active: 1
   lift:
     m_OverrideState: 1
-    m_Value: {x: 0.7693825, y: 0.8237484, z: 1, w: 0.067114174}
+    m_Value: {x: 0.9821194, y: 0.97806525, z: 1, w: 0.0058896854}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 0.9876716, y: 0.965625, z: 1, w: 0.06961826}
+    m_Value: {x: 0.9604571, y: 0.99261564, z: 1, w: -0.07323888}
   gain:
     m_OverrideState: 0
     m_Value: {x: 1, y: 1, z: 1, w: 0}
@@ -274,8 +274,8 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.2996633
-          value: 0.5362319
+          time: 0.22126436
+          value: 0.63190186
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -283,8 +283,8 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.68350166
-          value: 0.51449275
+          time: 0.5545977
+          value: 0.55214727
           inSlope: -0
           outSlope: -0
           tangentMode: 0
@@ -322,6 +322,7 @@ MonoBehaviour:
   - {fileID: -5086743418825228566}
   - {fileID: 2389937873431818187}
   - {fileID: -2445148567042234129}
+  - {fileID: 6978295687416190919}
 --- !u!114 &1089415359039947733
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -334,7 +335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01700fd266d6914ababb731e09af2eb, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   mode:
     m_OverrideState: 1
     m_Value: 2
@@ -402,3 +403,19 @@ MonoBehaviour:
   highlightsEnd:
     m_OverrideState: 0
     m_Value: 1
+--- !u!114 &6978295687416190919
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97c23e3b12dc18c42a140437e53d3951, type: 3}
+  m_Name: Tonemapping
+  m_EditorClassIdentifier: 
+  active: 0
+  mode:
+    m_OverrideState: 1
+    m_Value: 2
