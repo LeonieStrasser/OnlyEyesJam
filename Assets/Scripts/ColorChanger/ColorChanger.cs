@@ -18,12 +18,14 @@ public class ColorChanger : MonoBehaviour
 
 
     [Button]
-    public void SetRandomColorsInScene()
+    public void SetRandomColorsInScene(out bool _warmColors)
     {
         ClearAllInstanceMaterialLists();
         SetAllMaterialInstances();
         SetRandomColorSet();
         LodeColorsFromPalette(currentSetup);
+
+        _warmColors = currentSetup.warmColors;
     }
 
     void SetRandomColorSet()
