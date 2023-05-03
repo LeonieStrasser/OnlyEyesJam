@@ -45,6 +45,7 @@ Material:
     m_Floats:
     - _AlphaTransmission: 1
     - _AmbientOcclusion: 0.89
+    - _DeepWaterOpacity: 0.948
     - _Depth: 4.97
     - _Displacement: 0.045
     - _DistortionScale: 1.26
@@ -53,13 +54,14 @@ Material:
     - _NormalStrength_1: 0.74
     - _QueueControl: 1
     - _QueueOffset: 0
+    - _ShallowWaterOpacity: 0.932
     - _ShoreBlend: 1.59
     - _ShoreOffset: 0.34
     - _Smoothness: 0.761
     - _Speed: 0.05
     - _Strength: 0.48
     - _TestFloat: 1
-    - _UseShaderAlpha: 1
+    - _UseShaderAlpha: 0
     - _WaterClarity: 0.639
     - _WaveStrength: 0.02
     m_Colors:
