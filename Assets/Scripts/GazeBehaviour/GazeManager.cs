@@ -8,9 +8,9 @@ public class GazeManager : MonoBehaviour
 
     [HideInInspector] public Vector3 gazePosition;
 
-    [Header("General Settings")]
+    [Header("General Settings")] 
+    bool gazeEnabled = true;
     [SerializeField] bool useMouseAsGaze;
-    [SerializeField] bool enableGazeIndicator;
     [SerializeField] bool enableGazeSmoothing = true;
     [SerializeField] bool debug;
 
@@ -69,6 +69,9 @@ public class GazeManager : MonoBehaviour
     void Update()
     {
         UpdateGazePosition();
+        
+        if(!gazeEnabled)
+            return;
 
         DetectObjectSwitch();
 
@@ -103,6 +106,14 @@ public class GazeManager : MonoBehaviour
             return;
 
         currentImpactDistance = Mathf.Lerp(impactDistanceMax, 0, currentTelekinesisDuration / telekinesisMaxDuration);
+    }
+
+    public void SetGazeActive(bool _activeStatus)
+    {
+        gazeEnabled = _activeStatus;
+        
+        if(!gazeEnabled && currentAttachedObject)
+            Detach();
     }
 
     void DetectObjectSwitch()
