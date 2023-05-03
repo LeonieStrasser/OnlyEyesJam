@@ -34,8 +34,9 @@ public class ObjectState : MonoBehaviour
 
     public enum visualStates
     {
-        Neutral, LookedAt, CloseToAttach, Attached, WinGroup
+        Neutral, LookedAt, CloseToAttach, Attached
     }
+    public bool winGroup;
 
     public visualStates visualState;
 
@@ -70,7 +71,7 @@ public class ObjectState : MonoBehaviour
         if(physicalState == physicalStates.Falling && rb.velocity.magnitude < 0.1f)
             ChangePhysicalState(physicalStates.Grounded);
 
-        if(visualState == visualStates.WinGroup)
+        if(winGroup)
         {
             meshRenderer.material.SetFloat("_RainWorldBorder", myGroupFeedback.RainWorldBorder);
         }
@@ -121,9 +122,6 @@ public class ObjectState : MonoBehaviour
             case visualStates.Neutral:
                 SetNeutralFeedbackState();
                 telekinesisChannelParticles.Stop();
-                break;
-            case visualStates.WinGroup:
-                SetWinFeedback();
                 break;
         }
     }
@@ -223,10 +221,7 @@ public class ObjectState : MonoBehaviour
         edgeFeedbackCoroutine = StartCoroutine(AnimateMaterialFloat("_EmissionFillAmount", 1, edgeFadeinDuration, (visualState == visualStates.CloseToAttach || visualState == visualStates.Attached), edgeFadinCurve));
     }
 
-    void SetWinFeedback()
-    {
-        //meshRenderer.material = debugMaterial;
-    }
+  
     
     IEnumerator LerpMaterialFloat(string _valueName, float _endValue, float _duration, bool _condition)
     {

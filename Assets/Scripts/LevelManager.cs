@@ -92,7 +92,7 @@ public class LevelManager : MonoBehaviour
             {
                 foreach (var _conductor in item.allCunductors)
                 {
-                    _conductor.gameObject.GetComponent<ObjectState>().ChangeVisualState(ObjectState.visualStates.WinGroup);
+                    _conductor.gameObject.GetComponent<ObjectState>().winGroup = true;
                 }
             }
 
