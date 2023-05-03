@@ -17,7 +17,7 @@ public class ColorChanger : MonoBehaviour
 
 
 
-    [Button]
+
     public void SetRandomColorsInScene(out bool _warmColors)
     {
         ClearAllInstanceMaterialLists();
