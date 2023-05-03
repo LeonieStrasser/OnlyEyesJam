@@ -12,22 +12,20 @@ public class ColorChanger : MonoBehaviour
     [BoxGroup("Materialgroups to change Color")] [SerializeField] CustomizableMaterial[] ColorChangeMatsOfType;
 
 
-    private void Start()
-    {
-
-    }
 
 
 
 
 
     [Button]
-    public void SetRandomColorsInScene()
+    public void SetRandomColorsInScene(out bool _warmColors)
     {
         ClearAllInstanceMaterialLists();
         SetAllMaterialInstances();
         SetRandomColorSet();
         LodeColorsFromPalette(currentSetup);
+
+        _warmColors = currentSetup.warmColors;
     }
 
     void SetRandomColorSet()
@@ -98,10 +96,7 @@ public class ColorChanger : MonoBehaviour
         }
     }
 
-    void ApplyPaletteColorsToMaterials(CustomizableMaterial matType, ColorPaletteSetup _currentPalette, int typeIndex, Material _material)
-    {
-
-    }
+   
 
     void SetNewColor(Material _material, string _changeColorName, Color _newColor)
     {
