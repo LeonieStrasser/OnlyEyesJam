@@ -18,10 +18,10 @@ MonoBehaviour:
     m_Value: {x: 0.85041094, y: 0.98042053, z: 1, w: -0.012091899}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.8900471, z: 0.8301398, w: 0.012091897}
+    m_Value: {x: 1, y: 0.8900471, z: 0.8301398, w: 0.16299139}
   gain:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 0.9837669, z: 0.87896335, w: 0.09587729}
 --- !u!114 &-5882805749385718826
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -50,47 +50,6 @@ MonoBehaviour:
   rounded:
     m_OverrideState: 0
     m_Value: 0
---- !u!114 &-2967065203320848698
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
-  m_Name: Bloom
-  m_EditorClassIdentifier: 
-  active: 0
-  threshold:
-    m_OverrideState: 1
-    m_Value: 1
-  intensity:
-    m_OverrideState: 1
-    m_Value: 1
-  scatter:
-    m_OverrideState: 0
-    m_Value: 0.7
-  clamp:
-    m_OverrideState: 0
-    m_Value: 65472
-  tint:
-    m_OverrideState: 0
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
-  highQualityFiltering:
-    m_OverrideState: 0
-    m_Value: 0
-  skipIterations:
-    m_OverrideState: 0
-    m_Value: 1
-  dirtTexture:
-    m_OverrideState: 0
-    m_Value: {fileID: 0}
-    dimension: 1
-  dirtIntensity:
-    m_OverrideState: 0
-    m_Value: 0
 --- !u!114 &-881242918275547372
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -106,7 +65,7 @@ MonoBehaviour:
   active: 1
   mode:
     m_OverrideState: 0
-    m_Value: 1
+    m_Value: 2
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,7 +80,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   components:
   - {fileID: -881242918275547372}
-  - {fileID: -2967065203320848698}
   - {fileID: -5882805749385718826}
   - {fileID: 1184477340274837201}
   - {fileID: 7331477948798816310}
@@ -140,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01700fd266d6914ababb731e09af2eb, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   mode:
     m_OverrideState: 1
     m_Value: 2
@@ -189,13 +147,13 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 0.9752537, y: 1, z: 0.94295967, w: 0.25842696}
+    m_Value: {x: 0.8039315, y: 0.9300424, z: 1, w: -0.029204875}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 0.9655234, y: 1, z: 0.8757208, w: 0.47191012}
+    m_Value: {x: 1, y: 0.9686829, z: 0.7484391, w: 0.23969322}
   highlights:
     m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_Value: {x: 0.8739586, y: 0.9801223, z: 1, w: -0.009587726}
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0
@@ -404,8 +362,8 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.2996633
-          value: 0.5362319
+          time: 0.3097826
+          value: 0.5317919
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -450,14 +408,14 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0.59
   contrast:
-    m_OverrideState: 1
-    m_Value: 17
+    m_OverrideState: 0
+    m_Value: 0
   colorFilter:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0.9939293, b: 0.96862745, a: 1}
+    m_Value: {r: 1, g: 0.9846698, b: 0.9386792, a: 1}
   hueShift:
     m_OverrideState: 0
     m_Value: 0
   saturation:
     m_OverrideState: 0
-    m_Value: -4
+    m_Value: 0
