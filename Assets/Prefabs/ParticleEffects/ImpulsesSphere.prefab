@@ -154,7 +154,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   duration: 2
-  maxScale: 20
+  maxScale: 30
 --- !u!114 &6458867000679057746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,8 +180,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.66170186
-      value: 1.0006001
+      time: 0.6153762
+      value: 0.9982388
       inSlope: 0
       outSlope: 0
       tangentMode: 0
