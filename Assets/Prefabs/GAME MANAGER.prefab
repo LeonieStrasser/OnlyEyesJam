@@ -57,9 +57,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab7c65afff954f14e928f497bfb3185e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rainWorldBorder: -8
-  maxWorldValue: 20
-  minWorldValue: -10
+  rainWorldBorder: 0
+  maxWorldValue: 0.4
+  minWorldValue: 0
   winEffectDuration: 5
   allMovableMaterials:
   - {fileID: 2100000, guid: 64b396dceb036be47b453a7fd100101b, type: 2}
@@ -201,7 +201,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gazePosition: {x: 0, y: 0, z: 0}
-  gazeIndicator: {fileID: 0}
   useMouseAsGaze: 0
   enableGazeIndicator: 0
   enableGazeSmoothing: 1
@@ -277,6 +276,7 @@ GameObject:
   - component: {fileID: 2226075576504176086}
   - component: {fileID: 2226075576504176087}
   - component: {fileID: 1920227479}
+  - component: {fileID: 1920227480}
   m_Layer: 3
   m_Name: Level Manager
   m_TagString: Untagged
@@ -349,7 +349,20 @@ MonoBehaviour:
     type: 3}
   maxCombinedWinZoneHeight: 3
   maxPositionFindAttempts: 500
-  winZoneAmount: {x: 1, y: 1}
+  winZoneAmount: {x: 1, y: 2}
+--- !u!65 &1920227480
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2226075576504176073}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.79, y: 4.39, z: 0}
+  m_Center: {x: 0, y: 10.1, z: 0}
 --- !u!1 &2226075577233482385
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,18 +444,183 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f438abb3ddfec146a677345b19969d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenWindupSoundAndTelekinesis: 0
+  timeBetweenWindupSoundAndTelekinesis: 3.68
   sounds:
-  - name: BackgroundMusic
-    myClip: {fileID: 8300000, guid: 79e6baad2fd414b82a6d49ce1568d2e5, type: 3}
-    myVolume: 1
+  - name: Ambience
+    myClip: {fileID: 8300000, guid: 6861333e3126ba84194b5d192d8236d6, type: 3}
+    myVolume: 0.145
     myPitch: 1
     myLoop: 1
-    startOnPlay: 1
+    startOnPlay: 0
     randomPitch: 0
     myFadeIn: 0
     myFadeOut: 0
     randomPichBetweenTwoValues: {x: 0.473202, y: 2.2953064}
+    mySource: {fileID: 0}
+    startVolume: 0
+    endVolume: 0
+    elapsedTime: 0
+    fadeTime: 0
+  - name: Stone in Water
+    myClip: {fileID: 8300000, guid: f82f5e6fd7cbff24b8c2d01fb2633f6f, type: 3}
+    myVolume: 0.145
+    myPitch: 1
+    myLoop: 0
+    startOnPlay: 0
+    randomPitch: 1
+    myFadeIn: 0
+    myFadeOut: 0
+    randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
+    mySource: {fileID: 0}
+    startVolume: 0
+    endVolume: 0
+    elapsedTime: 0
+    fadeTime: 0
+  - name: Stone on Gravel
+    myClip: {fileID: 8300000, guid: 2ec25bc6705971e41bd0c82426143ace, type: 3}
+    myVolume: 0.058
+    myPitch: 1
+    myLoop: 0
+    startOnPlay: 0
+    randomPitch: 1
+    myFadeIn: 0
+    myFadeOut: 0
+    randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
+    mySource: {fileID: 0}
+    startVolume: 0
+    endVolume: 0
+    elapsedTime: 0
+    fadeTime: 0
+  - name: Stone on Stone
+    myClip: {fileID: 8300000, guid: bc85bb0fa9b64ea41a8c486e641e3ff0, type: 3}
+    myVolume: 0.029
+    myPitch: 1
+    myLoop: 0
+    startOnPlay: 0
+    randomPitch: 1
+    myFadeIn: 0
+    myFadeOut: 0
+    randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
+    mySource: {fileID: 0}
+    startVolume: 0
+    endVolume: 0
+    elapsedTime: 0
+    fadeTime: 0
+  - name: TKinese State Change Down
+    myClip: {fileID: 8300000, guid: 8c7ab865a9df38b4b94c1928c09966e9, type: 3}
+    myVolume: 0.427
+    myPitch: 1
+    myLoop: 0
+    startOnPlay: 0
+    randomPitch: 0
+    myFadeIn: 0
+    myFadeOut: 0
+    randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
+    mySource: {fileID: 0}
+    startVolume: 0
+    endVolume: 0
+    elapsedTime: 0
+    fadeTime: 0
+  - name: TKinese State Change Up
+    myClip: {fileID: 8300000, guid: 5ca23de9891cca64dab194c3bf5b6ce2, type: 3}
+    myVolume: 0.435
+    myPitch: 1
+    myLoop: 0
+    startOnPlay: 0
+    randomPitch: 0
+    myFadeIn: 0
+    myFadeOut: 0
+    randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
+    mySource: {fileID: 0}
+    startVolume: 0
+    endVolume: 0
+    elapsedTime: 0
+    fadeTime: 0
+  - name: TKinese Static 1
+    myClip: {fileID: 8300000, guid: dc7c8725a5c57ac4e9795b6a0cdb06b9, type: 3}
+    myVolume: 0.413
+    myPitch: 1
+    myLoop: 1
+    startOnPlay: 0
+    randomPitch: 0
+    myFadeIn: 0.67
+    myFadeOut: 0.69
+    randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
+    mySource: {fileID: 0}
+    startVolume: 0
+    endVolume: 0
+    elapsedTime: 0
+    fadeTime: 0
+  - name: TKinese Static 2
+    myClip: {fileID: 8300000, guid: 58a4064770635684abb45f9eef4d5a1f, type: 3}
+    myVolume: 0.42
+    myPitch: 1
+    myLoop: 1
+    startOnPlay: 0
+    randomPitch: 0
+    myFadeIn: 0.69
+    myFadeOut: 0.69
+    randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
+    mySource: {fileID: 0}
+    startVolume: 0
+    endVolume: 0
+    elapsedTime: 0
+    fadeTime: 0
+  - name: Win Jingle
+    myClip: {fileID: 8300000, guid: 7e6225d3fe88eb941aeb82d5ab73939b, type: 3}
+    myVolume: 0.522
+    myPitch: 1
+    myLoop: 0
+    startOnPlay: 0
+    randomPitch: 0
+    myFadeIn: 0
+    myFadeOut: 0
+    randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
+    mySource: {fileID: 0}
+    startVolume: 0
+    endVolume: 0
+    elapsedTime: 0
+    fadeTime: 0
+  - name: Win Static
+    myClip: {fileID: 8300000, guid: e03e1a7eafd1cd141907fb3ff5659620, type: 3}
+    myVolume: 0.086
+    myPitch: 1
+    myLoop: 1
+    startOnPlay: 0
+    randomPitch: 0
+    myFadeIn: 4
+    myFadeOut: 4
+    randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
+    mySource: {fileID: 0}
+    startVolume: 0
+    endVolume: 0
+    elapsedTime: 0
+    fadeTime: 0
+  - name: UI Static
+    myClip: {fileID: 8300000, guid: 3925b40981b3fa94b8dced3a6ef24240, type: 3}
+    myVolume: 0.046
+    myPitch: 1
+    myLoop: 0
+    startOnPlay: 0
+    randomPitch: 0
+    myFadeIn: 0.36
+    myFadeOut: 0.89
+    randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
+    mySource: {fileID: 0}
+    startVolume: 0
+    endVolume: 0
+    elapsedTime: 0
+    fadeTime: 0
+  - name: UI Select
+    myClip: {fileID: 8300000, guid: ecf9ec284eda4c84fa727a3d6218fe91, type: 3}
+    myVolume: 0.259
+    myPitch: 1
+    myLoop: 0
+    startOnPlay: 0
+    randomPitch: 0
+    myFadeIn: 0
+    myFadeOut: 0
+    randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
     mySource: {fileID: 0}
     startVolume: 0
     endVolume: 0
@@ -494,7 +672,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db858a3c2d0f2b409c15936ce7be179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allSceneSets: []
+  allSceneSets:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   warmColorParticles: {fileID: 0}
   coldColorParticles: {fileID: 0}
 --- !u!1001 &5049973084734488337
