@@ -107,6 +107,8 @@ public class LevelManager : MonoBehaviour
 
         if (debug)
             Debug.Log("WON!!!!");
+
+        attachedWinzones = 0;
         
         StartSceneTransition();
     }
@@ -142,7 +144,7 @@ public class LevelManager : MonoBehaviour
         
         // Fade-Out
         sceneTransitionAnim.SetTrigger(Animator.StringToHash("fadeOut"));
-        //AudioManager.instance.Stop("Win Static");
+        AudioManager.instance.Stop("Win Static");
         
         yield return new WaitForSeconds(1f);
         
