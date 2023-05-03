@@ -8,9 +8,6 @@ public class GazeManager : MonoBehaviour
 
     [HideInInspector] public Vector3 gazePosition;
 
-    [Header("References")]
-    [SerializeField] RectTransform gazeIndicator;
-
     [Header("General Settings")]
     [SerializeField] bool useMouseAsGaze;
     [SerializeField] bool enableGazeIndicator;
@@ -64,8 +61,6 @@ public class GazeManager : MonoBehaviour
 
         useMouseAsGaze = !TobiiAPI.IsConnected;
 
-        gazeIndicator.gameObject.SetActive(enableGazeIndicator);
-
         mainCam = Camera.main;
 
         currentGazeDuration = 0;
@@ -98,8 +93,6 @@ public class GazeManager : MonoBehaviour
 
         else
             gazePosition = rawGazePos;
-
-        gazeIndicator.position = gazePosition;
     }
 
     void UpdateTelekinesisUI()
@@ -141,7 +134,6 @@ public class GazeManager : MonoBehaviour
                 // telekinesis channeling is halfway done
                 if (currentGazeDuration / timeTillTelekinesis >= 0.5f)
                 {
-                    GazeIndicator.Instance.StartFocusAnim();
                     currentFocusedObjectState?.ChangeVisualState(ObjectState.visualStates.CloseToAttach);
                 }
 
@@ -164,8 +156,6 @@ public class GazeManager : MonoBehaviour
                 currentFocusedObjectState?.ChangeVisualState(ObjectState.visualStates.Neutral);
 
             currentFocusedObjectState = null;
-
-            GazeIndicator.Instance.EndFocusAnim();
         }
     }
 

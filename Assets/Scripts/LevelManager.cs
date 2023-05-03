@@ -30,6 +30,8 @@ public class LevelManager : MonoBehaviour
 
     ObjectSpawner spawner;
 
+    SetupRandomizer randomizer;
+
     CubeGroupFeedback myWinFeedback;
 
     void Awake()
@@ -44,6 +46,7 @@ public class LevelManager : MonoBehaviour
         currentLevelState = levelState.play;
         myWinFeedback = FindObjectOfType<CubeGroupFeedback>();
         spawner = GetComponent<ObjectSpawner>();
+        randomizer = FindObjectOfType<SetupRandomizer>();
     }
 
     public void RegisterWinZones()
@@ -135,7 +138,7 @@ public class LevelManager : MonoBehaviour
         ClearWinZones();
         succededWinzones = 0;
         
-        // FARBEN ÄNDERN
+        randomizer.RandomizeSetup();
         
         // Fade-Out
         sceneTransitionAnim.SetTrigger(Animator.StringToHash("fadeOut"));
