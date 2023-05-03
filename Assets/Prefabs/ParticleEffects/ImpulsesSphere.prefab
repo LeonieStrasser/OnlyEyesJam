@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6779013393584454401}
   - component: {fileID: 6779013393584454400}
   - component: {fileID: 6458867000679057746}
+  - component: {fileID: 1948399029263211446}
   m_Layer: 0
   m_Name: ImpulsesSphere
   m_TagString: Untagged
@@ -106,7 +107,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6779013393584454411}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f8596f89b57ca845bb749d3374ee68f, type: 3}
   m_Name: 
@@ -154,7 +155,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   duration: 2
-  maxScale: 20
+  maxScale: 30
 --- !u!114 &6458867000679057746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,8 +181,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.66170186
-      value: 1.0006001
+      time: 0.6153762
+      value: 0.9982388
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -203,3 +204,41 @@ MonoBehaviour:
   duration: 2
   myRenderer: {fileID: 6779013393584454405}
   valueToAnimate: _Opacity
+--- !u!114 &1948399029263211446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6779013393584454411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8596f89b57ca845bb749d3374ee68f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  duration: 2
+  maxScale: 30

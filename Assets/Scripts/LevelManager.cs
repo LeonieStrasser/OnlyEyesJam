@@ -126,12 +126,12 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator SceneTransition()
     {
-        yield return new WaitForSeconds(9f);
+        yield return new WaitForSeconds(9.75f);
         
         // Fade-In
         sceneTransitionAnim.SetTrigger(Animator.StringToHash("fadeIn"));
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.5f);
         
         myConductorManager.ClearConductorList();
         spawner.ClearAllObjects();
@@ -143,11 +143,11 @@ public class LevelManager : MonoBehaviour
         // Fade-Out
         sceneTransitionAnim.SetTrigger(Animator.StringToHash("fadeOut"));
         
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(1f);
         
         spawner.StartSpawning();
         
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4.5f);
         
         spawner.PlaceWinZones();
     }
