@@ -101,7 +101,7 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DissolveEdgeWidth: 0
-    - _DissolveFillAmount: 1
+    - _DissolveFillAmount: 0.63
     - _DissolveHeight: 0.31
     - _DissolveNoiseScale: 20
     - _DissolveNoiseStrength: 0.15
