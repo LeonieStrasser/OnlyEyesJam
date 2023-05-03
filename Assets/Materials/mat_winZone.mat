@@ -79,7 +79,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 1
+    - _Alpha: 0.688
     - _AlphaClip: 0
     - _Blend: 0
     - _BlendOp: 0
@@ -100,8 +100,8 @@ Material:
     - _DeformStrength: 0.02
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DissolveEdgeWidth: 0
-    - _DissolveFillAmount: 0.63
+    - _DissolveEdgeWidth: 0.146
+    - _DissolveFillAmount: 1
     - _DissolveHeight: 0.31
     - _DissolveNoiseScale: 20
     - _DissolveNoiseStrength: 0.15
@@ -146,8 +146,8 @@ Material:
     - _Color: {r: 1, g: 0.5372549, b: 0.47450978, a: 0.57254905}
     - _Color1: {r: 1, g: 0, b: 0, a: 0.3254902}
     - _Color2: {r: 1, g: 0.79322517, b: 0, a: 0.54509807}
-    - _CurrentColor: {r: 0.9960785, g: 1, b: 0.0627451, a: 0.65882355}
-    - _DissolveEdgeColor: {r: 0, g: 0, b: 0, a: 1}
+    - _CurrentColor: {r: 1, g: 0.21570703, b: 0.062745094, a: 0.65882355}
+    - _DissolveEdgeColor: {r: 0, g: 1, b: 0.6760001, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColor: {r: 0.49056596, g: 0, b: 0, a: 1}
     - _IdleColor: {r: 0.9254902, g: 0.60784316, b: 0.61960787, a: 0}
