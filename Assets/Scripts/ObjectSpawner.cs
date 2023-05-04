@@ -117,9 +117,11 @@ public class ObjectSpawner : MonoBehaviour
 
                 spawnedObjects.Add(Instantiate(spawnableObject.objectPrefab, spawnPoint, Quaternion.Euler(0, 0, Random.Range(0f, 360f))));
 
-                yield return new WaitForSeconds(0.1f);
+                //yield return new WaitForSeconds(0.1f);
             }
         }
+
+        yield return null;
     }
 
     public void ClearAllObjects()
