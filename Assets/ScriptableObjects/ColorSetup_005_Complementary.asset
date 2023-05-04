@@ -78,21 +78,21 @@ MonoBehaviour:
     - valueName: _Shallow_Water_Color
       color: {r: 0.86666673, g: 0.81568635, b: 0.7568628, a: 0}
     - valueName: _Specular
-      color: {r: 0.5568628, g: 0.39607847, b: 0.21176472, a: 0}
+      color: {r: 0.5568628, g: 0.34117648, b: 0.09019608, a: 0}
   - materialName: "05 Color f\xFCr Ziel"
     index: 5
     allColorValues:
     - valueName: _IdleColor
-      color: {r: 0.5137255, g: 1, b: 0.9803922, a: 0.65882355}
+      color: {r: 1, g: 0.8352942, b: 0.5176471, a: 0.65882355}
     - valueName: _WinColor
-      color: {r: 1, g: 0.8352941, b: 0.5176471, a: 0.65882355}
+      color: {r: 0.5137255, g: 1, b: 0.98039216, a: 0.65882355}
   - materialName: "06 Color f\xFCr MenuButtons"
     index: 6
     allColorValues:
     - valueName: _NeutralColor
-      color: {r: 1, g: 1, b: 1, a: 0}
+      color: {r: 0.8862746, g: 0.58431375, b: 0.27058825, a: 0}
     - valueName: _FillColor
-      color: {r: 1, g: 1, b: 1, a: 0}
+      color: {r: 0.9058824, g: 0.73333335, b: 0.50980395, a: 0}
   - materialName: "07 Color f\xFCr MenuIcons"
     index: 7
     allColorValues:
@@ -124,10 +124,10 @@ MonoBehaviour:
     index: 10
     allColorValues:
     - valueName: _Color_A
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 1, g: 1, b: 1, a: 0}
     - valueName: _Color_B
       color: {r: 0, g: 0, b: 0, a: 0}
     - valueName: _Color_C
       color: {r: 0, g: 0, b: 0, a: 0}
     - valueName: _Color_D
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 0.7843138, g: 0.5686275, b: 0.38823533, a: 0}
