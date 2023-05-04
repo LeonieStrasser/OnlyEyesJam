@@ -9,7 +9,7 @@ public class GazeManager : MonoBehaviour
     [HideInInspector] public Vector3 gazePosition;
 
     [Header("General Settings")] 
-    bool gazeEnabled = true;
+    public bool gazeEnabled = true;
     [SerializeField] bool useMouseAsGaze;
     [SerializeField] bool enableGazeSmoothing = true;
     [SerializeField] bool debug;
@@ -112,7 +112,13 @@ public class GazeManager : MonoBehaviour
     {
         gazeEnabled = _activeStatus;
         
-        if(!gazeEnabled && currentAttachedObject)
+        if (currentFocusedObjectState)
+            currentFocusedObjectState?.ChangeVisualState(ObjectState.visualStates.Neutral);
+        
+        currentLookingAt = null;
+        currentGazeDuration = 0;
+
+        if (!gazeEnabled && currentAttachedObject)
             Detach();
     }
 
