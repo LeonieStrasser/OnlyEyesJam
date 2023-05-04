@@ -165,10 +165,6 @@ public class ObjectState : MonoBehaviour
         if (objectState != null)
             AudioManager.instance.Play("Stone on Stone");
 
-        GroundFeedback groundFeedback = other.gameObject.GetComponent<GroundFeedback>();
-        if (groundFeedback != null)
-            AudioManager.instance.Play("Stone on Gravel");
-
         if (physicalState != physicalStates.Attached)
         {
             ChangePhysicalState(physicalStates.Grounded);

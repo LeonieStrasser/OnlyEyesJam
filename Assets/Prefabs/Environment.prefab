@@ -685,7 +685,7 @@ MeshCollider:
   m_GameObject: {fileID: 541028526}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -2305,7 +2305,7 @@ MeshCollider:
   m_GameObject: {fileID: 1474874637031281097}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -4484,7 +4484,7 @@ MeshCollider:
   m_GameObject: {fileID: 6236175663212476619}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -4597,7 +4597,7 @@ MeshCollider:
   m_GameObject: {fileID: 6236175663213590346}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -5092,7 +5092,7 @@ MeshCollider:
   m_GameObject: {fileID: 6236175663421375359}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -8975,7 +8975,6 @@ GameObject:
   - component: {fileID: 896032533573423630}
   - component: {fileID: 1009420864263936895}
   - component: {fileID: 9047312886874831039}
-  - component: {fileID: 6239405419435483557}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -9048,20 +9047,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6239405419435483557
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7754204641306714736}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &8560551284436503591
 GameObject:
   m_ObjectHideFlags: 0

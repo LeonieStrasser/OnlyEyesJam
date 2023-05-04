@@ -210,7 +210,7 @@ public class WinZone : MonoBehaviour
         //sparkleVFX.Play();
         sparkleLeavesVFX.Play();
 
-        if (LevelManager.instance.attachedWinzones <= 1)
+        if (LevelManager.instance.attachedWinzones == LevelManager.instance.allWinZones.Count)
             if (!winzoneSucceeded)
                 AudioManager.instance.Play("Win Static");
     }
@@ -222,7 +222,7 @@ public class WinZone : MonoBehaviour
         //sparkleVFX.Stop();
         sparkleLeavesVFX.Stop();
 
-        if (LevelManager.instance.attachedWinzones < 1)
+        //if (LevelManager.instance.attachedWinzones < 1)
             AudioManager.instance.Stop("Win Static");
     }
 
@@ -286,8 +286,12 @@ public class WinZone : MonoBehaviour
     {
         winDissolveStart.Play();
 
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(1f);
+        
+        AudioManager.instance.Play("Win Leaves");
 
+        yield return new WaitForSeconds(2.5f);
+        
         foreach (var pSystem in winVFX)
         {
             pSystem.Play();
@@ -312,8 +316,10 @@ public class WinZone : MonoBehaviour
     void WinFeedback()
     {
         StartCoroutine(Dissolve());
-
+        
+        AudioManager.instance.Stop("Win Static");
         AudioManager.instance.Play("Win Jingle");
+        AudioManager.instance.Play("Win Wind");
     }
 
     #endregion

@@ -7,6 +7,8 @@ using System;
 public class AudioManager : MonoBehaviour
 {
     public float timeBetweenWindupSoundAndTelekinesis;
+
+    [SerializeField] float masterVolume = 1f;
     [SerializeField] Sound[] sounds;
     [SerializeField] bool debug;
 
@@ -46,6 +48,8 @@ public class AudioManager : MonoBehaviour
                 item.isPlaying = true;
             }
         }
+
+        AudioListener.volume = masterVolume;
     }
 
 

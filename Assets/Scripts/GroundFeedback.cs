@@ -18,5 +18,6 @@ public class GroundFeedback : MonoBehaviour
         middlePos /= contacts.Length;
 
         Instantiate(groundFeedback, middlePos, quaternion.identity);
+        AudioManager.instance.Play("Stone on Gravel");
     }
 }

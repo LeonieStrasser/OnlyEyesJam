@@ -110,7 +110,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 8.93, y: 5.39, z: 0}
-  m_Center: {x: 1.35, y: 10.62, z: 0}
+  m_Center: {x: 1.35, y: 11.45, z: 0}
 --- !u!1 &1053174955
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,8 +201,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gazePosition: {x: 0, y: 0, z: 0}
+  gazeEnabled: 1
   useMouseAsGaze: 0
-  enableGazeIndicator: 0
   enableGazeSmoothing: 1
   debug: 0
   telekinesisMaxDuration: 7
@@ -350,7 +350,7 @@ MonoBehaviour:
     type: 3}
   maxCombinedWinZoneHeight: 3
   maxPositionFindAttempts: 500
-  winZoneAmount: {x: 1, y: 2}
+  winZoneAmount: {x: 2, y: 2}
 --- !u!65 &1920227480
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -459,10 +459,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenWindupSoundAndTelekinesis: 3.68
+  masterVolume: 3
   sounds:
   - name: Ambience
     myClip: {fileID: 8300000, guid: 6861333e3126ba84194b5d192d8236d6, type: 3}
-    myVolume: 0.145
+    myVolume: 0.01
     myPitch: 1
     myLoop: 1
     startOnPlay: 0
@@ -475,46 +476,46 @@ MonoBehaviour:
     isPlaying: 0
   - name: Stone in Water
     myClip: {fileID: 8300000, guid: f82f5e6fd7cbff24b8c2d01fb2633f6f, type: 3}
-    myVolume: 0.023
+    myVolume: 0.055
     myPitch: 1
     myLoop: 0
     startOnPlay: 0
     randomPitch: 1
     myFadeIn: 0
     myFadeOut: 0
-    randomPichBetweenTwoValues: {x: 0.9442891, y: 1.0576072}
+    randomPichBetweenTwoValues: {x: 0.55, y: 0.7}
     mySource: {fileID: 0}
     currentVolume: 0
     isPlaying: 0
   - name: Stone on Gravel
     myClip: {fileID: 8300000, guid: 2ec25bc6705971e41bd0c82426143ace, type: 3}
-    myVolume: 0.022
+    myVolume: 0.04
     myPitch: 1
     myLoop: 0
     startOnPlay: 0
     randomPitch: 1
     myFadeIn: 0
     myFadeOut: 0
-    randomPichBetweenTwoValues: {x: 0.92540276, y: 1.0764936}
+    randomPichBetweenTwoValues: {x: 0.5, y: 0.65}
     mySource: {fileID: 0}
     currentVolume: 0
     isPlaying: 0
   - name: Stone on Stone
     myClip: {fileID: 8300000, guid: bc85bb0fa9b64ea41a8c486e641e3ff0, type: 3}
-    myVolume: 0.012
+    myVolume: 0.033
     myPitch: 1
     myLoop: 0
     startOnPlay: 0
     randomPitch: 1
     myFadeIn: 0
     myFadeOut: 0.65
-    randomPichBetweenTwoValues: {x: 0.92618227, y: 1.1624873}
+    randomPichBetweenTwoValues: {x: 0.75, y: 0.9}
     mySource: {fileID: 0}
     currentVolume: 0
     isPlaying: 0
   - name: TKinese State Change Down
     myClip: {fileID: 8300000, guid: 8c7ab865a9df38b4b94c1928c09966e9, type: 3}
-    myVolume: 0.079
+    myVolume: 0.28
     myPitch: 1
     myLoop: 0
     startOnPlay: 0
@@ -527,7 +528,7 @@ MonoBehaviour:
     isPlaying: 0
   - name: TKinese State Change Up
     myClip: {fileID: 8300000, guid: 5ca23de9891cca64dab194c3bf5b6ce2, type: 3}
-    myVolume: 0.055
+    myVolume: 0.7
     myPitch: 1
     myLoop: 0
     startOnPlay: 0
@@ -540,7 +541,7 @@ MonoBehaviour:
     isPlaying: 0
   - name: TKinese Static 1
     myClip: {fileID: 8300000, guid: dc7c8725a5c57ac4e9795b6a0cdb06b9, type: 3}
-    myVolume: 0.237
+    myVolume: 0.28
     myPitch: 1
     myLoop: 1
     startOnPlay: 0
@@ -553,7 +554,7 @@ MonoBehaviour:
     isPlaying: 0
   - name: TKinese Static 2
     myClip: {fileID: 8300000, guid: 58a4064770635684abb45f9eef4d5a1f, type: 3}
-    myVolume: 0.245
+    myVolume: 0.1
     myPitch: 1
     myLoop: 1
     startOnPlay: 0
@@ -565,9 +566,9 @@ MonoBehaviour:
     currentVolume: 0
     isPlaying: 0
   - name: Win Jingle
-    myClip: {fileID: 8300000, guid: 7e6225d3fe88eb941aeb82d5ab73939b, type: 3}
-    myVolume: 0.132
-    myPitch: 1
+    myClip: {fileID: 8300000, guid: 348de6b3296247c46b991b6a1d8ad341, type: 3}
+    myVolume: 0.06
+    myPitch: 1.2
     myLoop: 0
     startOnPlay: 0
     randomPitch: 0
@@ -579,39 +580,52 @@ MonoBehaviour:
     isPlaying: 0
   - name: Win Static
     myClip: {fileID: 8300000, guid: e03e1a7eafd1cd141907fb3ff5659620, type: 3}
-    myVolume: 0.022
+    myVolume: 0.04
     myPitch: 1
     myLoop: 1
     startOnPlay: 0
     randomPitch: 0
-    myFadeIn: 4
-    myFadeOut: 4
+    myFadeIn: 3.25
+    myFadeOut: 1.62
     randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
     mySource: {fileID: 0}
     currentVolume: 0
     isPlaying: 0
-  - name: UI Static
-    myClip: {fileID: 8300000, guid: 3925b40981b3fa94b8dced3a6ef24240, type: 3}
-    myVolume: 0.046
+  - name: Light Breeze
+    myClip: {fileID: 8300000, guid: b39627e17cf5cb448b20311b667ca6dd, type: 3}
+    myVolume: 0.11
     myPitch: 1
-    myLoop: 0
-    startOnPlay: 0
+    myLoop: 1
+    startOnPlay: 1
     randomPitch: 0
-    myFadeIn: 0.49
-    myFadeOut: 1.15
+    myFadeIn: 3.25
+    myFadeOut: 1.62
     randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
     mySource: {fileID: 0}
     currentVolume: 0
     isPlaying: 0
-  - name: UI Select
-    myClip: {fileID: 8300000, guid: 7c7ca59c68bc30745b540b99a85bda78, type: 3}
-    myVolume: 0.103
+  - name: Win Leaves
+    myClip: {fileID: 8300000, guid: 53152df7df7b11a4d9c193c3e9c1b221, type: 3}
+    myVolume: 0.07
     myPitch: 1
     myLoop: 0
     startOnPlay: 0
     randomPitch: 0
-    myFadeIn: 0
-    myFadeOut: 0
+    myFadeIn: 3.25
+    myFadeOut: 1.62
+    randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
+    mySource: {fileID: 0}
+    currentVolume: 0
+    isPlaying: 0
+  - name: Win Wind
+    myClip: {fileID: 8300000, guid: bccf95610252a054386248bc98920409, type: 3}
+    myVolume: 0.18
+    myPitch: 1
+    myLoop: 0
+    startOnPlay: 0
+    randomPitch: 0
+    myFadeIn: 3.25
+    myFadeOut: 1.62
     randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
     mySource: {fileID: 0}
     currentVolume: 0
@@ -741,11 +755,12 @@ PrefabInstance:
         type: 3}
       propertyPath: currentSetup
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: be7efa9ec073cd942836a428599a4c93,
+        type: 2}
     - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
         type: 3}
       propertyPath: allColorSetups.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
         type: 3}
@@ -770,6 +785,12 @@ PrefabInstance:
       propertyPath: allColorSetups.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: 24be7136375f96a4bbac7edfe482f4a0,
+        type: 2}
+    - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
+        type: 3}
+      propertyPath: allColorSetups.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: be7efa9ec073cd942836a428599a4c93,
         type: 2}
     - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
         type: 3}
@@ -819,7 +840,7 @@ PrefabInstance:
     - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
         type: 3}
       propertyPath: ColorChangeMatsOfType.Array.data[6].colorValues.Array.size
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
         type: 3}
@@ -865,7 +886,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ColorChangeMatsOfType.Array.data[6].materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 828872e9e2f550641ae14b0e94e0ca9e, type: 2}
+      objectReference: {fileID: 2100000, guid: 04312dc534f96fa43b08a4a2cc423f9d, type: 2}
     - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
         type: 3}
       propertyPath: ColorChangeMatsOfType.Array.data[7].materials.Array.data[0]
@@ -889,12 +910,12 @@ PrefabInstance:
     - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
         type: 3}
       propertyPath: ColorChangeMatsOfType.Array.data[6].colorValues.Array.data[0].valueName
-      value: _Color_A
+      value: _NeutralColor
       objectReference: {fileID: 0}
     - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
         type: 3}
       propertyPath: ColorChangeMatsOfType.Array.data[6].colorValues.Array.data[1].valueName
-      value: _Color_B
+      value: _FillColor
       objectReference: {fileID: 0}
     - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
         type: 3}

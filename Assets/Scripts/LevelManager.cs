@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] bool debug;
 
-    [SerializeField] List<WinZone> allWinZones;
+    public List<WinZone> allWinZones;
     [HideInInspector] public int attachedWinzones;
     int succededWinzones;
 
@@ -140,6 +140,9 @@ public class LevelManager : MonoBehaviour
         spawner.ClearAllObjects();
         ClearWinZones();
         succededWinzones = 0;
+        
+        AudioManager.instance.Stop("Win Wind");
+        AudioManager.instance.Stop("Win Leaves");
         
         randomizer.RandomizeSetup();
         
