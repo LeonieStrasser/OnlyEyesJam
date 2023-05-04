@@ -55,7 +55,7 @@ Material:
     - _Color_A: {r: 1, g: 1, b: 1, a: 0.1764706}
     - _Color_B: {r: 0, g: 0, b: 0, a: 0}
     - _Color_C: {r: 0, g: 0, b: 0, a: 0}
-    - _Color_D: {r: 0.5001794, g: 0.5377358, b: 0.4692506, a: 1}
+    - _Color_D: {r: 0.682, g: 0.6039602, b: 0.5157413, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &5881959491064107212
 MonoBehaviour:

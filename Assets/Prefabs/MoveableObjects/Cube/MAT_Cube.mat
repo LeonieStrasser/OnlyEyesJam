@@ -149,19 +149,19 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _AnimHighlightColor: {r: 1, g: 0.9768948, b: 0.9198113, a: 0}
+    - _AnimHighlightColor: {r: 1, g: 0.79215693, b: 0.28235295, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color01: {r: 0.621173, g: 0.83469385, b: 0.9339623, a: 0}
+    - _Color01: {r: 0.36078432, g: 0.43137258, b: 0.48235297, a: 0}
     - _Color02: {r: 0.23629406, g: 0.8114007, b: 0.8490566, a: 0}
-    - _DarkenColor1: {r: 0.9245283, g: 0.7506864, b: 0.501513, a: 0}
-    - _DarkenColor2: {r: 0.7058824, g: 0.47450984, b: 0.25882354, a: 0}
-    - _EmissionColor: {r: 1, g: 0.9215687, b: 0.6745098, a: 1}
-    - _H_hnerLinienColor: {r: 1, g: 0.9976, b: 0.994, a: 0}
+    - _DarkenColor1: {r: 0.5466784, g: 0.77306175, b: 0.81960785, a: 0}
+    - _DarkenColor2: {r: 1, g: 1, b: 1, a: 0}
+    - _EmissionColor: {r: 1, g: 0.9693112, b: 0.8726415, a: 1}
+    - _H_hnerLinienColor: {r: 1, g: 1, b: 1, a: 0}
     - _LochPosition: {r: -0.05, g: 0.02, b: 0, a: 0}
-    - _OverlayColor: {r: 0.375445, g: 0.39379022, b: 0.5566038, a: 0}
-    - _PinlightLayerColor: {r: 1, g: 1, b: 1, a: 0}
-    - _PinlightLayerColor2: {r: 0.10908002, g: 0.14356282, b: 0.27, a: 0}
+    - _OverlayColor: {r: 0.39587042, g: 0.5289639, b: 0.6037736, a: 0}
+    - _PinlightLayerColor: {r: 0.560463, g: 0.71290386, b: 0.823, a: 0}
+    - _PinlightLayerColor2: {r: 0.42890403, g: 0.6577037, b: 0.851, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &957808331742204790
