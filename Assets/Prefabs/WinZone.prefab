@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2612718427217836090}
   - component: {fileID: 740741580388418021}
   - component: {fileID: 4932221060381215280}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WinParticles_Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4825,7 +4825,7 @@ GameObject:
   - component: {fileID: 7056420524184627460}
   - component: {fileID: 6314888285945906533}
   - component: {fileID: 3673660360760569136}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WinParticles_NoForce
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10133,7 +10133,7 @@ GameObject:
   - component: {fileID: 8081909721408765910}
   - component: {fileID: 324881727617534376}
   - component: {fileID: 8432198144204429360}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WinZone_Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10217,7 +10217,7 @@ GameObject:
   - component: {fileID: 2929742191136578509}
   - component: {fileID: 7031964649481118786}
   - component: {fileID: 1288383975723779684}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WinParticles_Speed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15525,7 +15525,7 @@ GameObject:
   - component: {fileID: 2427775781054444898}
   - component: {fileID: 756515466537325484}
   - component: {fileID: 3034144400501650053}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WinParticles_Sparkle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20345,7 +20345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4156435255901151806}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ParticleSystems
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20384,7 +20384,7 @@ GameObject:
   - component: {fileID: 8714699064325797661}
   - component: {fileID: 3918730133086329065}
   - component: {fileID: 5697440258784157914}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WinParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25692,7 +25692,7 @@ GameObject:
   - component: {fileID: 8360033462615788196}
   - component: {fileID: 8219215479328907530}
   - component: {fileID: 281700677575397912}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WinZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
