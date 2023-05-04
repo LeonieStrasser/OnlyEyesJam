@@ -91,7 +91,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330603071}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 2.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -109,8 +109,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.79, y: 4.39, z: 0}
-  m_Center: {x: 0, y: 10.1, z: 0}
+  m_Size: {x: 8.93, y: 5.39, z: 0}
+  m_Center: {x: 1.35, y: 10.62, z: 0}
 --- !u!1 &1053174955
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +136,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1053174955}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 2.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 2226075576504176087}
   - component: {fileID: 1920227479}
   - component: {fileID: 1920227480}
+  - component: {fileID: 5003355820188523064}
   m_Layer: 3
   m_Name: Level Manager
   m_TagString: Untagged
@@ -351,6 +352,19 @@ MonoBehaviour:
   maxPositionFindAttempts: 500
   winZoneAmount: {x: 1, y: 2}
 --- !u!65 &1920227480
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2226075576504176073}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.79, y: 4.39, z: 0}
+  m_Center: {x: 0, y: 10.1, z: 0}
+--- !u!65 &5003355820188523064
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -457,58 +471,50 @@ MonoBehaviour:
     myFadeOut: 0
     randomPichBetweenTwoValues: {x: 0.473202, y: 2.2953064}
     mySource: {fileID: 0}
-    startVolume: 0
-    endVolume: 0
-    elapsedTime: 0
-    fadeTime: 0
+    currentVolume: 0
+    isPlaying: 0
   - name: Stone in Water
     myClip: {fileID: 8300000, guid: f82f5e6fd7cbff24b8c2d01fb2633f6f, type: 3}
-    myVolume: 0.145
+    myVolume: 0.023
     myPitch: 1
     myLoop: 0
     startOnPlay: 0
     randomPitch: 1
     myFadeIn: 0
     myFadeOut: 0
-    randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
+    randomPichBetweenTwoValues: {x: 0.9442891, y: 1.0576072}
     mySource: {fileID: 0}
-    startVolume: 0
-    endVolume: 0
-    elapsedTime: 0
-    fadeTime: 0
+    currentVolume: 0
+    isPlaying: 0
   - name: Stone on Gravel
     myClip: {fileID: 8300000, guid: 2ec25bc6705971e41bd0c82426143ace, type: 3}
-    myVolume: 0.058
+    myVolume: 0.022
     myPitch: 1
     myLoop: 0
     startOnPlay: 0
     randomPitch: 1
     myFadeIn: 0
     myFadeOut: 0
-    randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
+    randomPichBetweenTwoValues: {x: 0.92540276, y: 1.0764936}
     mySource: {fileID: 0}
-    startVolume: 0
-    endVolume: 0
-    elapsedTime: 0
-    fadeTime: 0
+    currentVolume: 0
+    isPlaying: 0
   - name: Stone on Stone
     myClip: {fileID: 8300000, guid: bc85bb0fa9b64ea41a8c486e641e3ff0, type: 3}
-    myVolume: 0.029
+    myVolume: 0.012
     myPitch: 1
     myLoop: 0
     startOnPlay: 0
     randomPitch: 1
     myFadeIn: 0
-    myFadeOut: 0
-    randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
+    myFadeOut: 0.65
+    randomPichBetweenTwoValues: {x: 0.92618227, y: 1.1624873}
     mySource: {fileID: 0}
-    startVolume: 0
-    endVolume: 0
-    elapsedTime: 0
-    fadeTime: 0
+    currentVolume: 0
+    isPlaying: 0
   - name: TKinese State Change Down
     myClip: {fileID: 8300000, guid: 8c7ab865a9df38b4b94c1928c09966e9, type: 3}
-    myVolume: 0.427
+    myVolume: 0.079
     myPitch: 1
     myLoop: 0
     startOnPlay: 0
@@ -517,13 +523,11 @@ MonoBehaviour:
     myFadeOut: 0
     randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
     mySource: {fileID: 0}
-    startVolume: 0
-    endVolume: 0
-    elapsedTime: 0
-    fadeTime: 0
+    currentVolume: 0
+    isPlaying: 0
   - name: TKinese State Change Up
     myClip: {fileID: 8300000, guid: 5ca23de9891cca64dab194c3bf5b6ce2, type: 3}
-    myVolume: 0.435
+    myVolume: 0.055
     myPitch: 1
     myLoop: 0
     startOnPlay: 0
@@ -532,13 +536,11 @@ MonoBehaviour:
     myFadeOut: 0
     randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
     mySource: {fileID: 0}
-    startVolume: 0
-    endVolume: 0
-    elapsedTime: 0
-    fadeTime: 0
+    currentVolume: 0
+    isPlaying: 0
   - name: TKinese Static 1
     myClip: {fileID: 8300000, guid: dc7c8725a5c57ac4e9795b6a0cdb06b9, type: 3}
-    myVolume: 0.413
+    myVolume: 0.237
     myPitch: 1
     myLoop: 1
     startOnPlay: 0
@@ -547,13 +549,11 @@ MonoBehaviour:
     myFadeOut: 0.69
     randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
     mySource: {fileID: 0}
-    startVolume: 0
-    endVolume: 0
-    elapsedTime: 0
-    fadeTime: 0
+    currentVolume: 0
+    isPlaying: 0
   - name: TKinese Static 2
     myClip: {fileID: 8300000, guid: 58a4064770635684abb45f9eef4d5a1f, type: 3}
-    myVolume: 0.42
+    myVolume: 0.245
     myPitch: 1
     myLoop: 1
     startOnPlay: 0
@@ -562,13 +562,11 @@ MonoBehaviour:
     myFadeOut: 0.69
     randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
     mySource: {fileID: 0}
-    startVolume: 0
-    endVolume: 0
-    elapsedTime: 0
-    fadeTime: 0
+    currentVolume: 0
+    isPlaying: 0
   - name: Win Jingle
     myClip: {fileID: 8300000, guid: 7e6225d3fe88eb941aeb82d5ab73939b, type: 3}
-    myVolume: 0.522
+    myVolume: 0.132
     myPitch: 1
     myLoop: 0
     startOnPlay: 0
@@ -577,13 +575,11 @@ MonoBehaviour:
     myFadeOut: 0
     randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
     mySource: {fileID: 0}
-    startVolume: 0
-    endVolume: 0
-    elapsedTime: 0
-    fadeTime: 0
+    currentVolume: 0
+    isPlaying: 0
   - name: Win Static
     myClip: {fileID: 8300000, guid: e03e1a7eafd1cd141907fb3ff5659620, type: 3}
-    myVolume: 0.086
+    myVolume: 0.022
     myPitch: 1
     myLoop: 1
     startOnPlay: 0
@@ -592,10 +588,8 @@ MonoBehaviour:
     myFadeOut: 4
     randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
     mySource: {fileID: 0}
-    startVolume: 0
-    endVolume: 0
-    elapsedTime: 0
-    fadeTime: 0
+    currentVolume: 0
+    isPlaying: 0
   - name: UI Static
     myClip: {fileID: 8300000, guid: 3925b40981b3fa94b8dced3a6ef24240, type: 3}
     myVolume: 0.046
@@ -603,17 +597,15 @@ MonoBehaviour:
     myLoop: 0
     startOnPlay: 0
     randomPitch: 0
-    myFadeIn: 0.36
-    myFadeOut: 0.89
+    myFadeIn: 0.49
+    myFadeOut: 1.15
     randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
     mySource: {fileID: 0}
-    startVolume: 0
-    endVolume: 0
-    elapsedTime: 0
-    fadeTime: 0
+    currentVolume: 0
+    isPlaying: 0
   - name: UI Select
-    myClip: {fileID: 8300000, guid: ecf9ec284eda4c84fa727a3d6218fe91, type: 3}
-    myVolume: 0.259
+    myClip: {fileID: 8300000, guid: 7c7ca59c68bc30745b540b99a85bda78, type: 3}
+    myVolume: 0.103
     myPitch: 1
     myLoop: 0
     startOnPlay: 0
@@ -622,11 +614,9 @@ MonoBehaviour:
     myFadeOut: 0
     randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
     mySource: {fileID: 0}
-    startVolume: 0
-    endVolume: 0
-    elapsedTime: 0
-    fadeTime: 0
-  debug: 0
+    currentVolume: 0
+    isPlaying: 0
+  debug: 1
 --- !u!1 &4363363832878108876
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,9 +663,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allSceneSets:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -787,6 +774,11 @@ PrefabInstance:
     - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
         type: 3}
       propertyPath: ColorChangeMatsOfType.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
+        type: 3}
+      propertyPath: ColorChangeMatsOfType.Array.data[10].index
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
@@ -811,7 +803,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
         type: 3}
+      propertyPath: ColorChangeMatsOfType.Array.data[10].materialType
+      value: MenuHintergrund2 Materials
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
+        type: 3}
       propertyPath: ColorChangeMatsOfType.Array.data[2].materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
+        type: 3}
+      propertyPath: ColorChangeMatsOfType.Array.data[10].materials.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
@@ -823,6 +825,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ColorChangeMatsOfType.Array.data[9].colorValues.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
+        type: 3}
+      propertyPath: ColorChangeMatsOfType.Array.data[10].colorValues.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
         type: 3}
@@ -876,6 +883,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 26ee992318403f8428fd077b538287e4, type: 2}
     - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
         type: 3}
+      propertyPath: ColorChangeMatsOfType.Array.data[10].materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 798d74a8cc6f5334785952c79cad5a0a, type: 2}
+    - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
+        type: 3}
       propertyPath: ColorChangeMatsOfType.Array.data[6].colorValues.Array.data[0].valueName
       value: _Color_A
       objectReference: {fileID: 0}
@@ -898,6 +910,26 @@ PrefabInstance:
         type: 3}
       propertyPath: ColorChangeMatsOfType.Array.data[9].colorValues.Array.data[0].valueName
       value: _BaseColor
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
+        type: 3}
+      propertyPath: ColorChangeMatsOfType.Array.data[10].colorValues.Array.data[0].valueName
+      value: _Color_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
+        type: 3}
+      propertyPath: ColorChangeMatsOfType.Array.data[10].colorValues.Array.data[1].valueName
+      value: _Color_B
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
+        type: 3}
+      propertyPath: ColorChangeMatsOfType.Array.data[10].colorValues.Array.data[2].valueName
+      value: _Color_C
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310660023562023646, guid: ecce875bf1a15874098397b39a050cc7,
+        type: 3}
+      propertyPath: ColorChangeMatsOfType.Array.data[10].colorValues.Array.data[3].valueName
+      value: _Color_D
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecce875bf1a15874098397b39a050cc7, type: 3}
