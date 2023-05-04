@@ -89,14 +89,10 @@ MonoBehaviour:
   - materialName: "06 Color f\xFCr MenuButtons"
     index: 6
     allColorValues:
-    - valueName: _Color_A
+    - valueName: _NeutralColor
       color: {r: 1, g: 1, b: 1, a: 0}
-    - valueName: _Color_B
+    - valueName: _FillColor
       color: {r: 1, g: 1, b: 1, a: 0}
-    - valueName: _Color_C
-      color: {r: 1, g: 1, b: 1, a: 1}
-    - valueName: _Color_D
-      color: {r: 0.49803925, g: 0.5176471, b: 0.43137258, a: 1}
   - materialName: "07 Color f\xFCr MenuIcons"
     index: 7
     allColorValues:
@@ -124,3 +120,14 @@ MonoBehaviour:
     allColorValues:
     - valueName: _BaseColor
       color: {r: 0.9764706, g: 0.9764706, b: 1, a: 1}
+  - materialName: "10 Color f\xFCr Men\xFChintergrund2"
+    index: 10
+    allColorValues:
+    - valueName: _Color_A
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_B
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_C
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_D
+      color: {r: 0, g: 0, b: 0, a: 0}

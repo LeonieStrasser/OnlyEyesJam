@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec76c782f28d2e245932e3474cd7054f, type: 3}
   m_Name: ColorSetup_Test
   m_EditorClassIdentifier: 
+  warmColors: 0
   allColorValueSets:
   - materialName: "Color f\xFCr Steine"
     index: 0
@@ -122,4 +123,15 @@ MonoBehaviour:
     index: 9
     allColorValues:
     - valueName: _BaseColor
+      color: {r: 0, g: 0, b: 0, a: 0}
+  - materialName: "10 Color f\xFCr Men\xFChintergrund2"
+    index: 10
+    allColorValues:
+    - valueName: _Color_A
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_B
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_C
+      color: {r: 0, g: 0, b: 0, a: 0}
+    - valueName: _Color_D
       color: {r: 0, g: 0, b: 0, a: 0}
