@@ -65,9 +65,9 @@ Material:
     - _WaterClarity: 0.639
     - _WaveStrength: 0.02
     m_Colors:
-    - _Deep_Water_Color: {r: 0.66193485, g: 0.8018868, b: 0.78715503, a: 0.9647059}
+    - _Deep_Water_Color: {r: 0.7254902, g: 0.69411767, b: 0.3803922, a: 0.9647059}
     - _Shallow_Water_Color: {r: 0.86666673, g: 0.81568635, b: 0.7568628, a: 0.8509804}
-    - _Specular: {r: 0.5566037, g: 0.39786264, b: 0.21266463, a: 0}
+    - _Specular: {r: 0.18431373, g: 0.14901961, b: 0.09411766, a: 0}
     - _Speeds: {r: 0.2, g: -0.2, b: 0.2, a: -0.4}
     - _Tiling: {r: 0.1, g: 0.1, b: 0, a: 0}
   m_BuildTextureStacks: []

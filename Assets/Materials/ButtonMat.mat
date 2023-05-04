@@ -116,8 +116,8 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FillColor: {r: 0.6132076, g: 0.5111907, b: 0.50040054, a: 1}
-    - _NeutralColor: {r: 0.44, g: 0.26647237, b: 0.26224, a: 0}
+    - _FillColor: {r: 0.695, g: 0.6152459, b: 0.4823224, a: 1}
+    - _NeutralColor: {r: 0.8301887, g: 0.7256155, b: 0.512994, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &5522718600509006482
