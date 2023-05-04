@@ -16,6 +16,8 @@ public class GazeAwareBehaviour : MonoBehaviour
     void Start()
     {
         myGaze = GetComponent<GazeAware>();
+
+        onMouseDebug = !TobiiAPI.IsConnected;
     }
     
     void Update()
