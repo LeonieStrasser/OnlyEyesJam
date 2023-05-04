@@ -18,6 +18,7 @@ public class WinZone : MonoBehaviour
     [BoxGroup("Feedback")] [SerializeField] float winningDeformStrength;
 
     [BoxGroup("Feedback")] [SerializeField] ParticleSystem sparkleVFX;
+    [BoxGroup("Feedback")] [SerializeField] ParticleSystem sparkleLeavesVFX;
     [BoxGroup("Feedback")] [SerializeField] ParticleSystem winDissolveStart;
     [BoxGroup("Feedback")] [SerializeField] ParticleSystem[] winVFX;
 
@@ -207,6 +208,7 @@ public class WinZone : MonoBehaviour
             StartCoroutine(WobbleAnimation());
 
         sparkleVFX.Play();
+        sparkleLeavesVFX.Play();
 
         if (LevelManager.instance.attachedWinzones <= 1)
             if (!winzoneSucceeded)
@@ -218,6 +220,7 @@ public class WinZone : MonoBehaviour
         StartCoroutine(IdleTransition());
 
         sparkleVFX.Stop();
+        sparkleLeavesVFX.Stop();
 
         if (LevelManager.instance.attachedWinzones < 1)
             AudioManager.instance.Stop("Win Static");
@@ -291,6 +294,7 @@ public class WinZone : MonoBehaviour
         }
 
         sparkleVFX.Stop();
+        sparkleLeavesVFX.Stop();
 
         float timer = 0;
         float duration = 6f;
