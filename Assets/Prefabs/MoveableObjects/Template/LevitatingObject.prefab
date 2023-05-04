@@ -103,11 +103,14 @@ MonoBehaviour:
     type: 3}
   telekinesisChannelParticles: {fileID: 2564612338122275154}
   telekinesisReleaseParticles: {fileID: 6445078185038052726}
+  telekinesisReleaseSphere: {fileID: 7186250770359298493, guid: 8c744eb7d20f60e4786a9c3abd4a017e,
+    type: 3}
   feedbackFadeOutDuration: 1
   edgeFadeinDuration: 3
   edgeFadeOutDuration: 2
   debugMaterial: {fileID: 2100000, guid: 3f92dbd98a3c57b499f742e4247b4e98, type: 2}
   physicalState: 0
+  winGroup: 0
   visualState: 0
   edgeFadinCurve:
     serializedVersion: 2
