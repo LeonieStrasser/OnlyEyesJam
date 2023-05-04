@@ -64,6 +64,7 @@ public class LevelManager : MonoBehaviour
         //winObject.SetActive(true);
         
         //Cube Gruppe Feedback
+        GazeManager.Instance.SetGazeActive(false);
 
         // Setze den World Border Effeki in Gang
         myWinFeedback.StartWingroupsEffect();
@@ -98,7 +99,6 @@ public class LevelManager : MonoBehaviour
                     _conductor.gameObject.GetComponent<ObjectState>().winGroup = true;
                 }
             }
-
         }
         else
         {
@@ -147,6 +147,8 @@ public class LevelManager : MonoBehaviour
         AudioManager.instance.Stop("Win Static");
         
         yield return new WaitForSeconds(1f);
+        
+        GazeManager.Instance.SetGazeActive(true);
         
         spawner.StartSpawning();
         
