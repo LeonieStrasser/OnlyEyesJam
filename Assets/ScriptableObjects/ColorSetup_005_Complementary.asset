@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec76c782f28d2e245932e3474cd7054f, type: 3}
   m_Name: ColorSetup_005_Complementary
   m_EditorClassIdentifier: 
-  warmColors: 0
+  warmColors: 1
   allColorValueSets:
   - materialName: "00 Color f\xFCr Steine"
     index: 0
