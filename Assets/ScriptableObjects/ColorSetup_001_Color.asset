@@ -18,30 +18,30 @@ MonoBehaviour:
     index: 0
     allColorValues:
     - valueName: _Color01
-      color: {r: 0.427451, g: 0.6156863, b: 0.6313726, a: 0}
+      color: {r: 0.7294118, g: 0.6862745, b: 0.8313726, a: 0}
     - valueName: _Color02
-      color: {r: 0.1764706, g: 0.5254902, b: 0.54901963, a: 0}
+      color: {r: 0.7294118, g: 0.6862745, b: 0.8313726, a: 0}
     - valueName: _H_hnerLinienColor
-      color: {r: 0.9725491, g: 0.95294124, b: 0.9294118, a: 0}
+      color: {r: 0.8705883, g: 0.8588236, b: 0.8352942, a: 0}
     - valueName: _EmissionColor
-      color: {r: 1, g: 0.86666673, b: 0.6745098, a: 0}
+      color: {r: 1, g: 0.8000001, b: 0.49411768, a: 0}
     - valueName: _PinlightLayerColor
-      color: {r: 0.91372555, g: 0.73333335, b: 0.5568628, a: 0}
+      color: {r: 0.23529413, g: 0.14901961, b: 0.29411766, a: 0}
     - valueName: _PinlightLayerColor2
-      color: {r: 1, g: 0.91372555, b: 0.6745098, a: 0}
+      color: {r: 0.15294118, g: 0.08235294, b: 0.21960786, a: 0}
     - valueName: _DarkenColor1
-      color: {r: 0.85098046, g: 0.69411767, b: 0.5882353, a: 0}
+      color: {r: 0.56078434, g: 0.40000004, b: 0.7254902, a: 0}
     - valueName: _DarkenColor2
-      color: {r: 0.7058824, g: 0.47450984, b: 0.25882354, a: 0}
+      color: {r: 0.49803925, g: 0.3647059, b: 0.5764706, a: 0}
     - valueName: _AnimHighlightColor
-      color: {r: 0.91372555, g: 0.6666667, b: 0.6509804, a: 0}
+      color: {r: 0.6431373, g: 0.227451, b: 0.34901962, a: 0}
     - valueName: _OverlayColor
-      color: {r: 0.7176471, g: 0.56078434, b: 0.38823533, a: 0}
+      color: {r: 0.24705884, g: 0.21960786, b: 0.29411766, a: 0}
   - materialName: "01 Color f\xFCr BackgroundMat 1"
     index: 1
     allColorValues:
     - valueName: _Color_A
-      color: {r: 0.7843138, g: 0.49803925, b: 0.50980395, a: 0}
+      color: {r: 0.7294118, g: 0.43137258, b: 0.4431373, a: 0}
     - valueName: _Color_B
       color: {r: 0.9215687, g: 0.86274517, b: 0.7686275, a: 0}
     - valueName: _Color_C
@@ -52,7 +52,7 @@ MonoBehaviour:
     index: 2
     allColorValues:
     - valueName: _Color_A
-      color: {r: 0.59607846, g: 0.7725491, b: 0.76470596, a: 0}
+      color: {r: 0.63529414, g: 0.79215693, b: 0.78823537, a: 0}
     - valueName: _Color_B
       color: {r: 0.9215687, g: 0.86274517, b: 0.7686275, a: 0}
     - valueName: _Color_C
@@ -83,16 +83,16 @@ MonoBehaviour:
     index: 5
     allColorValues:
     - valueName: _IdleColor
-      color: {r: 0.9254902, g: 0.60784316, b: 0.61960787, a: 0.54901963}
+      color: {r: 1, g: 0.8, b: 0.43137255, a: 0.65882355}
     - valueName: _WinColor
-      color: {r: 1, g: 0.9411765, b: 0.43529412, a: 0.54901963}
+      color: {r: 0.75294125, g: 0.60784316, b: 0.92549026, a: 0.65882355}
   - materialName: "06 Color f\xFCr MenuButtons"
     index: 6
     allColorValues:
     - valueName: _NeutralColor
-      color: {r: 1, g: 1, b: 1, a: 0}
+      color: {r: 0.43921572, g: 0.26666668, b: 0.2627451, a: 0}
     - valueName: _FillColor
-      color: {r: 1, g: 1, b: 1, a: 0}
+      color: {r: 0.6117647, g: 0.50980395, b: 0.5019608, a: 0}
   - materialName: "07 Color f\xFCr MenuIcons"
     index: 7
     allColorValues:
@@ -114,7 +114,7 @@ MonoBehaviour:
     - valueName: _Color_C
       color: {r: 0, g: 0, b: 0, a: 0}
     - valueName: _Color_D
-      color: {r: 0.49411768, g: 0.57254905, b: 0.57254905, a: 1}
+      color: {r: 0.38431376, g: 0.44705886, b: 0.44705886, a: 1}
   - materialName: "09 Color f\xFCr Background Sky"
     index: 9
     allColorValues:
@@ -124,10 +124,10 @@ MonoBehaviour:
     index: 10
     allColorValues:
     - valueName: _Color_A
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 1, g: 1, b: 1, a: 0}
     - valueName: _Color_B
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 1, g: 1, b: 1, a: 0}
     - valueName: _Color_C
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 1, g: 1, b: 1, a: 0}
     - valueName: _Color_D
-      color: {r: 0, g: 0, b: 0, a: 0}
+      color: {r: 0.49803925, g: 0.3372549, b: 0.33333334, a: 0}
