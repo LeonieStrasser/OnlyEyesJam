@@ -91,8 +91,8 @@ Material:
     - _Value_C: 0.6
     - _Value_D: 1
     m_Colors:
-    - _Color_A: {r: 0.86666673, g: 0.7607844, b: 0.7411765, a: 1}
+    - _Color_A: {r: 0.6117647, g: 0.89019614, b: 0.9607844, a: 1}
     - _Color_B: {r: 1, g: 1, b: 1, a: 0}
     - _Color_C: {r: 1, g: 1, b: 1, a: 0}
-    - _Color_D: {r: 0.86666673, g: 0.7607844, b: 0.7411765, a: 1}
+    - _Color_D: {r: 0.6127626, g: 0.8886849, b: 0.9622642, a: 1}
   m_BuildTextureStacks: []
