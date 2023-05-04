@@ -207,7 +207,7 @@ public class WinZone : MonoBehaviour
         if (!wobbleAnimationRunning)
             StartCoroutine(WobbleAnimation());
 
-        sparkleVFX.Play();
+        //sparkleVFX.Play();
         sparkleLeavesVFX.Play();
 
         if (LevelManager.instance.attachedWinzones <= 1)
@@ -219,7 +219,7 @@ public class WinZone : MonoBehaviour
     {
         StartCoroutine(IdleTransition());
 
-        sparkleVFX.Stop();
+        //sparkleVFX.Stop();
         sparkleLeavesVFX.Stop();
 
         if (LevelManager.instance.attachedWinzones < 1)
