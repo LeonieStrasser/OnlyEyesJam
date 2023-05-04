@@ -47,6 +47,7 @@ public class LevelManager : MonoBehaviour
         myWinFeedback = FindObjectOfType<CubeGroupFeedback>();
         spawner = GetComponent<ObjectSpawner>();
         randomizer = FindObjectOfType<SetupRandomizer>();
+        randomizer.RandomizeSetup();
     }
 
     public void RegisterWinZones()
