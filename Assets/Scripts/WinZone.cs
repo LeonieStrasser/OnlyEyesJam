@@ -16,7 +16,7 @@ public class WinZone : MonoBehaviour
 
     [BoxGroup("Feedback")] [SerializeField] float idleDeformStrength;
     [BoxGroup("Feedback")] [SerializeField] float winningDeformStrength;
-    
+
     [BoxGroup("Feedback")] [SerializeField] ParticleSystem sparkleVFX;
     [BoxGroup("Feedback")] [SerializeField] ParticleSystem winDissolveStart;
     [BoxGroup("Feedback")] [SerializeField] ParticleSystem[] winVFX;
@@ -61,6 +61,15 @@ public class WinZone : MonoBehaviour
         WintimerProgress();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("MoveableObject") || other.CompareTag("Attached"))
+        {
+            // Layeränderung u FrontRender
+            other.gameObject.GetComponentInChildren<MeshRenderer>().gameObject.layer = LayerMask.NameToLayer("FrontRender");
+        }
+    }
+
     void OnTriggerStay(Collider other)
     {
         if (!other.CompareTag("MoveableObject") && !other.CompareTag("Attached")) // Wenn es kein Hühnergott ist, dann ists eh egal!
@@ -97,6 +106,10 @@ public class WinZone : MonoBehaviour
     {
         if (other.CompareTag("MoveableObject") || other.CompareTag("Attached"))
         {
+            // Layeränderung zu default
+            other.gameObject.GetComponentInChildren<MeshRenderer>().gameObject.layer = LayerMask.NameToLayer("Default");
+
+
             attachTriggered = false;
 
             if (winObject == null) // Wenn kein Winobjekt eingeloggt ist verlässt ein attatchter Block die Winzone
@@ -192,18 +205,18 @@ public class WinZone : MonoBehaviour
     {
         if (!wobbleAnimationRunning)
             StartCoroutine(WobbleAnimation());
-        
+
         sparkleVFX.Play();
 
         if (LevelManager.instance.attachedWinzones <= 1)
-            if(!winzoneSucceeded)
+            if (!winzoneSucceeded)
                 AudioManager.instance.Play("Win Static");
     }
 
     void DetachFeedback()
     {
         StartCoroutine(IdleTransition());
-        
+
         sparkleVFX.Stop();
 
         if (LevelManager.instance.attachedWinzones < 1)
@@ -269,14 +282,14 @@ public class WinZone : MonoBehaviour
     IEnumerator Dissolve()
     {
         winDissolveStart.Play();
-        
+
         yield return new WaitForSeconds(3.5f);
-        
+
         foreach (var pSystem in winVFX)
         {
             pSystem.Play();
         }
-        
+
         sparkleVFX.Stop();
 
         float timer = 0;
@@ -285,9 +298,9 @@ public class WinZone : MonoBehaviour
         while (timer < duration)
         {
             timer += Time.deltaTime;
-            
+
             mat.SetFloat(Shader.PropertyToID("_DissolveFillAmount"), Mathf.Clamp(1 - timer / duration, 0, 1));
-            
+
             yield return null;
         }
     }
