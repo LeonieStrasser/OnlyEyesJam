@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TestScene_Luca.unity
-    guid: 185edc493a2a8694ab2e7b96e79a7f8b
+    path: Assets/Scenes/Main_Scene.unity
+    guid: 0376d5c2187c00e459d1c958e67268b8
   m_configObjects: {}
