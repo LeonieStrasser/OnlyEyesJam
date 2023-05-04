@@ -6,26 +6,27 @@ using UnityEngine;
 public class ObjectState : MonoBehaviour
 {
     [HideInInspector] public bool hasSomethingUnderneath;
-    
+
     [SerializeField] MeshRenderer meshRenderer;
     [SerializeField] GameObject objectCollisionEffect;
     [SerializeField] GameObject glowingOrb;
     [SerializeField] GameObject impulseSpherePrefab;
-    
+
     [SerializeField] ParticleSystem telekinesisChannelParticles;
     [SerializeField] ParticleSystem telekinesisReleaseParticles;
-    
+    [SerializeField] GameObject telekinesisReleaseSphere;
+
     [SerializeField] float feedbackFadeOutDuration = 1f;
     [SerializeField] float edgeFadeinDuration = 3f;
     [SerializeField] float edgeFadeOutDuration = 1f;
-    
+
     float feedbackFadeInDuration;
     float boxCastWidth, boxCastHeight;
-    
+
     Rigidbody rb;
 
     [SerializeField] Material debugMaterial;
-    
+
     public enum physicalStates
     {
         Grounded, Falling, Catchable, Attached, Immovable
@@ -46,7 +47,7 @@ public class ObjectState : MonoBehaviour
     private Coroutine edgeFadeoutFeedbackCoroutine;
     public AnimationCurve edgeFadinCurve;
     public AnimationCurve edgeFadOutCurve;
-    
+
     Vector3 castPos;
 
 
@@ -55,7 +56,7 @@ public class ObjectState : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        
+
         visualState = visualStates.Neutral;
         physicalState = physicalStates.Falling;
 
@@ -66,13 +67,13 @@ public class ObjectState : MonoBehaviour
 
     void Update()
     {
-        if(physicalState == physicalStates.Attached)
+        if (physicalState == physicalStates.Attached)
             UnderneathCheck();
 
-        if(physicalState == physicalStates.Falling && rb.velocity.magnitude < 0.1f)
+        if (physicalState == physicalStates.Falling && rb.velocity.magnitude < 0.1f)
             ChangePhysicalState(physicalStates.Grounded);
 
-        if(winGroup)
+        if (winGroup)
         {
             meshRenderer.material.SetFloat("_RainWorldBorder", myGroupFeedback.RainWorldBorder);
         }
@@ -81,17 +82,17 @@ public class ObjectState : MonoBehaviour
     void UnderneathCheck()
     {
         Bounds bounds = meshRenderer.bounds;
-        
+
 
         boxCastWidth = bounds.size.x * 0.75f;
         boxCastHeight = 0.25f;
 
         //castPos = new Vector3(transform.position.x, transform.position.y - bounds.extents.y);
         castPos = new Vector3(bounds.min.x + (bounds.max.x - bounds.min.x) * 0.5f, bounds.min.y);
-        
+
         hasSomethingUnderneath = Physics.BoxCast(castPos, new Vector3(boxCastWidth, boxCastHeight, 1), Vector3.down);
     }
-    
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
@@ -119,14 +120,15 @@ public class ObjectState : MonoBehaviour
                 SetAttachFeedback();
                 break;
             case visualStates.Neutral:
-                if(_oldState == visualStates.Attached)
+                if (_oldState == visualStates.Attached)
                 {
                     telekinesisReleaseParticles.Play();
+                    Instantiate(telekinesisReleaseSphere, glowingOrb.transform.position, Quaternion.identity);
                     if (_oldState == visualStates.Attached)
                         StartCoroutine(TelekinesisSoundChangeDown());
                 }
-                    
-                
+
+
                 SetNeutralFeedbackState();
                 break;
         }
@@ -156,7 +158,7 @@ public class ObjectState : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if(!(other.gameObject.CompareTag("MoveableObject") || other.gameObject.CompareTag("Ground")))
+        if (!(other.gameObject.CompareTag("MoveableObject") || other.gameObject.CompareTag("Ground")))
             return;
 
         ObjectState objectState = other.gameObject.GetComponent<ObjectState>();
@@ -177,7 +179,7 @@ public class ObjectState : MonoBehaviour
     void SetChangeFeedback()
     {
         lastRoutine = StartCoroutine(TelekinesisSound(feedbackFadeInDuration));
-        if(feedbackCoroutine != null)
+        if (feedbackCoroutine != null)
             StopCoroutine(feedbackCoroutine);
         feedbackCoroutine = StartCoroutine(LerpMaterialFloat("_AnimatedBaseTextureOpacity", 1, feedbackFadeInDuration, (visualState == visualStates.LookedAt || visualState == visualStates.CloseToAttach || visualState == visualStates.Attached)));
     }
@@ -185,7 +187,7 @@ public class ObjectState : MonoBehaviour
     void SetAttachFeedback()
     {
         AudioManager.instance.Play("TKinese Static 2");
-        
+
         telekinesisChannelParticles.Stop();
 
         glowingOrb.SetActive(true);
@@ -202,9 +204,9 @@ public class ObjectState : MonoBehaviour
     void SetNeutralFeedbackState()
     {
         //meshRenderer.material.SetFloat("_AnimatedBaseTextureOpacity", 0);
-        
+
         telekinesisChannelParticles.Stop();
-        
+
         TelekinesisSoundStop();
 
         glowingOrb.SetActive(false);
@@ -255,8 +257,8 @@ public class ObjectState : MonoBehaviour
             yield return null;
         }
     }
-  
-    
+
+
     IEnumerator LerpMaterialFloat(string _valueName, float _endValue, float _duration, bool _condition)
     {
         // Cache the ID of the material property
