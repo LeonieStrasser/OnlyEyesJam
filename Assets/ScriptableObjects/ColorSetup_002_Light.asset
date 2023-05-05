@@ -28,7 +28,7 @@ MonoBehaviour:
     - valueName: _PinlightLayerColor
       color: {r: 1, g: 1, b: 1, a: 0}
     - valueName: _PinlightLayerColor2
-      color: {r: 0.10980393, g: 0.14509805, b: 0.27058825, a: 0}
+      color: {r: 0.48235297, g: 0.5254902, b: 0.44705886, a: 0}
     - valueName: _DarkenColor1
       color: {r: 0.92549026, g: 0.7490196, b: 0.5019608, a: 0}
     - valueName: _DarkenColor2
@@ -36,7 +36,7 @@ MonoBehaviour:
     - valueName: _AnimHighlightColor
       color: {r: 1, g: 0.97647065, b: 0.9215687, a: 0}
     - valueName: _OverlayColor
-      color: {r: 0.37647063, g: 0.3921569, b: 0.5568628, a: 0}
+      color: {r: 0.3764706, g: 0.5568628, b: 0.4021169, a: 0}
   - materialName: "01 Color f\xFCr BackgroundMat 1"
     index: 1
     allColorValues:

@@ -28,20 +28,20 @@ MonoBehaviour:
     - valueName: _PinlightLayerColor
       color: {r: 0.56078434, g: 0.7137255, b: 0.8235295, a: 0}
     - valueName: _PinlightLayerColor2
-      color: {r: 0.427451, g: 0.65882355, b: 0.85098046, a: 0}
+      color: {r: 0.69411767, g: 0.57254905, b: 0.6431373, a: 0}
     - valueName: _DarkenColor1
-      color: {r: 0.54509807, g: 0.7725491, b: 0.8196079, a: 0}
+      color: {r: 0.8000001, g: 0.48627454, b: 0.49803925, a: 0}
     - valueName: _DarkenColor2
       color: {r: 1, g: 1, b: 1, a: 0}
     - valueName: _AnimHighlightColor
-      color: {r: 1, g: 0.79215693, b: 0.28235295, a: 0}
+      color: {r: 1, g: 1, b: 1, a: 0}
     - valueName: _OverlayColor
-      color: {r: 0.39607847, g: 0.5294118, b: 0.6039216, a: 0}
+      color: {r: 0.6039216, g: 0.24705884, b: 0.5058824, a: 0}
   - materialName: "01 Color f\xFCr BackgroundMat 1"
     index: 1
     allColorValues:
     - valueName: _Color_A
-      color: {r: 0.23137257, g: 0.23137257, b: 0.24705884, a: 0}
+      color: {r: 0.54509807, g: 0.52240527, b: 0.50980395, a: 0}
     - valueName: _Color_B
       color: {r: 0.9215687, g: 0.86274517, b: 0.7686275, a: 0}
     - valueName: _Color_C
@@ -52,7 +52,7 @@ MonoBehaviour:
     index: 2
     allColorValues:
     - valueName: _Color_A
-      color: {r: 0.87843144, g: 0.8235295, b: 0.7568628, a: 0}
+      color: {r: 0.75686276, g: 0.82028085, b: 0.8784314, a: 0}
     - valueName: _Color_B
       color: {r: 0.9215687, g: 0.86274517, b: 0.7686275, a: 0}
     - valueName: _Color_C
@@ -74,11 +74,11 @@ MonoBehaviour:
     index: 4
     allColorValues:
     - valueName: _Deep_Water_Color
-      color: {r: 0.7254902, g: 0.69411767, b: 0.3803922, a: 0}
+      color: {r: 0.5882353, g: 0.76470596, b: 0.83921576, a: 0}
     - valueName: _Shallow_Water_Color
       color: {r: 0.86666673, g: 0.81568635, b: 0.7568628, a: 0}
     - valueName: _Specular
-      color: {r: 0.18431373, g: 0.14901961, b: 0.09411766, a: 0}
+      color: {r: 0.3372549, g: 0.45098042, b: 0.5568628, a: 0}
   - materialName: "05 Color f\xFCr Ziel"
     index: 5
     allColorValues:
