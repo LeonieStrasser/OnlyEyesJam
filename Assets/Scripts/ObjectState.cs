@@ -23,6 +23,8 @@ public class ObjectState : MonoBehaviour
     float feedbackFadeInDuration;
     float boxCastWidth, boxCastHeight;
 
+    public int touchedWinZones;
+
     Rigidbody rb;
 
     [SerializeField] Material debugMaterial;
@@ -77,6 +79,20 @@ public class ObjectState : MonoBehaviour
         {
             meshRenderer.material.SetFloat("_RainWorldBorder", myGroupFeedback.RainWorldBorder);
         }
+    }
+
+    public void WinZoneEnter()
+    {
+        touchedWinZones++;
+        meshRenderer.gameObject.layer = LayerMask.NameToLayer("FrontRender");
+    }
+    
+    public void WinZoneExit()
+    {
+        touchedWinZones--;
+        
+        if(touchedWinZones == 0)
+            meshRenderer.gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
     void UnderneathCheck()

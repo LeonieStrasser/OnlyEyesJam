@@ -68,7 +68,8 @@ public class WinZone : MonoBehaviour
         if (other.CompareTag("MoveableObject") || other.CompareTag("Attached"))
         {
             // Layeränderung u FrontRender
-            other.gameObject.GetComponentInChildren<MeshRenderer>().gameObject.layer = LayerMask.NameToLayer("FrontRender");
+            //other.gameObject.GetComponentInChildren<MeshRenderer>().gameObject.layer = LayerMask.NameToLayer("FrontRender");
+            other.GetComponent<ObjectState>().WinZoneEnter();
         }
     }
 
@@ -109,9 +110,10 @@ public class WinZone : MonoBehaviour
         if (other.CompareTag("MoveableObject") || other.CompareTag("Attached"))
         {
             // Layeränderung zu default
-            other.gameObject.GetComponentInChildren<MeshRenderer>().gameObject.layer = LayerMask.NameToLayer("Default");
-
-
+            //other.gameObject.GetComponentInChildren<MeshRenderer>().gameObject.layer = LayerMask.NameToLayer("Default");
+            
+            other.GetComponent<ObjectState>().WinZoneExit();
+            
             attachTriggered = false;
 
             if (winObject == null) // Wenn kein Winobjekt eingeloggt ist verlässt ein attatchter Block die Winzone
@@ -291,7 +293,7 @@ public class WinZone : MonoBehaviour
         
         AudioManager.instance.Play("Win Leaves");
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1.5f);
         
         foreach (var pSystem in winVFX)
         {
