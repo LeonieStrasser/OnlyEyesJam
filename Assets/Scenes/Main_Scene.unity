@@ -3058,6 +3058,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 330603073, guid: 631f3a63cd11ea5438e6055f7e5015de, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1381981227892207324, guid: 631f3a63cd11ea5438e6055f7e5015de,
         type: 3}
       propertyPath: coldColorParticles
