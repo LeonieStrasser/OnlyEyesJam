@@ -18,6 +18,7 @@ public class WinZone : MonoBehaviour
     [BoxGroup("Feedback")] [SerializeField] float winningDeformStrength;
 
     [BoxGroup("Feedback")] [SerializeField] ParticleSystem sparkleVFX;
+    [BoxGroup("Feedback")] [SerializeField] ParticleSystem winWaveVFX;
     [BoxGroup("Feedback")] [SerializeField] ParticleSystem sparkleLeavesVFX;
     [BoxGroup("Feedback")] [SerializeField] ParticleSystem winDissolveStart;
     [BoxGroup("Feedback")] [SerializeField] ParticleSystem[] winVFX;
@@ -320,6 +321,8 @@ public class WinZone : MonoBehaviour
         AudioManager.instance.Stop("Win Static");
         AudioManager.instance.Play("Win Jingle");
         AudioManager.instance.Play("Win Wind");
+        
+        winWaveVFX.Play();
     }
 
     #endregion

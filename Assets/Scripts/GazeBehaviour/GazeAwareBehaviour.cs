@@ -22,6 +22,11 @@ public class GazeAwareBehaviour : MonoBehaviour
     
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.M) && TobiiAPI.IsConnected) //wenn Eyetracker verbunden ist, kann man mit M umschalten
+        {
+            onMouseDebug = !onMouseDebug;
+        }
+        
         if (myGaze.HasGazeFocus && !hasFocus) // Object bekommt Fokus
         {
             hasFocus = true;
