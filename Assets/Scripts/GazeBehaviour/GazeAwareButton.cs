@@ -100,8 +100,6 @@ public class GazeAwareButton : GazeAwareBehaviour
         interactible = false;
         yield return new WaitForSeconds(AudioManager.instance.GetLength("UI Select"));
         OnKlickEvents.Invoke();
-
-        
     }
 
     protected virtual void OnKlick()

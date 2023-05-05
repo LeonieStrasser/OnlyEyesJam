@@ -144,6 +144,7 @@ public class LevelManager : MonoBehaviour
         AudioManager.instance.Stop("Win Wind");
         AudioManager.instance.Stop("Win Leaves");
         
+        spawner.StartSpawning();
         randomizer.RandomizeSetup();
         
         // Fade-Out
@@ -154,7 +155,7 @@ public class LevelManager : MonoBehaviour
         
         GazeManager.Instance.SetGazeActive(true);
         
-        spawner.StartSpawning();
+        //spawner.StartSpawning();
         
         yield return new WaitForSeconds(4.5f);
         

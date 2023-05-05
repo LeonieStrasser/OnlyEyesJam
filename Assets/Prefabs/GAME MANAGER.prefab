@@ -459,7 +459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenWindupSoundAndTelekinesis: 3.68
-  masterVolume: 3
+  masterVolume: 12
   sounds:
   - name: Ambience
     myClip: {fileID: 8300000, guid: 6861333e3126ba84194b5d192d8236d6, type: 3}
@@ -541,7 +541,7 @@ MonoBehaviour:
     isPlaying: 0
   - name: TKinese Static 1
     myClip: {fileID: 8300000, guid: dc7c8725a5c57ac4e9795b6a0cdb06b9, type: 3}
-    myVolume: 0.28
+    myVolume: 0.1
     myPitch: 1
     myLoop: 1
     startOnPlay: 0
@@ -567,7 +567,7 @@ MonoBehaviour:
     isPlaying: 0
   - name: Win Jingle
     myClip: {fileID: 8300000, guid: 348de6b3296247c46b991b6a1d8ad341, type: 3}
-    myVolume: 0.06
+    myVolume: 0.03
     myPitch: 1.2
     myLoop: 0
     startOnPlay: 0
@@ -617,6 +617,19 @@ MonoBehaviour:
     mySource: {fileID: 0}
     currentVolume: 0
     isPlaying: 0
+  - name: UI Select
+    myClip: {fileID: 8300000, guid: 7c7ca59c68bc30745b540b99a85bda78, type: 3}
+    myVolume: 0.04
+    myPitch: 1.2
+    myLoop: 0
+    startOnPlay: 0
+    randomPitch: 0
+    myFadeIn: 0
+    myFadeOut: 0
+    randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
+    mySource: {fileID: 0}
+    currentVolume: 0
+    isPlaying: 0
   - name: Win Wind
     myClip: {fileID: 8300000, guid: bccf95610252a054386248bc98920409, type: 3}
     myVolume: 0.18
@@ -630,7 +643,20 @@ MonoBehaviour:
     mySource: {fileID: 0}
     currentVolume: 0
     isPlaying: 0
-  debug: 1
+  - name: UI Static
+    myClip: {fileID: 8300000, guid: 3925b40981b3fa94b8dced3a6ef24240, type: 3}
+    myVolume: 0.01
+    myPitch: 1.5
+    myLoop: 0
+    startOnPlay: 0
+    randomPitch: 0
+    myFadeIn: 0
+    myFadeOut: 0.2
+    randomPichBetweenTwoValues: {x: 0.7365392, y: 0.7365392}
+    mySource: {fileID: 0}
+    currentVolume: 0
+    isPlaying: 0
+  debug: 0
 --- !u!1 &4363363832878108876
 GameObject:
   m_ObjectHideFlags: 0
