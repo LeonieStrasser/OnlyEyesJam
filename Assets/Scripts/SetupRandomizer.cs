@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using Random = UnityEngine.Random;
 
 public class SetupRandomizer : MonoBehaviour
 {
@@ -12,9 +14,15 @@ public class SetupRandomizer : MonoBehaviour
 
     ColorChanger myColorChanger;
 
-    private void Awake()
+    void Awake()
     {
         myColorChanger = GetComponentInChildren<ColorChanger>();
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.C))
+            RandomizeSetup();
     }
 
     [Button]

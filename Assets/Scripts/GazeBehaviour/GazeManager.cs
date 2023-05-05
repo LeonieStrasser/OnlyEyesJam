@@ -60,6 +60,7 @@ public class GazeManager : MonoBehaviour
         TobiiAPI.Start(new TobiiSettings());
 
         useMouseAsGaze = !TobiiAPI.IsConnected;
+        Cursor.visible = useMouseAsGaze;
 
         mainCam = Camera.main;
 
@@ -68,6 +69,12 @@ public class GazeManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.M) && TobiiAPI.IsConnected) //wenn Eyetracker verbunden ist, kann man mit M umschalten
+        {
+            useMouseAsGaze = !useMouseAsGaze;
+            Cursor.visible = useMouseAsGaze;
+        }
+
         UpdateGazePosition();
         
         if(!gazeEnabled)
