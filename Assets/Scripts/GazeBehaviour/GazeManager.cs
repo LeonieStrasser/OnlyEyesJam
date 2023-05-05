@@ -6,7 +6,7 @@ public class GazeManager : MonoBehaviour
 {
     public static GazeManager Instance;
 
-    [HideInInspector] public Vector3 gazePosition;
+    [HideInInspector] public Vector3 gazePosition = Vector3.zero;
 
     [Header("General Settings")] 
     public bool gazeEnabled = true;

@@ -11,11 +11,13 @@ public class SetupRandomizer : MonoBehaviour
     [SerializeField] GameObject warmColorParticles;
     [SerializeField] GameObject coldColorParticles;
 
+    public static SetupRandomizer Instance;
 
     ColorChanger myColorChanger;
 
     void Awake()
     {
+        Instance = this;
         myColorChanger = GetComponentInChildren<ColorChanger>();
     }
 

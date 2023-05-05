@@ -122,6 +122,8 @@ public class ObjectSpawner : MonoBehaviour
         }
 
         yield return null;
+        
+        SetupRandomizer.Instance.RandomizeSetup();
     }
 
     public void ClearAllObjects()
