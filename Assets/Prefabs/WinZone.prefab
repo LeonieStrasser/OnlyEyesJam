@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 2
       minColor: {r: 1, g: 0.33490568, b: 0.52983904, a: 1}
-      maxColor: {r: 1, g: 0.4669811, b: 0.7131092, a: 1}
+      maxColor: {r: 0.9647059, g: 0.43137255, b: 0.5411765, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5036,8 +5036,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.33490568, b: 0.52983904, a: 1}
-      maxColor: {r: 1, g: 0.4669811, b: 0.7131092, a: 1}
+      minColor: {r: 0.84313726, g: 0.24313726, b: 0.41568628, a: 1}
+      maxColor: {r: 0.7921569, g: 0.19607843, b: 0.2784314, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -15090,7 +15090,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6486353687104872758
 Transform:
   m_ObjectHideFlags: 0
@@ -15295,8 +15295,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.33490568, b: 0.52983904, a: 1}
-      maxColor: {r: 1, g: 0.4669811, b: 0.7131092, a: 1}
+      minColor: {r: 0.84313726, g: 0.24313726, b: 0.41568628, a: 1}
+      maxColor: {r: 0.794, g: 0.19691202, b: 0.27652368, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -25218,7 +25218,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4156435255901151806
 Transform:
   m_ObjectHideFlags: 0
@@ -25464,8 +25464,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.33490568, b: 0.52983904, a: 1}
-      maxColor: {r: 1, g: 0.4669811, b: 0.7131092, a: 1}
+      minColor: {r: 0.8396226, g: 0.2415895, b: 0.41399562, a: 1}
+      maxColor: {r: 0.9647059, g: 0.43137255, b: 0.5411765, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
