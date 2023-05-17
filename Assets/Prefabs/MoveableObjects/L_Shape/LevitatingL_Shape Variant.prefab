@@ -35,7 +35,7 @@ PrefabInstance:
     - target: {fileID: 3669537452450156013, guid: af5ee4c4fa6da7f47b7586e77109dec6,
         type: 3}
       propertyPath: m_Size.x
-      value: 0.9239618
+      value: 0.85621816
       objectReference: {fileID: 0}
     - target: {fileID: 3669537452450156013, guid: af5ee4c4fa6da7f47b7586e77109dec6,
         type: 3}
@@ -50,12 +50,12 @@ PrefabInstance:
     - target: {fileID: 3669537452450156013, guid: af5ee4c4fa6da7f47b7586e77109dec6,
         type: 3}
       propertyPath: m_Center.x
-      value: -0.3104886
+      value: -0.297461
       objectReference: {fileID: 0}
     - target: {fileID: 3669537452450156013, guid: af5ee4c4fa6da7f47b7586e77109dec6,
         type: 3}
       propertyPath: m_Center.y
-      value: -0.056878954
+      value: -0.056878924
       objectReference: {fileID: 0}
     - target: {fileID: 3669537452450156013, guid: af5ee4c4fa6da7f47b7586e77109dec6,
         type: 3}
@@ -130,7 +130,7 @@ PrefabInstance:
     - target: {fileID: 4212985530789338616, guid: af5ee4c4fa6da7f47b7586e77109dec6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4212985530789338616, guid: af5ee4c4fa6da7f47b7586e77109dec6,
         type: 3}
@@ -196,8 +196,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7857254, y: 0.8480451, z: 0.8890507}
-  m_Center: {x: 0.13940263, y: 0.47522253, z: -0.055474624}
+  m_Size: {x: 1.7544591, y: 0.8011457, z: 0.8890507}
+  m_Center: {x: 0.15503576, y: 0.49867225, z: -0.05547464}
 --- !u!4 &986871300592403095 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3669537452450156019, guid: af5ee4c4fa6da7f47b7586e77109dec6,
