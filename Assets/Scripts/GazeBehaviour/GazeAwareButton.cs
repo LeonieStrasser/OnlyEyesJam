@@ -72,11 +72,7 @@ public class GazeAwareButton : GazeAwareBehaviour
                 if (buttonMesh)
                     buttonMat.SetFloat("_FillAmount", 1 - klickTimer / klickTime);
             }
-                
-                
 
-
-            
             if (klickTimer <= 0)
             {
                 StartCoroutine(ActivateKlick());

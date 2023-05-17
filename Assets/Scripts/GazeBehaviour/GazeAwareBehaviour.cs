@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Tobii.Gaming;
+using UnityEngine.Android;
 
 [RequireComponent(typeof(GazeAware))]
 public class GazeAwareBehaviour : MonoBehaviour
@@ -16,16 +18,21 @@ public class GazeAwareBehaviour : MonoBehaviour
     void Start()
     {
         myGaze = GetComponent<GazeAware>();
+        GazeManager.Instance.SwitchMouseDebug += ChangeMouseDebug;
 
         onMouseDebug = !TobiiAPI.IsConnected;
+    }
+
+    void ChangeMouseDebug(bool _useMouse)
+    {
+        onMouseDebug = _useMouse;
+        Debug.Log("Event fired: " + _useMouse);
     }
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M) && TobiiAPI.IsConnected) //wenn Eyetracker verbunden ist, kann man mit M umschalten
-        {
-            onMouseDebug = !onMouseDebug;
-        }
+        if(onMouseDebug)
+            return;
         
         if (myGaze.HasGazeFocus && !hasFocus) // Object bekommt Fokus
         {
@@ -65,6 +72,11 @@ public class GazeAwareBehaviour : MonoBehaviour
         {
             OnFocusIsActive();
         }
+    }
+
+    void OnDestroy()
+    {
+        GazeManager.Instance.SwitchMouseDebug -= ChangeMouseDebug;
     }
 
     protected virtual void OnFocusStart()

@@ -1,3 +1,4 @@
+using System;
 using NaughtyAttributes;
 using Tobii.Gaming;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 public class GazeManager : MonoBehaviour
 {
     public static GazeManager Instance;
+    
+    public event Action<bool> SwitchMouseDebug;
 
     [HideInInspector] public Vector3 gazePosition = Vector3.zero;
 
@@ -61,6 +64,7 @@ public class GazeManager : MonoBehaviour
 
         useMouseAsGaze = !TobiiAPI.IsConnected;
         Cursor.visible = useMouseAsGaze;
+        SwitchMouseDebug?.Invoke(useMouseAsGaze);
 
         mainCam = Camera.main;
 
@@ -73,6 +77,9 @@ public class GazeManager : MonoBehaviour
         {
             useMouseAsGaze = !useMouseAsGaze;
             Cursor.visible = useMouseAsGaze;
+            
+            SwitchMouseDebug?.Invoke(useMouseAsGaze);
+            Debug.Log("Subscribers: " + SwitchMouseDebug?.GetInvocationList().Length);
         }
 
         UpdateGazePosition();
@@ -329,7 +336,7 @@ public class GazeManager : MonoBehaviour
 
     void LetFallAndDetach()
     {
-        currentFocusedObjectState.ChangePhysicalState(ObjectState.physicalStates.Falling);
+        currentFocusedObjectState?.ChangePhysicalState(ObjectState.physicalStates.Falling);
         Detach();
     }
 }
