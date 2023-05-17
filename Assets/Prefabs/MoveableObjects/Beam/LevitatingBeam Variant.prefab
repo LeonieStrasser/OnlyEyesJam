@@ -20,12 +20,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 24f0c354a54061b4bb29a2aaca10c0a4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0.008
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24f0c354a54061b4bb29a2aaca10c0a4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.008
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24f0c354a54061b4bb29a2aaca10c0a4,
         type: 3}
@@ -139,6 +139,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3669537452450156013, guid: af5ee4c4fa6da7f47b7586e77109dec6,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669537452450156013, guid: af5ee4c4fa6da7f47b7586e77109dec6,
+        type: 3}
       propertyPath: m_Center.x
       value: 0.014469534
       objectReference: {fileID: 0}
@@ -230,7 +235,7 @@ PrefabInstance:
     - target: {fileID: 4212985530789338616, guid: af5ee4c4fa6da7f47b7586e77109dec6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4212985530789338616, guid: af5ee4c4fa6da7f47b7586e77109dec6,
         type: 3}
@@ -284,6 +289,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af5ee4c4fa6da7f47b7586e77109dec6, type: 3}
+--- !u!1 &6659677096032284390 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3669537452450156015, guid: af5ee4c4fa6da7f47b7586e77109dec6,
+    type: 3}
+  m_PrefabInstance: {fileID: 7964402456375829257}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &7137382337559620310
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6659677096032284390}
+  m_Material: {fileID: 13400000, guid: 99608adfe4314f245878891c2d95b92e, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4864009287118853192, guid: 24f0c354a54061b4bb29a2aaca10c0a4, type: 3}
 --- !u!4 &6659677096032284410 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3669537452450156019, guid: af5ee4c4fa6da7f47b7586e77109dec6,
