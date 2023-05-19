@@ -87,7 +87,6 @@ public class GazeManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Confined;
 
             SwitchMouseDebug?.Invoke(useMouseAsGaze);
-            Debug.Log("Subscribers: " + SwitchMouseDebug?.GetInvocationList().Length);
         }
 
         UpdateGazePosition();

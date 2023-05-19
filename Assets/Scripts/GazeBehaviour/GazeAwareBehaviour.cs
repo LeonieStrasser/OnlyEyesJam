@@ -26,7 +26,6 @@ public class GazeAwareBehaviour : MonoBehaviour
     void ChangeMouseDebug(bool _useMouse)
     {
         onMouseDebug = _useMouse;
-        Debug.Log("Event fired: " + _useMouse);
     }
     
     void Update()

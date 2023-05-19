@@ -27,7 +27,7 @@ public class WinZone : MonoBehaviour
     [BoxGroup("Feedback")] [SerializeField] float wobbleStrength;
     [BoxGroup("Feedback")] [SerializeField] float wobbleDuration;
 
-    LevelManager myManager;
+    bool enabled = true;
 
     Material mat;
 
@@ -45,8 +45,6 @@ public class WinZone : MonoBehaviour
 
     void Start()
     {
-        myManager = FindObjectOfType<LevelManager>();
-
         mat = meshRen.material;
 
         idleColor = mat.GetColor(Shader.PropertyToID("_IdleColor"));
@@ -60,6 +58,9 @@ public class WinZone : MonoBehaviour
 
     void Update()
     {
+        if(!enabled)
+            return;
+        
         WintimerProgress();
     }
 
@@ -195,6 +196,8 @@ public class WinZone : MonoBehaviour
     {
         winObject.GetComponent<ObjectState>().ChangePhysicalState(ObjectState.physicalStates.Grounded);
 
+        enabled = false;
+        
         WinFeedback();
     }
 
