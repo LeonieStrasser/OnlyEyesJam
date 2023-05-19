@@ -49,7 +49,7 @@ public class ObjectSpawner : MonoBehaviour
 
         for (int i = 0; i < Random.Range(winZoneAmount.x, winZoneAmount.y + 1); i++)
         {
-            Vector3 winZonePosition = RandomPointInZone(winSpawnZone.bounds, 1f);
+            Vector3 winZonePosition = RandomPointInZone(winSpawnZone.bounds, 2f);
 
             if (winZonePosition.magnitude > 1000f)
                 winZonePosition = winSpawnZone.bounds.center;
@@ -138,7 +138,7 @@ public class ObjectSpawner : MonoBehaviour
     public void RespawnSpecificObject(GameObject _object)
     {
         Vector3 respawnPoint = RandomPointAvoidWinZones(objectSpawnZone.bounds);
-        respawnPoint.y = objectSpawnZone.bounds.min.y;
+        //respawnPoint.y = objectSpawnZone.bounds.min.y;
         
         _object.transform.position = respawnPoint;
         _object.GetComponent<Rigidbody>().velocity = Vector3.zero;
