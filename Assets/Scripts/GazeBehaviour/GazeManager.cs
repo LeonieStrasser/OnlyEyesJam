@@ -2,6 +2,8 @@ using System;
 using NaughtyAttributes;
 using Tobii.Gaming;
 using UnityEngine;
+using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 public class GazeManager : MonoBehaviour
 {
@@ -63,6 +65,7 @@ public class GazeManager : MonoBehaviour
         TobiiAPI.Start(new TobiiSettings());
 
         useMouseAsGaze = !TobiiAPI.IsConnected;
+        Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = useMouseAsGaze;
         SwitchMouseDebug?.Invoke(useMouseAsGaze);
 
@@ -78,6 +81,11 @@ public class GazeManager : MonoBehaviour
             useMouseAsGaze = !useMouseAsGaze;
             Cursor.visible = useMouseAsGaze;
             
+            Cursor.lockState = CursorLockMode.Locked; // um den Cursor zu zentrieren
+
+            if (useMouseAsGaze)
+                Cursor.lockState = CursorLockMode.Confined;
+
             SwitchMouseDebug?.Invoke(useMouseAsGaze);
             Debug.Log("Subscribers: " + SwitchMouseDebug?.GetInvocationList().Length);
         }
