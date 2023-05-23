@@ -152,16 +152,16 @@ Material:
     - _AnimHighlightColor: {r: 0.9528302, g: 0.8772611, b: 0.7236116, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color01: {r: 1, g: 0.6313726, b: 0.2509804, a: 0}
-    - _Color02: {r: 0.75294125, g: 0.19215688, b: 0.13725491, a: 0}
-    - _DarkenColor1: {r: 1, g: 0.9921569, b: 0.97647065, a: 0}
-    - _DarkenColor2: {r: 0.49803925, g: 0.49803925, b: 0.49803925, a: 0}
+    - _Color01: {r: 0, g: 0, b: 0, a: 0}
+    - _Color02: {r: 0, g: 0, b: 0, a: 0}
+    - _DarkenColor1: {r: 0, g: 0, b: 0, a: 0}
+    - _DarkenColor2: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 1, g: 0.8619663, b: 0.7490196, a: 1}
-    - _H_hnerLinienColor: {r: 1, g: 0.9490197, b: 0.8235295, a: 0}
+    - _H_hnerLinienColor: {r: 1, g: 1, b: 1, a: 0}
     - _LochPosition: {r: -0.05, g: 0.02, b: 0, a: 0}
     - _OverlayColor: {r: 0.7924528, g: 0.50605756, b: 0.2728729, a: 0}
-    - _PinlightLayerColor: {r: 0.4666667, g: 0.7372549, b: 1, a: 0}
-    - _PinlightLayerColor2: {r: 0.31764707, g: 0.7843138, b: 0.9803922, a: 0}
+    - _PinlightLayerColor: {r: 0, g: 0, b: 0, a: 0}
+    - _PinlightLayerColor2: {r: 0.5529412, g: 0.5647059, b: 0.52156866, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &957808331742204790

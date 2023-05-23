@@ -55,14 +55,14 @@ Material:
     - _QueueControl: 1
     - _QueueOffset: 0
     - _ShallowWaterOpacity: 0.932
-    - _ShoreBlend: 1.59
+    - _ShoreBlend: 0.67
     - _ShoreOffset: 0.34
     - _Smoothness: 0.761
     - _Speed: 0.05
     - _Strength: 0.48
     - _TestFloat: 1
     - _UseShaderAlpha: 0
-    - _WaterClarity: 0.639
+    - _WaterClarity: 1
     - _WaveStrength: 0.02
     m_Colors:
     - _Deep_Water_Color: {r: 0.78991634, g: 0.9150943, b: 0.90436476, a: 0}
